@@ -1,0 +1,1 @@
+-- H2-compatible import.sql (MySQL-specific ALTER TABLE removed; the action column constraint is defined on the entity)

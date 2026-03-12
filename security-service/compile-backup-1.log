@@ -1,0 +1,372 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.revature.microservices:security-service >-------------
+[INFO] Building Security Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ security-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\security-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ security-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ security-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 46 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/model/backup/BackupExport.java:[3,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[9,41] cannot find symbol
+  symbol:   class ThirdPartyImportRequest
+  location: package com.revature.security.dto.request
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[10,42] cannot find symbol
+  symbol:   class ImportResult
+  location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[11,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[12,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[13,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[14,40] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[16,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[17,54] package com.revature.security.service.backup.importers does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[18,54] package com.revature.security.service.backup.importers does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[35,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[36,17] cannot find symbol
+  symbol:   class EncryptionService
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[37,17] cannot find symbol
+  symbol:   class VaultService
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[38,17] cannot find symbol
+  symbol:   class ImporterFactory
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[41,61] cannot find symbol
+  symbol:   class ThirdPartyImportRequest
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[41,10] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[30,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[6,42] cannot find symbol
+  symbol:   class ImportResult
+  location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[7,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[8,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[9,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[10,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[11,40] cannot find symbol
+  symbol:   class CategoryRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[12,40] cannot find symbol
+  symbol:   class FolderRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[13,40] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[14,40] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[16,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[38,17] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[39,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[40,17] cannot find symbol
+  symbol:   class CategoryRepository
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[41,17] cannot find symbol
+  symbol:   class FolderRepository
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[42,17] cannot find symbol
+  symbol:   class EncryptionService
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[43,17] cannot find symbol
+  symbol:   class VaultService
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[46,10] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[124,10] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[144,37] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[144,11] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[170,36] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[170,11] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[190,35] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[190,11] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[289,34] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[289,11] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[33,1] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[4,41] cannot find symbol
+  symbol:   class ThirdPartyImportRequest
+  location: package com.revature.security.dto.request
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[6,42] cannot find symbol
+  symbol:   class ImportResult
+  location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[15,49] package org.springframework.security.core.context does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[6,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[9,53] package com.revature.security.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[10,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[11,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[13,40] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[14,40] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[16,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[28,59] package com.revature.passwordmanager.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[39,25] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[49,71] cannot find symbol
+  symbol:   class ThirdPartyImportRequest
+  location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[49,25] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[61,25] cannot find symbol
+  symbol:   class ImportResult
+  location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[72,81] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[20,1] package com.revature.passwordmanager.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[37,17] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[38,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[40,17] cannot find symbol
+  symbol:   class EncryptionService
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[41,17] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[105,36] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[119,35] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[136,42] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[32,1] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.backup.ExportService
+[INFO] 72 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.947 s
+[INFO] Finished at: 2026-03-12T23:41:23+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project security-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/model/backup/BackupExport.java:[3,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[9,41] cannot find symbol
+[ERROR]   symbol:   class ThirdPartyImportRequest
+[ERROR]   location: package com.revature.security.dto.request
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[10,42] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[11,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[12,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[13,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[14,40] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[16,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[17,54] package com.revature.security.service.backup.importers does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[18,54] package com.revature.security.service.backup.importers does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[35,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[36,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionService
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[37,17] cannot find symbol
+[ERROR]   symbol:   class VaultService
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   class ImporterFactory
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[41,61] cannot find symbol
+[ERROR]   symbol:   class ThirdPartyImportRequest
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[41,10] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ThirdPartyImportService.java:[30,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.security.service.backup.ThirdPartyImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[6,42] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[7,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[8,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[9,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[10,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[11,40] cannot find symbol
+[ERROR]   symbol:   class CategoryRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[12,40] cannot find symbol
+[ERROR]   symbol:   class FolderRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[13,40] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[14,40] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[16,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[39,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[40,17] cannot find symbol
+[ERROR]   symbol:   class CategoryRepository
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   class FolderRepository
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[42,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionService
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[43,17] cannot find symbol
+[ERROR]   symbol:   class VaultService
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[46,10] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[124,10] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[144,37] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[144,11] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[170,36] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[170,11] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[190,35] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[190,11] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[289,34] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[289,11] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ImportService.java:[33,1] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.backup.ImportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[4,41] cannot find symbol
+[ERROR]   symbol:   class ThirdPartyImportRequest
+[ERROR]   location: package com.revature.security.dto.request
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[6,42] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: package com.revature.security.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[15,49] package org.springframework.security.core.context does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[6,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[9,53] package com.revature.security.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[10,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[11,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[13,40] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[14,40] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[15,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[16,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[28,59] package com.revature.passwordmanager.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[39,25] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[49,71] cannot find symbol
+[ERROR]   symbol:   class ThirdPartyImportRequest
+[ERROR]   location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[49,25] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[61,25] cannot find symbol
+[ERROR]   symbol:   class ImportResult
+[ERROR]   location: class com.revature.security.controller.BackupController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[72,81] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/BackupController.java:[20,1] package com.revature.passwordmanager.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[37,17] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[40,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionService
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[105,36] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[119,35] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[136,42] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/backup/ExportService.java:[32,1] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.backup.ExportService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

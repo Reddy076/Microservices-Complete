@@ -1,0 +1,252 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.revature.microservices:security-service >-------------
+[INFO] Building Security Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ security-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\security-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ security-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ security-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 38 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[4,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[13,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[21,17] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.aspect.AuditLogAspect
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[17,1] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.aspect.AuditLogAspect
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[9,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[10,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[26,2] cannot find symbol
+  symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[8,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[11,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[14,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[70,83] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[77,83] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[30,19] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[121,58] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[130,58] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[137,51] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[24,1] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[5,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[4,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[8,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[13,61] package com.revature.security.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[6,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[7,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[10,40] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[11,34] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: package com.revature.security.util
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[31,17] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[33,17] cannot find symbol
+  symbol:   class EncryptionService
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[34,17] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[39,28] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[183,42] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[222,36] cannot find symbol
+  symbol:   class User
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[222,52] cannot find symbol
+  symbol:   class VaultEntry
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[25,1] cannot find symbol
+  symbol:   class VaultEntryRepository
+  location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[6,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[8,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[9,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[10,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[11,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[27,17] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[28,17] cannot find symbol
+  symbol:   class LoginAttemptService
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[29,17] cannot find symbol
+  symbol:   class SecurityAlertService
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[30,17] cannot find symbol
+  symbol:   class SecurityAuditService
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[23,1] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[32,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[39,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[46,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[53,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[60,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[68,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[75,6] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/model/PasswordAnalysis.java:[34,24] cannot find symbol
+  symbol:   class StringListConverter
+  location: class com.revature.security.model.PasswordAnalysis
+[INFO] 51 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.811 s
+[INFO] Finished at: 2026-03-12T23:22:45+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project security-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[4,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[13,43] package com.revature.security.service.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[21,17] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.aspect.AuditLogAspect
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/aspect/AuditLogAspect.java:[17,1] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.aspect.AuditLogAspect
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[9,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[10,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[26,2] cannot find symbol
+[ERROR]   symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[8,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[11,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[14,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[70,83] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[77,83] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[30,19] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[121,58] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[130,58] package com.revature.passwordmanager.dto.response does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[137,51] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/dashboard/PasswordStrengthDashboardService.java:[24,1] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.dashboard.PasswordStrengthDashboardService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[5,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[4,39] package com.revature.security.exception does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[8,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[13,61] package com.revature.security.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[6,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[7,41] package com.revature.security.model.vault does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[10,40] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: package com.revature.security.repository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[11,34] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: package com.revature.security.util
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[31,17] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[33,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionService
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[34,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[39,28] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[183,42] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[222,36] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[222,52] cannot find symbol
+[ERROR]   symbol:   class VaultEntry
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAuditService.java:[25,1] cannot find symbol
+[ERROR]   symbol:   class VaultEntryRepository
+[ERROR]   location: class com.revature.security.service.SecurityAuditService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[6,40] package com.revature.security.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[8,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[9,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[10,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[11,46] package com.revature.security.service.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[27,17] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[28,17] cannot find symbol
+[ERROR]   symbol:   class LoginAttemptService
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[29,17] cannot find symbol
+[ERROR]   symbol:   class SecurityAlertService
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[30,17] cannot find symbol
+[ERROR]   symbol:   class SecurityAuditService
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[23,1] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[32,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[39,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[46,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[53,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[60,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[68,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[75,6] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/model/PasswordAnalysis.java:[34,24] cannot find symbol
+[ERROR]   symbol:   class StringListConverter
+[ERROR]   location: class com.revature.security.model.PasswordAnalysis
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

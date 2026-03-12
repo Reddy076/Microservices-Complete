@@ -1,0 +1,497 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.revature.microservices:vault-service >--------------
+[INFO] Building Vault Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ vault-service ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ vault-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ vault-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 168 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[7,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[14,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[18,43] cannot find symbol
+  symbol:   class DuressService
+  location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[36,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[36,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[37,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[37,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[38,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[38,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[39,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[39,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[40,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[41,43] cannot find symbol
+  symbol:   class AuditLogService
+  location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[42,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[43,58] package com.revature.vault.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[50,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[55,17] cannot find symbol
+  symbol:   class TwoFactorService
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[8,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[57,17] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[58,17] cannot find symbol
+  symbol:   class NotificationService
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[10,63] cannot find symbol
+  symbol: class UserSettings
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[60,52] cannot find symbol
+  symbol:   class SecurityAuditService
+  location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[63,17] cannot find symbol
+  symbol:   class DuressService
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[531,40] cannot find symbol
+  symbol:   class User
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[609,34] cannot find symbol
+  symbol:   class User
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[46,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[11,12] cannot find symbol
+  symbol:   class UserSettings
+  location: interface com.revature.vault.repository.UserSettingsRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[29,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.vault.VaultSnapshotService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[22,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.vault.VaultSnapshotService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/FolderRepository.java:[17,45] cannot find symbol
+  symbol:   class User
+  location: interface com.revature.vault.repository.FolderRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[4,41] package com.revature.vault.model.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[6,37] cannot find symbol
+  symbol:   class LoginAttemptRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[7,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[24,17] cannot find symbol
+  symbol:   class LoginAttemptRepository
+  location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[25,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[73,46] cannot find symbol
+  symbol:   class LoginAttempt
+  location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[19,1] cannot find symbol
+  symbol:   class LoginAttemptRepository
+  location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[3,30] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: package com.revature.vault.dto
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[19,16] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[19,37] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[11,1] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[11,62] cannot find symbol
+  symbol: class UserSession
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[13,8] cannot find symbol
+  symbol:   class UserSession
+  location: interface com.revature.vault.repository.UserSessionRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[15,12] cannot find symbol
+  symbol:   class UserSession
+  location: interface com.revature.vault.repository.UserSessionRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[18,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[26,17] cannot find symbol
+  symbol:   class SessionService
+  location: class com.revature.vault.security.JwtAuthenticationFilter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[21,1] cannot find symbol
+  symbol:   class SessionService
+  location: class com.revature.vault.security.JwtAuthenticationFilter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[4,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[20,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.scheduler.AccountDeletionScheduler
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[16,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.scheduler.AccountDeletionScheduler
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[7,44] package com.revature.vault.service.analytics does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[32,19] cannot find symbol
+  symbol:   class VaultTimelineService
+  location: class com.revature.vault.controller.VaultTimelineController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[28,1] cannot find symbol
+  symbol:   class VaultTimelineService
+  location: class com.revature.vault.controller.VaultTimelineController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[5,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[20,17] cannot find symbol
+  symbol:   class NotificationService
+  location: class com.revature.vault.controller.NotificationController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[17,1] cannot find symbol
+  symbol:   class NotificationService
+  location: class com.revature.vault.controller.NotificationController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/OnePasswordImporter.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/Importer.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/OnePasswordImporter.java:[24,49] cannot find symbol
+  symbol:   class User
+  location: class com.revature.vault.service.backup.importers.OnePasswordImporter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/Importer.java:[11,42] cannot find symbol
+  symbol:   class User
+  location: interface com.revature.vault.service.backup.importers.Importer
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[7,39] package com.revature.vault.model.backup does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[8,52] package com.revature.vault.model.backup.BackupExport does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[9,50] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[10,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[13,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[15,43] cannot find symbol
+  symbol:   class AuditLogService
+  location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[38,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[3,39] package com.revature.vault.model.backup does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[10,63] cannot find symbol
+  symbol: class BackupExport
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[41,17] cannot find symbol
+  symbol:   class AuditLogService
+  location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[216,11] cannot find symbol
+  symbol:   class ExportFormat
+  location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[32,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[11,8] cannot find symbol
+  symbol:   class BackupExport
+  location: interface com.revature.vault.repository.BackupExportRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[3,30] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: package com.revature.vault.dto
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[19,16] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[19,37] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[11,1] cannot find symbol
+  symbol:   class SecurityQuestionDTO
+  location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[3,39] cannot find symbol
+  symbol:   class SessionResponse
+  location: package com.revature.vault.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[5,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[20,17] cannot find symbol
+  symbol:   class SessionService
+  location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[23,30] cannot find symbol
+  symbol:   class SessionResponse
+  location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[28,25] cannot find symbol
+  symbol:   class SessionResponse
+  location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[37,25] cannot find symbol
+  symbol:   class SessionResponse
+  location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[17,1] cannot find symbol
+  symbol:   class SessionService
+  location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[4,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[17,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.security.CustomUserDetailsService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[14,1] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.security.CustomUserDetailsService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[7,37] cannot find symbol
+  symbol:   class UserRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[10,37] cannot find symbol
+  symbol:   class PasswordAnalysisRepository
+  location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[12,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[13,58] package com.revature.vault.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[33,17] cannot find symbol
+  symbol:   class UserRepository
+  location: class com.revature.vault.service.vault.VaultTrashService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[35,17] cannot find symbol
+  symbol:   class PasswordAnalysisRepository
+  location: class com.revature.vault.service.vault.VaultTrashService
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.847 s
+[INFO] Finished at: 2026-03-12T20:05:56+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project vault-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[7,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[14,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[18,43] cannot find symbol
+[ERROR]   symbol:   class DuressService
+[ERROR]   location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[36,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[36,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[37,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[37,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[38,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[38,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[39,57] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[39,1] static import only from classes and interfaces
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[40,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[41,43] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[42,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[43,58] package com.revature.vault.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[50,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[55,17] cannot find symbol
+[ERROR]   symbol:   class TwoFactorService
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[8,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[57,17] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[58,17] cannot find symbol
+[ERROR]   symbol:   class NotificationService
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[10,63] cannot find symbol
+[ERROR]   symbol: class UserSettings
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[60,52] cannot find symbol
+[ERROR]   symbol:   class SecurityAuditService
+[ERROR]   location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[63,17] cannot find symbol
+[ERROR]   symbol:   class DuressService
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[531,40] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[609,34] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[46,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSettingsRepository.java:[11,12] cannot find symbol
+[ERROR]   symbol:   class UserSettings
+[ERROR]   location: interface com.revature.vault.repository.UserSettingsRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[29,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultSnapshotService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultSnapshotService.java:[22,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultSnapshotService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/FolderRepository.java:[17,45] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: interface com.revature.vault.repository.FolderRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[4,41] package com.revature.vault.model.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[6,37] cannot find symbol
+[ERROR]   symbol:   class LoginAttemptRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[7,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[24,17] cannot find symbol
+[ERROR]   symbol:   class LoginAttemptRepository
+[ERROR]   location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[25,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[73,46] cannot find symbol
+[ERROR]   symbol:   class LoginAttempt
+[ERROR]   location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/security/LoginAttemptService.java:[19,1] cannot find symbol
+[ERROR]   symbol:   class LoginAttemptRepository
+[ERROR]   location: class com.revature.vault.service.security.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[3,30] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: package com.revature.vault.dto
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[19,16] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[19,37] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/UpdateSecurityQuestionsRequest.java:[11,1] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.UpdateSecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[11,62] cannot find symbol
+[ERROR]   symbol: class UserSession
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[13,8] cannot find symbol
+[ERROR]   symbol:   class UserSession
+[ERROR]   location: interface com.revature.vault.repository.UserSessionRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/UserSessionRepository.java:[15,12] cannot find symbol
+[ERROR]   symbol:   class UserSession
+[ERROR]   location: interface com.revature.vault.repository.UserSessionRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[18,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[26,17] cannot find symbol
+[ERROR]   symbol:   class SessionService
+[ERROR]   location: class com.revature.vault.security.JwtAuthenticationFilter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/JwtAuthenticationFilter.java:[21,1] cannot find symbol
+[ERROR]   symbol:   class SessionService
+[ERROR]   location: class com.revature.vault.security.JwtAuthenticationFilter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[4,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[20,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.scheduler.AccountDeletionScheduler
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/scheduler/AccountDeletionScheduler.java:[16,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.scheduler.AccountDeletionScheduler
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[7,44] package com.revature.vault.service.analytics does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[32,19] cannot find symbol
+[ERROR]   symbol:   class VaultTimelineService
+[ERROR]   location: class com.revature.vault.controller.VaultTimelineController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/VaultTimelineController.java:[28,1] cannot find symbol
+[ERROR]   symbol:   class VaultTimelineService
+[ERROR]   location: class com.revature.vault.controller.VaultTimelineController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[5,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[20,17] cannot find symbol
+[ERROR]   symbol:   class NotificationService
+[ERROR]   location: class com.revature.vault.controller.NotificationController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/NotificationController.java:[17,1] cannot find symbol
+[ERROR]   symbol:   class NotificationService
+[ERROR]   location: class com.revature.vault.controller.NotificationController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/OnePasswordImporter.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/Importer.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/OnePasswordImporter.java:[24,49] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: class com.revature.vault.service.backup.importers.OnePasswordImporter
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/importers/Importer.java:[11,42] cannot find symbol
+[ERROR]   symbol:   class User
+[ERROR]   location: interface com.revature.vault.service.backup.importers.Importer
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[7,39] package com.revature.vault.model.backup does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[8,52] package com.revature.vault.model.backup.BackupExport does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[9,50] package com.revature.vault.model.security.AuditLog does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[10,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[13,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[15,43] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: package com.revature.vault.service.security
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[3,39] package com.revature.vault.model.backup does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[10,63] cannot find symbol
+[ERROR]   symbol: class BackupExport
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   class AuditLogService
+[ERROR]   location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[216,11] cannot find symbol
+[ERROR]   symbol:   class ExportFormat
+[ERROR]   location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/backup/ExportService.java:[32,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.backup.ExportService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/repository/BackupExportRepository.java:[11,8] cannot find symbol
+[ERROR]   symbol:   class BackupExport
+[ERROR]   location: interface com.revature.vault.repository.BackupExportRepository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[3,30] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: package com.revature.vault.dto
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[19,16] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[19,37] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/dto/request/VerifySecurityQuestionsRequest.java:[11,1] cannot find symbol
+[ERROR]   symbol:   class SecurityQuestionDTO
+[ERROR]   location: class com.revature.vault.dto.request.VerifySecurityQuestionsRequest
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[3,39] cannot find symbol
+[ERROR]   symbol:   class SessionResponse
+[ERROR]   location: package com.revature.vault.dto.response
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[5,39] package com.revature.vault.service.auth does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[20,17] cannot find symbol
+[ERROR]   symbol:   class SessionService
+[ERROR]   location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[23,30] cannot find symbol
+[ERROR]   symbol:   class SessionResponse
+[ERROR]   location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[28,25] cannot find symbol
+[ERROR]   symbol:   class SessionResponse
+[ERROR]   location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[37,25] cannot find symbol
+[ERROR]   symbol:   class SessionResponse
+[ERROR]   location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/controller/SessionController.java:[17,1] cannot find symbol
+[ERROR]   symbol:   class SessionService
+[ERROR]   location: class com.revature.vault.controller.SessionController
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[3,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[4,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[17,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.security.CustomUserDetailsService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/security/CustomUserDetailsService.java:[14,1] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.security.CustomUserDetailsService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[5,37] package com.revature.vault.model.user does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[7,37] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[10,37] cannot find symbol
+[ERROR]   symbol:   class PasswordAnalysisRepository
+[ERROR]   location: package com.revature.vault.repository
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[12,47] package com.revature.vault.service.notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[13,58] package com.revature.vault.model.notification.Notification does not exist
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[33,17] cannot find symbol
+[ERROR]   symbol:   class UserRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultTrashService
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultTrashService.java:[35,17] cannot find symbol
+[ERROR]   symbol:   class PasswordAnalysisRepository
+[ERROR]   location: class com.revature.vault.service.vault.VaultTrashService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

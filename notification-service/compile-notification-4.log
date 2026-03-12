@@ -1,0 +1,90 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------< com.revature.microservices:notification-service >-----------
+[INFO] Building Notification Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ notification-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\notification-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ notification-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 10 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[34,19] cannot find symbol
+  symbol:   variable userRepository
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[35,9] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[41,17] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[53,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[60,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[68,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[81,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[92,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[57,12] cannot find symbol
+  symbol:   variable SecurityContextHolder
+  location: class com.revature.notification.controller.NotificationController
+[INFO] 9 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.683 s
+[INFO] Finished at: 2026-03-12T22:55:37+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project notification-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[34,19] cannot find symbol
+[ERROR]   symbol:   variable userRepository
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[35,9] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[53,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[60,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[68,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[81,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[92,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[57,12] cannot find symbol
+[ERROR]   symbol:   variable SecurityContextHolder
+[ERROR]   location: class com.revature.notification.controller.NotificationController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

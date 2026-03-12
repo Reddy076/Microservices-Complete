@@ -1,0 +1,433 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.revature.microservices:user-service >---------------
+[INFO] Building User Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ user-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\user-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ user-service ---
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ user-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 157 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/model/user/User.java:[44,19] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/model/user/UserSession.java:[45,19] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[INFO] 2 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[8,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[14,2] cannot find symbol
+  symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[3,32] package io.swagger.v3.oas.models does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[4,32] package io.swagger.v3.oas.models does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[5,37] package io.swagger.v3.oas.models.info does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[6,41] package io.swagger.v3.oas.models.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[7,41] package io.swagger.v3.oas.models.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[15,10] cannot find symbol
+  symbol:   class OpenAPI
+  location: class com.revature.user.config.OpenApiConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[38,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[39,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[44,2] cannot find symbol
+  symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[11,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[14,2] cannot find symbol
+  symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[5,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[8,2] cannot find symbol
+  symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[10,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[13,2] cannot find symbol
+  symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/email/EmailService.java:[3,20] package jakarta.mail does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/email/EmailService.java:[4,29] package jakarta.mail.internet does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[9,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[10,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[28,2] cannot find symbol
+  symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[10,30] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: package com.revature.user.util
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[31,17] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[32,17] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[25,1] cannot find symbol
+  symbol:   class EncryptionUtil
+  location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[5,34] cannot find symbol
+  symbol:   class RateLimitFilter
+  location: package com.revature.user.security
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[29,17] cannot find symbol
+  symbol:   class RateLimitFilter
+  location: class com.revature.user.config.SecurityConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[25,1] cannot find symbol
+  symbol:   class RateLimitFilter
+  location: class com.revature.user.config.SecurityConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[7,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[13,2] cannot find symbol
+  symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[17,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.SensitiveAccessRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[21,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.SensitiveAccessRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[55,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[62,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[71,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[78,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[98,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[107,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[115,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[122,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[130,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[139,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[146,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[153,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[160,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[168,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[177,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[188,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[196,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[204,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[212,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[221,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[16,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[20,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[25,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[11,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.LoginRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[15,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.LoginRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[17,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[22,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[27,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[32,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[38,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[36,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[43,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[51,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[64,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[72,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[79,4] cannot find symbol
+  symbol:   class Operation
+  location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[16,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[19,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[21,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[24,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[27,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[30,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[33,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[36,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[39,4] cannot find symbol
+  symbol:   class Schema
+  location: class com.revature.user.dto.request.VaultEntryRequest
+[INFO] 78 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.589 s
+[INFO] Finished at: 2026-03-12T19:43:21+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project user-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[8,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[14,2] cannot find symbol
+[ERROR]   symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[3,32] package io.swagger.v3.oas.models does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[4,32] package io.swagger.v3.oas.models does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[5,37] package io.swagger.v3.oas.models.info does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[6,41] package io.swagger.v3.oas.models.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[7,41] package io.swagger.v3.oas.models.security does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/OpenApiConfig.java:[15,10] cannot find symbol
+[ERROR]   symbol:   class OpenAPI
+[ERROR]   location: class com.revature.user.config.OpenApiConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[38,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[39,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[44,2] cannot find symbol
+[ERROR]   symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[11,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[14,2] cannot find symbol
+[ERROR]   symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[5,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[8,2] cannot find symbol
+[ERROR]   symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[10,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[13,2] cannot find symbol
+[ERROR]   symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/email/EmailService.java:[3,20] package jakarta.mail does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/email/EmailService.java:[4,29] package jakarta.mail.internet does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[9,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[10,42] package io.swagger.v3.oas.annotations.tags does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[28,2] cannot find symbol
+[ERROR]   symbol: class Tag
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[10,30] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: package com.revature.user.util
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[31,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[32,17] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/service/user/UserService.java:[25,1] cannot find symbol
+[ERROR]   symbol:   class EncryptionUtil
+[ERROR]   location: class com.revature.user.service.user.UserService
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[5,34] cannot find symbol
+[ERROR]   symbol:   class RateLimitFilter
+[ERROR]   location: package com.revature.user.security
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[29,17] cannot find symbol
+[ERROR]   symbol:   class RateLimitFilter
+[ERROR]   location: class com.revature.user.config.SecurityConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/config/SecurityConfig.java:[25,1] cannot find symbol
+[ERROR]   symbol:   class RateLimitFilter
+[ERROR]   location: class com.revature.user.config.SecurityConfig
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[7,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[13,2] cannot find symbol
+[ERROR]   symbol: class Schema
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[17,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.SensitiveAccessRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/SensitiveAccessRequest.java:[21,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.SensitiveAccessRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[55,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[62,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[71,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[78,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[98,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[107,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[115,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[122,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[130,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[139,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[146,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[153,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[160,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[168,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[177,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[188,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[196,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[204,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[212,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/AuthController.java:[221,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.AuthController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[16,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[20,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RecoveryRequest.java:[25,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RecoveryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[11,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.LoginRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/LoginRequest.java:[15,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.LoginRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[17,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[22,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[27,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[32,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/RegistrationRequest.java:[38,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.RegistrationRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[36,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[43,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[51,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[64,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[72,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/controller/TwoFactorController.java:[79,4] cannot find symbol
+[ERROR]   symbol:   class Operation
+[ERROR]   location: class com.revature.user.controller.TwoFactorController
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[16,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[19,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[21,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[24,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[27,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[30,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[33,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[36,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] /E:/MicroServices/manager/microservices/user-service/src/main/java/com/revature/user/dto/request/VaultEntryRequest.java:[39,4] cannot find symbol
+[ERROR]   symbol:   class Schema
+[ERROR]   location: class com.revature.user.dto.request.VaultEntryRequest
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

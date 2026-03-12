@@ -1,0 +1,14 @@
+com\revature\notification\model\Notification$NotificationBuilder.class
+com\revature\notification\dto\response\MessageResponse.class
+com\revature\notification\dto\NotificationDTO.class
+com\revature\notification\NotificationServiceApplication.class
+com\revature\notification\dto\NotificationDTO$NotificationDTOBuilder.class
+com\revature\notification\client\UserClient.class
+com\revature\notification\repository\NotificationRepository.class
+com\revature\notification\exception\ResourceNotFoundException.class
+com\revature\notification\dto\response\UnreadCountResponse.class
+com\revature\notification\model\Notification$NotificationType.class
+com\revature\notification\service\NotificationService.class
+com\revature\notification\client\UserClient$UserVaultDetails.class
+com\revature\notification\controller\NotificationController.class
+com\revature\notification\model\Notification.class

@@ -1,0 +1,60 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.revature.microservices:security-service >-------------
+[INFO] Building Security Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ security-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\security-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ security-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ security-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 38 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[47,25] cannot find symbol
+  symbol:   method username(java.lang.String)
+  location: class com.revature.security.model.LoginAttempt.LoginAttemptBuilder
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[88,72] cannot find symbol
+  symbol:   variable SUSPICIOUS_LOGIN
+  location: class com.revature.security.model.SecurityAlert.AlertType
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[98,17] cannot find symbol
+  symbol:   method isSuccessful(boolean)
+  location: class com.revature.security.dto.response.LoginHistoryResponse.LoginHistoryResponseBuilder
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[100,35] cannot find symbol
+  symbol:   method getUserAgent()
+  location: variable attempt of type com.revature.security.model.LoginAttempt
+[INFO] 4 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.549 s
+[INFO] Finished at: 2026-03-12T23:37:46+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project security-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[47,25] cannot find symbol
+[ERROR]   symbol:   method username(java.lang.String)
+[ERROR]   location: class com.revature.security.model.LoginAttempt.LoginAttemptBuilder
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[88,72] cannot find symbol
+[ERROR]   symbol:   variable SUSPICIOUS_LOGIN
+[ERROR]   location: class com.revature.security.model.SecurityAlert.AlertType
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[98,17] cannot find symbol
+[ERROR]   symbol:   method isSuccessful(boolean)
+[ERROR]   location: class com.revature.security.dto.response.LoginHistoryResponse.LoginHistoryResponseBuilder
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[100,35] cannot find symbol
+[ERROR]   symbol:   method getUserAgent()
+[ERROR]   location: variable attempt of type com.revature.security.model.LoginAttempt
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

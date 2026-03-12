@@ -1,0 +1,210 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< com.revature.microservices:security-service >-------------
+[INFO] Building Security Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ security-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\security-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ security-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ security-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 38 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[52,69] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[57,72] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[62,71] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[35,31] cannot find symbol
+  symbol:   method findByUsername(java.lang.String)
+  location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[36,11] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.AuditLogService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[42,17] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.AuditLogService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[61,45] cannot find symbol
+  symbol:   method findByUserIdOrderByTimestampDesc(java.lang.Long)
+  location: variable auditLogRepository of type com.revature.security.repository.AuditLogRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[30,31] cannot find symbol
+  symbol:   method findByUsername(java.lang.String)
+  location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[31,31] cannot find symbol
+  symbol:   method findByEmail(java.lang.String)
+  location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[35,17] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[58,9] cannot find symbol
+  symbol:   method findByUserIdOrderByTimestampDesc(java.lang.Long)
+  location: variable loginAttemptRepository of type com.revature.security.repository.LoginAttemptRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[88,29] cannot find symbol
+  symbol:   method findByUsername(java.lang.String)
+  location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[89,9] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[36,31] cannot find symbol
+  symbol:   method findByUsername(java.lang.String)
+  location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[37,11] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[43,17] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[55,11] cannot find symbol
+  symbol:   variable NotificationType
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[54,7] cannot find symbol
+  symbol:   variable notificationService
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[69,35] cannot find symbol
+  symbol:   method findByUserIdOrderByCreatedAtDesc(java.lang.Long)
+  location: variable securityAlertRepository of type com.revature.security.repository.SecurityAlertRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[80,32] cannot find symbol
+  symbol:   class ResourceNotFoundException
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[82,15] cannot find symbol
+  symbol:   method getUser()
+  location: variable alert of type com.revature.security.model.SecurityAlert
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[95,32] cannot find symbol
+  symbol:   class ResourceNotFoundException
+  location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[97,15] cannot find symbol
+  symbol:   method getUser()
+  location: variable alert of type com.revature.security.model.SecurityAlert
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[53,37] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[60,38] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[73,68] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[79,70] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[85,67] cannot find symbol
+  symbol:   variable username
+  location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[96,12] cannot find symbol
+  symbol:   variable SecurityContextHolder
+  location: class com.revature.security.controller.SecurityController
+[INFO] 29 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.359 s
+[INFO] Finished at: 2026-03-12T23:32:52+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project security-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[52,69] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[57,72] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/DashboardController.java:[62,71] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.DashboardController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[35,31] cannot find symbol
+[ERROR]   symbol:   method findByUsername(java.lang.String)
+[ERROR]   location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[36,11] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.AuditLogService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[42,17] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.AuditLogService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/AuditLogService.java:[61,45] cannot find symbol
+[ERROR]   symbol:   method findByUserIdOrderByTimestampDesc(java.lang.Long)
+[ERROR]   location: variable auditLogRepository of type com.revature.security.repository.AuditLogRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[30,31] cannot find symbol
+[ERROR]   symbol:   method findByUsername(java.lang.String)
+[ERROR]   location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[31,31] cannot find symbol
+[ERROR]   symbol:   method findByEmail(java.lang.String)
+[ERROR]   location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[35,17] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[58,9] cannot find symbol
+[ERROR]   symbol:   method findByUserIdOrderByTimestampDesc(java.lang.Long)
+[ERROR]   location: variable loginAttemptRepository of type com.revature.security.repository.LoginAttemptRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[88,29] cannot find symbol
+[ERROR]   symbol:   method findByUsername(java.lang.String)
+[ERROR]   location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/LoginAttemptService.java:[89,9] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.LoginAttemptService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[36,31] cannot find symbol
+[ERROR]   symbol:   method findByUsername(java.lang.String)
+[ERROR]   location: variable userClient of type com.revature.security.client.UserClient
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[37,11] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[43,17] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[55,11] cannot find symbol
+[ERROR]   symbol:   variable NotificationType
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[54,7] cannot find symbol
+[ERROR]   symbol:   variable notificationService
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[69,35] cannot find symbol
+[ERROR]   symbol:   method findByUserIdOrderByCreatedAtDesc(java.lang.Long)
+[ERROR]   location: variable securityAlertRepository of type com.revature.security.repository.SecurityAlertRepository
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[80,32] cannot find symbol
+[ERROR]   symbol:   class ResourceNotFoundException
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[82,15] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable alert of type com.revature.security.model.SecurityAlert
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[95,32] cannot find symbol
+[ERROR]   symbol:   class ResourceNotFoundException
+[ERROR]   location: class com.revature.security.service.SecurityAlertService
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/service/SecurityAlertService.java:[97,15] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable alert of type com.revature.security.model.SecurityAlert
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[53,37] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[60,38] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[73,68] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[79,70] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[85,67] cannot find symbol
+[ERROR]   symbol:   variable username
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] /E:/MicroServices/manager/microservices/security-service/src/main/java/com/revature/security/controller/SecurityController.java:[96,12] cannot find symbol
+[ERROR]   symbol:   variable SecurityContextHolder
+[ERROR]   location: class com.revature.security.controller.SecurityController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

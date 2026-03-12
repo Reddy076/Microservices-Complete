@@ -1,0 +1,198 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------< com.revature.microservices:notification-service >-----------
+[INFO] Building Notification Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ notification-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\notification-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ notification-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 10 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/repository/NotificationRepository.java:[19,22] method findByUserIdOrderByCreatedAtDesc(java.lang.Long) is already defined in interface com.revature.notification.repository.NotificationRepository
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/repository/NotificationRepository.java:[21,8] method countByUserIdAndIsReadFalse(java.lang.Long) is already defined in interface com.revature.notification.repository.NotificationRepository
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[34,19] cannot find symbol
+  symbol:   variable userRepository
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[35,9] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[40,45] cannot find symbol
+  symbol:   method builder()
+  location: class com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[41,17] cannot find symbol
+  symbol:   variable user
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[53,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[60,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[68,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[71,22] cannot find symbol
+  symbol:   method getUserId()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[74,17] cannot find symbol
+  symbol:   method setRead(boolean)
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[81,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[85,26] cannot find symbol
+  symbol:   method setRead(boolean)
+  location: variable n of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[92,29] cannot find symbol
+  symbol:   variable userClient
+  location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[95,22] cannot find symbol
+  symbol:   method getUserId()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[102,27] cannot find symbol
+  symbol:   method builder()
+  location: class com.revature.notification.dto.NotificationDTO
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[103,25] cannot find symbol
+  symbol:   method getId()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[104,39] cannot find symbol
+  symbol:   method getNotificationType()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[105,28] cannot find symbol
+  symbol:   method getTitle()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[106,30] cannot find symbol
+  symbol:   method getMessage()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[107,29] cannot find symbol
+  symbol:   method isRead()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[108,32] cannot find symbol
+  symbol:   method getCreatedAt()
+  location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[32,30] constructor UnreadCountResponse in class com.revature.notification.dto.response.UnreadCountResponse cannot be applied to given types;
+  required: no arguments
+  found:    long
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[39,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[46,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[53,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[57,12] cannot find symbol
+  symbol:   variable SecurityContextHolder
+  location: class com.revature.notification.controller.NotificationController
+[INFO] 27 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.633 s
+[INFO] Finished at: 2026-03-12T22:54:21+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project notification-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/repository/NotificationRepository.java:[19,22] method findByUserIdOrderByCreatedAtDesc(java.lang.Long) is already defined in interface com.revature.notification.repository.NotificationRepository
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/repository/NotificationRepository.java:[21,8] method countByUserIdAndIsReadFalse(java.lang.Long) is already defined in interface com.revature.notification.repository.NotificationRepository
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[34,19] cannot find symbol
+[ERROR]   symbol:   variable userRepository
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[35,9] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[40,45] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[41,17] cannot find symbol
+[ERROR]   symbol:   variable user
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[53,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[60,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[68,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[71,22] cannot find symbol
+[ERROR]   symbol:   method getUserId()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[74,17] cannot find symbol
+[ERROR]   symbol:   method setRead(boolean)
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[81,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[85,26] cannot find symbol
+[ERROR]   symbol:   method setRead(boolean)
+[ERROR]   location: variable n of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[92,29] cannot find symbol
+[ERROR]   symbol:   variable userClient
+[ERROR]   location: class com.revature.notification.service.NotificationService
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[95,22] cannot find symbol
+[ERROR]   symbol:   method getUserId()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[102,27] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.revature.notification.dto.NotificationDTO
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[103,25] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[104,39] cannot find symbol
+[ERROR]   symbol:   method getNotificationType()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[105,28] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[106,30] cannot find symbol
+[ERROR]   symbol:   method getMessage()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[107,29] cannot find symbol
+[ERROR]   symbol:   method isRead()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/service/NotificationService.java:[108,32] cannot find symbol
+[ERROR]   symbol:   method getCreatedAt()
+[ERROR]   location: variable notification of type com.revature.notification.model.Notification
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[32,30] constructor UnreadCountResponse in class com.revature.notification.dto.response.UnreadCountResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    long
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[39,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[46,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[53,30] constructor MessageResponse in class com.revature.notification.dto.response.MessageResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /E:/MicroServices/manager/microservices/notification-service/src/main/java/com/revature/notification/controller/NotificationController.java:[57,12] cannot find symbol
+[ERROR]   symbol:   variable SecurityContextHolder
+[ERROR]   location: class com.revature.notification.controller.NotificationController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

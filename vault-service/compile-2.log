@@ -1,0 +1,64 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.revature.microservices:vault-service >--------------
+[INFO] Building Vault Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ vault-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\vault-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ vault-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ vault-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 143 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[500,9] illegal start of expression
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[508,5] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[512,7] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[512,25] ';' expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,5] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,12] invalid method declaration; return type required
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,37] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,56] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,75] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,91] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[520,11] unnamed classes are a preview feature and are disabled by default.
+  (use --enable-preview to enable unnamed classes)
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[624,1] class, interface, enum, or record expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[1,1] unnamed class should not have package declaration
+[INFO] 13 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.195 s
+[INFO] Finished at: 2026-03-12T20:11:50+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project vault-service: Compilation failure: Compilation failure: 
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[500,9] illegal start of expression
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[508,5] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[512,7] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[512,25] ';' expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,5] illegal start of type
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,12] invalid method declaration; return type required
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,37] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,56] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,75] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[517,91] <identifier> expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[520,11] unnamed classes are a preview feature and are disabled by default.
+[ERROR]   (use --enable-preview to enable unnamed classes)
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[624,1] class, interface, enum, or record expected
+[ERROR] /E:/MicroServices/manager/microservices/vault-service/src/main/java/com/revature/vault/service/vault/VaultService.java:[1,1] unnamed class should not have package declaration
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

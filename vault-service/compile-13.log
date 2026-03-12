@@ -1,0 +1,23 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.revature.microservices:vault-service >--------------
+[INFO] Building Vault Service 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ vault-service ---
+[INFO] Deleting E:\MicroServices\manager\microservices\vault-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ vault-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ vault-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 133 source files with javac [debug release 21] to target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.288 s
+[INFO] Finished at: 2026-03-12T22:46:48+05:30
+[INFO] ------------------------------------------------------------------------
