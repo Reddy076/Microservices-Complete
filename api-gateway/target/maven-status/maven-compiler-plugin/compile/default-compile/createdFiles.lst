@@ -1,4 +1,0 @@
-com\revature\gateway\filter\JwtAuthFilter.class
-com\revature\gateway\filter\RateLimitGlobalFilter.class
-com\revature\gateway\filter\JwtAuthFilter$Config.class
-com\revature\gateway\ApiGatewayApplication.class

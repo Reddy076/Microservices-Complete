@@ -13,20 +13,17 @@ import java.util.Optional;
 @Repository
 public interface SecurityMetricsHistoryRepository extends JpaRepository<SecurityMetricsHistory, Long> {
 
-    List<SecurityMetricsHistory> findByUserIdIdOrderByRecordedAtDesc(Long userId);
+    List<SecurityMetricsHistory> findByUserIdOrderByRecordedAtDesc(Long userId);
 
-    List<SecurityMetricsHistory> findByUserIdIdAndRecordedAtAfterOrderByRecordedAtAsc(
+    List<SecurityMetricsHistory> findByUserIdAndRecordedAtAfterOrderByRecordedAtAsc(
             Long userId, LocalDateTime after);
 
     Optional<SecurityMetricsHistory> findTopByUserIdOrderByRecordedAtDesc(Long userId);
 
-    @Query("SELECT s FROM SecurityMetricsHistory s WHERE s.user.id = :userId " +
+    @Query("SELECT s FROM SecurityMetricsHistory s WHERE s.userId = :userId " +
            "AND s.recordedAt >= :since ORDER BY s.recordedAt ASC")
     List<SecurityMetricsHistory> findTrendData(@Param("userId") Long userId,
                                                @Param("since") LocalDateTime since);
 
-    void deleteByUserIdId(Long userId);
+    void deleteByUserId(Long userId);
 }
-
-
-

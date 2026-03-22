@@ -6,6 +6,7 @@
         <groupId>com.revature.microservices</groupId>
         <artifactId>password-manager-microservices</artifactId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>vault-service</artifactId>
     <name>Vault Service</name>

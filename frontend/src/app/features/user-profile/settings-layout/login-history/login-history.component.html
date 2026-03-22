@@ -1,0 +1,74 @@
+<div class="settings-section">
+  <div class="section-header">
+    <h2>Login History</h2>
+    <p class="text-muted">View recent login activity on your account</p>
+  </div>
+
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Loading State -->
+  @if (isLoading) {
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading login history...</p>
+  </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && loginHistory.length === 0) {
+  <div class="empty-state">
+    <lucide-icon name="log-in" [size]="48"></lucide-icon>
+    <h3>No login history</h3>
+    <p>Login activity will appear here</p>
+  </div>
+  }
+
+  <!-- Login History Timeline -->
+  @if (!isLoading && loginHistory.length > 0) {
+  <div class="timeline">
+    @for (login of loginHistory; track login.id; let first = $first) {
+    <div class="timeline-item" [class.failed]="!login.successful">
+      <div class="timeline-icon" [class.suspicious]="isSuspicious(login)">
+        <lucide-icon [name]="getDeviceIcon(login.deviceInfo)" [size]="20"></lucide-icon>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-header">
+          <span class="status-badge" [class.failed]="!login.successful">
+            @if (login.successful) {
+            <lucide-icon name="check-circle" [size]="14"></lucide-icon> Success
+            } @else {
+            <lucide-icon name="x-circle" [size]="14"></lucide-icon> Failed
+            }
+          </span>
+          <span class="timestamp">{{ formatDate(login.timestamp) }}</span>
+        </div>
+        <div class="timeline-details">
+          <div class="detail-row">
+            <lucide-icon name="map-pin" [size]="16"></lucide-icon>
+            <span>{{ login.location || 'Unknown Location' }}</span>
+          </div>
+          <div class="detail-row">
+            <lucide-icon name="globe" [size]="16"></lucide-icon>
+            <span class="ip-address">{{ login.ipAddress || 'Unknown IP' }}</span>
+          </div>
+          @if (login.deviceInfo) {
+          <div class="detail-row">
+            <lucide-icon name="monitor" [size]="16"></lucide-icon>
+            <span>{{ login.deviceInfo }}</span>
+          </div>
+          }
+          @if (!login.successful && login.failureReason) {
+          <div class="detail-row failure-reason">
+            <lucide-icon name="alert-triangle" [size]="16"></lucide-icon>
+            <span>{{ login.failureReason }}</span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>

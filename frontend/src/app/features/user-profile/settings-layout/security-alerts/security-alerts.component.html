@@ -1,0 +1,91 @@
+<div class="settings-section">
+  <div class="section-header">
+    <h2>Security Alerts</h2>
+    <p class="text-muted">
+      @if (getUnreadCount() > 0) {
+      <span class="unread-badge">{{ getUnreadCount() }} unread</span>
+      } @else {
+      No new alerts
+      }
+    </p>
+  </div>
+
+  @if (successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Filters -->
+  <div class="filters-row">
+    <div class="filter-group">
+      <label>Status</label>
+      <select [(ngModel)]="filterStatus" (change)="applyFilters()">
+        <option value="all">All Alerts</option>
+        <option value="unread">Unread</option>
+        <option value="read">Read</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Severity</label>
+      <select [(ngModel)]="filterSeverity" (change)="applyFilters()">
+        <option value="all">All Severities</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+    <button class="btn btn-secondary" (click)="markAllAsRead()" [disabled]="getUnreadCount() === 0">
+      Mark All Read
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading) {
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading security alerts...</p>
+  </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && filteredAlerts.length === 0) {
+  <div class="empty-state">
+    <lucide-icon name="check-circle" [size]="48"></lucide-icon>
+    <h3>No security alerts</h3>
+    <p>Your account is secure. Alerts will appear here if any security issues are detected.</p>
+  </div>
+  }
+
+  <!-- Alerts List -->
+  @if (!isLoading && filteredAlerts.length > 0) {
+  <div class="alerts-list">
+    @for (alert of filteredAlerts; track alert.id) {
+    <div class="alert-card" [class.read]="alert.read" [class]="getSeverityClass(alert.severity)">
+      <div class="alert-icon">
+        <lucide-icon [name]="getSeverityIcon(alert.severity)" [size]="24"></lucide-icon>
+      </div>
+      <div class="alert-content">
+        <div class="alert-header">
+          <h4>{{ alert.title || 'Security Alert' }}</h4>
+          <span class="alert-time">{{ formatDate(alert.createdAt) }}</span>
+        </div>
+        <p class="alert-message">{{ alert.message }}</p>
+        <div class="alert-type">{{ alert.alertType }}</div>
+      </div>
+      <div class="alert-actions">
+        @if (!alert.read) {
+        <button class="action-btn" (click)="markAsRead(alert.id)" title="Mark as read">
+          <lucide-icon name="check" [size]="18"></lucide-icon>
+        </button>
+        }
+        <button class="action-btn delete" (click)="deleteAlert(alert.id)" title="Delete">
+          <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>

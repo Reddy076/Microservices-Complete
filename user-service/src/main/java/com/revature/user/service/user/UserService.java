@@ -29,6 +29,7 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
   private final VaultClient vaultClient;
   private final EncryptionUtil encryptionUtil;
+  private final com.revature.user.client.SecurityClient securityClient;
 
   @Transactional(readOnly = true)
   public UserResponse getUserProfile(String username) {
@@ -111,5 +112,16 @@ public class UserService {
     // Save the user with new password hash
     userRepository.save(user);
     log.info("Master password change completed successfully for user: {}", username);
+
+    // Fire security alert
+    try {
+      securityClient.createAlert(username,
+          "PASSWORD_CHANGED",
+          "Master Password Changed",
+          "Your master password was successfully changed. If you didn't do this, contact support immediately.",
+          "HIGH");
+    } catch (Exception ex) {
+      log.warn("Could not send password-change alert for user {}: {}", username, ex.getMessage());
+    }
   }
 }

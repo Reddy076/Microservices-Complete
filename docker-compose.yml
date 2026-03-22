@@ -1,0 +1,323 @@
+services:
+  # -----------------------------------------------------------------
+  # INFRASTRUCTURE SERVICES
+  # -----------------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: password-manager-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-rev_password_manager}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db-init/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - microservices-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: password-manager-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    command: redis-server --requirepass ${REDIS_PASSWORD:-RevatureCache@123}
+    networks:
+      - microservices-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-RevatureCache@123}", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # -----------------------------------------------------------------
+  # CORE SERVICES (Discovery & Config)
+  # -----------------------------------------------------------------
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - microservices-network
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8761/actuator/health || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: native,docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/config-repo
+    volumes:
+      - ./config-server/src/main/resources/config-repo:/config-repo:ro
+    networks:
+      - microservices-network
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8888/actuator/health || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # -----------------------------------------------------------------
+  # EDGE SERVER (API Gateway)
+  # -----------------------------------------------------------------
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    container_name: api-gateway
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_ACCESS_TOKEN_EXPIRATION: ${JWT_ACCESS_TOKEN_EXPIRATION:-900000}
+      JWT_REFRESH_TOKEN_EXPIRATION: ${JWT_REFRESH_TOKEN_EXPIRATION:-604800000}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost,http://localhost:80,http://localhost:4200}
+    volumes:
+      - ./api-gateway/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health/liveness || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+
+  # -----------------------------------------------------------------
+  # MICROSERVICES
+  # -----------------------------------------------------------------
+  user-service:
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+    container_name: user-service
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: user_user
+      SPRING_DATASOURCE_PASSWORD: user_pass
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_PASSWORD: ${REDIS_PASSWORD:-RevatureCache@123}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_ACCESS_TOKEN_EXPIRATION: ${JWT_ACCESS_TOKEN_EXPIRATION:-900000}
+      JWT_REFRESH_TOKEN_EXPIRATION: ${JWT_REFRESH_TOKEN_EXPIRATION:-604800000}
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST:-smtp.gmail.com}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+    volumes:
+      - ./user-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  vault-service:
+    build:
+      context: .
+      dockerfile: vault-service/Dockerfile
+    container_name: vault-service
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/vault_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: vault_user
+      SPRING_DATASOURCE_PASSWORD: vault_pass
+    volumes:
+      - secure-files:/app/secure-files
+      - ./vault-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  generator-service:
+    build: ./generator-service
+    container_name: generator-service
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/generator_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: generator_user
+      SPRING_DATASOURCE_PASSWORD: generator_pass
+    volumes:
+      - ./generator-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  security-service:
+    build:
+      context: .
+      dockerfile: security-service/Dockerfile
+    container_name: security-service
+    restart: unless-stopped
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/security_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: security_user
+      SPRING_DATASOURCE_PASSWORD: security_pass
+    volumes:
+      - ./security-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: notification-service/Dockerfile
+    container_name: notification-service
+    restart: unless-stopped
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/notification_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: notification_user
+      SPRING_DATASOURCE_PASSWORD: notification_pass
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST:-smtp.gmail.com}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+    volumes:
+      - ./notification-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  # -----------------------------------------------------------------
+  # AI SERVICE (LLM-powered features)
+  # -----------------------------------------------------------------
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: ai-service
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CONFIG_SERVER_URL: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ai_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ai_user
+      SPRING_DATASOURCE_PASSWORD: ai_pass
+      LLM_PROVIDER: ${LLM_PROVIDER:-OPENAI}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.groq.com/openai/v1}
+      LLM_MODEL: ${LLM_MODEL:-llama-3.1-70b-versatile}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./ai-service/src/main/resources/application.yml:/app/config/application.yml:ro
+    networks:
+      - microservices-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+  # -----------------------------------------------------------------
+  # FRONTEND
+  # -----------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: password-manager-ui
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - microservices-network
+    depends_on:
+      api-gateway:
+        condition: service_started
+
+volumes:
+  mysql-data:
+    driver: local
+  secure-files:
+    driver: local
+
+networks:
+  microservices-network:
+    driver: bridge

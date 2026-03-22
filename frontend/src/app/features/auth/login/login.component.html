@@ -1,0 +1,132 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      @if (showOtpStep) {
+      <h2>Verify Your Identity</h2>
+      <p>Two-factor authentication</p>
+      } @else {
+      <h2>Welcome Back</h2>
+      <p>Sign in to Rev-PasswordManager</p>
+      }
+    </div>
+
+    @if (errorMessage) {
+    <div class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    }
+
+    @if (successMessage) {
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    }
+
+    <!-- Login Form -->
+    @if (!showOtpStep) {
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username"
+          placeholder="Enter your username" autocomplete="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Master Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="••••••••"
+          autocomplete="current-password">
+        <div class="hint-link-container">
+          <button type="button" class="link-btn hint-link" (click)="onShowHint()" [disabled]="isLoadingHint">
+            @if (isLoadingHint) {
+            <span>Loading...</span>
+            } @else {
+            <i-lucide [name]="'lightbulb'" [size]="14" class="hint-icon"></i-lucide>
+            <span>Show Password Hint</span>
+            }
+          </button>
+        </div>
+      </div>
+
+      <!-- CAPTCHA Widget -->
+      @if (showCaptcha) {
+      <div class="form-group captcha-container">
+        <re-captcha [siteKey]="recaptchaSiteKey" (resolved)="onCaptchaResolved($event)" (expired)="onCaptchaExpired()">
+        </re-captcha>
+        <small class="captcha-help">Please complete the CAPTCHA to continue</small>
+      </div>
+      }
+
+      @if (showHint) {
+      <div class="hint-display">
+        <div class="hint-header">
+          <span class="hint-label">Password Hint:</span>
+          <button type="button" class="hint-close" (click)="hideHint()">✕</button>
+        </div>
+        <div class="hint-text">{{ hintMessage }}</div>
+      </div>
+      }
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || isLoading">
+        @if (isLoading) {
+        <span>Signing in...</span>
+        } @else {
+        <span>Sign In</span>
+        }
+      </button>
+    </form>
+    }
+
+    <!-- OTP Verification Step -->
+    @if (showOtpStep) {
+    <div class="otp-section">
+      <div class="otp-icon">🔐</div>
+      <p class="otp-description">
+        @if (!useBackupCode) {
+        Enter the 6-digit code from your authenticator app (Google Authenticator, Authy, etc.).
+        } @else {
+        Enter one of your 8-character recovery codes.
+        }
+      </p>
+
+      <form [formGroup]="otpForm" (ngSubmit)="onSubmitOtp()">
+        <div class="form-group">
+          <label for="otpCode" class="form-label">
+            {{ useBackupCode ? 'Backup Code' : 'Verification Code' }}
+          </label>
+          <input type="text" id="otpCode" class="form-control otp-input" formControlName="otpCode"
+            [ngClass]="{'is-totp': !useBackupCode, 'is-backup': useBackupCode}"
+            [placeholder]="useBackupCode ? 'A1B2-C3D4' : '000000'" [maxlength]="useBackupCode ? 10 : 6"
+            autocomplete="one-time-code">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="otpForm.invalid || isLoading">
+          @if (isLoading) {
+          <span>Verifying...</span>
+          } @else {
+          <span>Verify Code</span>
+          }
+        </button>
+      </form>
+
+      <div class="otp-actions">
+        <button class="link-btn" (click)="toggleBackupCode()" [disabled]="isLoading">
+          {{ useBackupCode ? 'Use Authenticator App' : 'Use a backup code' }}
+        </button>
+        @if (!useBackupCode) {
+        <span class="separator">•</span>
+        <button class="link-btn" (click)="onResendOtp()" [disabled]="isLoading">Resend Email Code</button>
+        }
+        <span class="separator">•</span>
+        <button class="link-btn" (click)="backToLogin()">Back to Login</button>
+      </div>
+    </div>
+    }
+
+    @if (!showOtpStep) {
+    <div class="auth-footer">
+      <p><a routerLink="/forgot-password" class="forgot-link">Forgot your password?</a></p>
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </div>
+    }
+  </div>
+</div>

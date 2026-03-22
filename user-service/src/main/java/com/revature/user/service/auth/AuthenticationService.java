@@ -134,18 +134,24 @@ public class AuthenticationService {
 
       sessionService.createSession(user, accessToken, httpRequest, location, deviceFingerprint);
 
-      if (loginAttemptService.isNewDevice(user.getUsername(), deviceInfo)) {
-        securityClient.createAlert(user.getUsername(),
-            "NEW_DEVICE_LOGIN",
-            "New Device Detected",
-            "Login detected from a new device or browser: " + deviceInfo,
-            "MEDIUM");
-      }
+      try {
+        if (loginAttemptService.isNewDevice(user.getUsername(), deviceInfo)) {
+          securityClient.createAlert(user.getUsername(),
+              "NEW_DEVICE_LOGIN",
+              "New Device Detected",
+              "Login detected from a new device or browser: " + deviceInfo,
+              "MEDIUM");
+        }
 
-      securityClient.logAudit(user.getUsername(),
-          "LOGIN",
-          "Successful login", ip);
-      loginAttemptService.recordLoginAttempt(user.getUsername(), true, null, ip, deviceInfo, location, riskScore);
+        securityClient.logAudit(user.getUsername(),
+            "LOGIN",
+            "Successful login", ip);
+        loginAttemptService.recordLoginAttempt(user.getUsername(), true, null, ip, deviceInfo, location, riskScore);
+      } catch (Exception auditEx) {
+        // security-service audit/alert unavailable — log and continue
+        org.slf4j.LoggerFactory.getLogger(AuthenticationService.class)
+            .warn("Audit/alert call failed (security-service may be starting): {}", auditEx.getMessage());
+      }
 
       return AuthResponse.builder()
           .accessToken(accessToken)
@@ -189,11 +195,16 @@ public class AuthenticationService {
         }
       }
 
-      securityClient.logAudit(request.getUsername(),
-          "LOGIN_FAILED",
-          "Failed login attempt", ip);
-      loginAttemptService.recordLoginAttempt(request.getUsername(), false, "Invalid credentials", ip, deviceInfo,
-          location, riskScore);
+      try {
+        securityClient.logAudit(request.getUsername(),
+            "LOGIN_FAILED",
+            "Failed login attempt", ip);
+        loginAttemptService.recordLoginAttempt(request.getUsername(), false, "Invalid credentials", ip, deviceInfo,
+            location, riskScore);
+      } catch (Exception auditEx) {
+        org.slf4j.LoggerFactory.getLogger(AuthenticationService.class)
+            .warn("Audit call failed on login failure: {}", auditEx.getMessage());
+      }
       throw new AuthenticationException("Invalid username or password");
     }
   }
@@ -295,12 +306,16 @@ public class AuthenticationService {
   public AuthResponse verifyOtp(String username, String code, HttpServletRequest httpRequest) {
     User user = userRepository.findByUsernameOrThrow(username);
 
-    if (!user.is2faEnabled()) {
-      throw new AuthenticationException("2FA is not enabled for this user");
-    }
-
-    if (!twoFactorService.verifyCode(user, code)) {
-      throw new AuthenticationException("Invalid 2FA code");
+    if (user.is2faEnabled()) {
+      if (!twoFactorService.verifyCode(user, code)) {
+        throw new AuthenticationException("Invalid 2FA code");
+      }
+    } else {
+      try {
+        otpService.validateOtp(user, code, "EMAIL");
+      } catch (AuthenticationException e) {
+        throw new AuthenticationException("Invalid OTP code");
+      }
     }
 
     try {

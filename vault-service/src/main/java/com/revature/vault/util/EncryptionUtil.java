@@ -63,7 +63,7 @@ public class EncryptionUtil {
   public SecretKey generateKey() throws NoSuchAlgorithmException {
 
     KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-    keyGenerator.init(encryptionConfig.getKeySize());
+    keyGenerator.init(encryptionConfig.getKeyLength());
     return keyGenerator.generateKey();
   }
 
@@ -77,7 +77,7 @@ public class EncryptionUtil {
 
       int iterations = 100000;
 
-      int keyLength = encryptionConfig.getKeySize();
+      int keyLength = encryptionConfig.getKeyLength();
 
       javax.crypto.spec.PBEKeySpec spec = new javax.crypto.spec.PBEKeySpec(
           password.toCharArray(),

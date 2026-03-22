@@ -1,0 +1,83 @@
+<div class="snapshot-container">
+  <div class="snapshot-layout">
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1 class="page-title">Snapshot Management</h1>
+      <p class="page-subtitle">Restore your vault to a previous state</p>
+    </header>
+
+    <!-- Loading State -->
+    @if (isLoading) {
+    <div class="card loading-card">
+      <div class="loading-content">
+        <mat-spinner diameter="48" class="loading-spinner"></mat-spinner>
+        <p class="loading-text">Retrieving snapshots...</p>
+      </div>
+    </div>
+    }
+
+    <!-- Empty State -->
+    @if (!isLoading && snapshots.length === 0) {
+    <div class="card empty-card">
+      <div class="empty-content">
+        <span class="empty-icon">
+          <lucide-icon name="camera" [size]="64"></lucide-icon>
+        </span>
+        <h2 class="empty-title">No snapshots available</h2>
+        <p class="empty-message">
+          Snapshots are created automatically when you modify your vault entries.
+        </p>
+      </div>
+    </div>
+    }
+
+    <!-- Snapshot List -->
+    @if (!isLoading && snapshots.length > 0) {
+    <div class="card snapshot-card">
+      <div class="card-header">
+        <h2 class="card-title">Available Snapshots</h2>
+        <span class="snapshot-count">{{ snapshots.length }} snapshot(s)</span>
+      </div>
+
+      <div class="snapshot-list">
+        @for (snapshot of snapshots; track snapshot.id) {
+        <div class="snapshot-item">
+          <div class="snapshot-info">
+            <div class="snapshot-date">
+              <lucide-icon name="calendar" [size]="18" class="date-icon"></lucide-icon>
+              <span class="date-text">{{ snapshot.formattedDate }}</span>
+            </div>
+            <div class="snapshot-entries">
+              <lucide-icon name="key" [size]="16" class="entries-icon"></lucide-icon>
+              <span>{{ snapshot.entryTitle }}</span>
+            </div>
+          </div>
+          <button class="restore-btn" (click)="onRestore(snapshot)" [disabled]="restoringId === snapshot.id">
+            @if (restoringId === snapshot.id) {
+            <mat-spinner diameter="16" class="btn-spinner"></mat-spinner>
+            <span>Restoring...</span>
+            } @else {
+            <lucide-icon name="rotate-ccw" [size]="16"></lucide-icon>
+            <span>Restore</span>
+            }
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Info Card -->
+    <div class="card help-card">
+      <div class="help-content">
+        <span class="help-icon">
+          <lucide-icon name="lightbulb" [size]="20"></lucide-icon>
+        </span>
+        <p class="help-text">
+          <strong>Tip:</strong> Restoring a snapshot will replace your current vault contents.
+          This action cannot be undone. Consider exporting your current vault first.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

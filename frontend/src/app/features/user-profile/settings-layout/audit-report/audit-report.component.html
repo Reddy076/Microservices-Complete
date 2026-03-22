@@ -1,0 +1,131 @@
+<div class="settings-section">
+  <div class="section-header">
+    <h2>Security Audit Report</h2>
+    <p class="text-muted">Comprehensive security analysis of your account</p>
+  </div>
+
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Loading State -->
+  @if (isLoading) {
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Generating audit report...</p>
+  </div>
+  }
+
+  @if (!isLoading && report) {
+  <!-- Security Score Card -->
+  <div class="score-card">
+    <div class="score-circle">
+      <svg viewBox="0 0 120 120" class="score-svg">
+        <circle class="score-bg" cx="60" cy="60" r="54"></circle>
+        <circle class="score-progress" cx="60" cy="60" r="54" [attr.stroke]="getScoreColor(report.securityScore)"
+          [attr.stroke-dasharray]="getScoreStrokeDasharray(report.securityScore)"></circle>
+      </svg>
+      <div class="score-text">
+        <span class="score-value">{{ report.securityScore || 0 }}</span>
+        <span class="score-label">{{ getScoreLabel(report.securityScore) }}</span>
+      </div>
+    </div>
+    <div class="score-details">
+      <h3>Overall Security Score</h3>
+      <p>Based on password strength, reuse patterns, and account age</p>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon total">
+        <lucide-icon name="lock" [size]="24"></lucide-icon>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ report.totalEntries || 0 }}</span>
+        <span class="stat-label">Total Passwords</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon weak">
+        <lucide-icon name="alert-triangle" [size]="24"></lucide-icon>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ report.weakCount || 0 }}</span>
+        <span class="stat-label">Weak Passwords</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon reused">
+        <lucide-icon name="copy" [size]="24"></lucide-icon>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ report.reusedCount || 0 }}</span>
+        <span class="stat-label">Reused Passwords</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon old">
+        <lucide-icon name="calendar" [size]="24"></lucide-icon>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ report.oldCount || 0 }}</span>
+        <span class="stat-label">Old Passwords</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password Health Breakdown -->
+  <div class="health-section">
+    <h3>Password Health Breakdown</h3>
+    <div class="health-bars">
+      <div class="health-item">
+        <div class="health-label">
+          <span>Strong</span>
+          <span>{{ getHealthPercentage((report.totalEntries || 0) - (report.weakCount || 0) - (report.reusedCount || 0))
+            }}%</span>
+        </div>
+        <div class="health-bar">
+          <div class="health-fill strong"
+            [style.width.%]="getHealthPercentage((report.totalEntries || 0) - (report.weakCount || 0) - (report.reusedCount || 0))">
+          </div>
+        </div>
+      </div>
+      <div class="health-item">
+        <div class="health-label">
+          <span>Weak</span>
+          <span>{{ getHealthPercentage(report.weakCount) }}%</span>
+        </div>
+        <div class="health-bar">
+          <div class="health-fill weak" [style.width.%]="getHealthPercentage(report.weakCount)"></div>
+        </div>
+      </div>
+      <div class="health-item">
+        <div class="health-label">
+          <span>Reused</span>
+          <span>{{ getHealthPercentage(report.reusedCount) }}%</span>
+        </div>
+        <div class="health-bar">
+          <div class="health-fill reused" [style.width.%]="getHealthPercentage(report.reusedCount)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  @if (report.recommendations && report.recommendations.length > 0) {
+  <div class="recommendations-section">
+    <h3>Recommendations</h3>
+    <ul class="recommendations-list">
+      @for (rec of report.recommendations; track $index) {
+      <li>
+        <lucide-icon name="check-circle" [size]="18"></lucide-icon>
+        <span>{{ rec }}</span>
+      </li>
+      }
+    </ul>
+  </div>
+  }
+  }
+</div>

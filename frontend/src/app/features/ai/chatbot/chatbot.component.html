@@ -1,0 +1,87 @@
+<div class="chatbot-container">
+    <!-- Header -->
+    <div class="chatbot-header">
+        <div class="header-left">
+            <div class="header-icon">
+                <lucide-icon [name]="Bot" [size]="24"></lucide-icon>
+            </div>
+            <div>
+                <h2>Security Chatbot</h2>
+                <p class="header-subtitle">AI-powered security assistant</p>
+            </div>
+        </div>
+        <button class="clear-btn" (click)="clearChat()" title="Clear chat">
+            Clear Chat
+        </button>
+    </div>
+
+    <!-- Quick Prompts (show only when few messages) -->
+    @if (messages.length <= 1) { <div class="quick-prompts">
+        <p class="prompts-label">
+            <lucide-icon [name]="Sparkles" [size]="16"></lucide-icon>
+            Try asking:
+        </p>
+        <div class="prompts-grid">
+            @for (prompt of quickPrompts; track prompt) {
+            <button class="prompt-chip" (click)="useQuickPrompt(prompt)">
+                {{ prompt }}
+            </button>
+            }
+        </div>
+</div>
+}
+
+<!-- Messages Area -->
+<div class="messages-area" #messagesContainer>
+    @for (msg of messages; track msg.timestamp) {
+    <div class="message" [class.user-message]="msg.role === 'user'"
+        [class.assistant-message]="msg.role === 'assistant'">
+        <div class="message-avatar">
+            @if (msg.role === 'assistant') {
+            <lucide-icon [name]="Bot" [size]="18"></lucide-icon>
+            } @else {
+            <lucide-icon [name]="User" [size]="18"></lucide-icon>
+            }
+        </div>
+        <div class="message-bubble">
+            <div class="message-content">{{ msg.content }}</div>
+            <div class="message-time">{{ msg.timestamp | date:'shortTime' }}</div>
+        </div>
+    </div>
+    }
+
+    @if (isLoading) {
+    <div class="message assistant-message">
+        <div class="message-avatar">
+            <lucide-icon [name]="Bot" [size]="18"></lucide-icon>
+        </div>
+        <div class="message-bubble typing-indicator">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+    }
+</div>
+
+<!-- Error Message -->
+@if (errorMessage) {
+<div class="error-banner">
+    <lucide-icon [name]="AlertTriangle" [size]="16"></lucide-icon>
+    {{ errorMessage }}
+</div>
+}
+
+<!-- Input Area -->
+<div class="input-area">
+    <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()"
+        placeholder="Ask about password security, best practices..." [disabled]="isLoading" class="chat-input" />
+    <button class="send-btn" (click)="sendMessage()" [disabled]="isLoading || !userInput?.trim()">
+        @if (isLoading) {
+        <lucide-icon [name]="Loader2" [size]="20" class="spin"></lucide-icon>
+        } @else {
+        <lucide-icon [name]="Send" [size]="20"></lucide-icon>
+        }
+    </button>
+</div>
+</div>

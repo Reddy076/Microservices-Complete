@@ -11,13 +11,7 @@ import java.util.Optional;
 public interface PasswordAnalysisRepository extends JpaRepository<PasswordAnalysis, Long> {
   Optional<PasswordAnalysis> findByVaultEntryId(Long vaultEntryId);
 
-  List<PasswordAnalysis> findByVaultEntryUserId(Long userId);
-
   void deleteByVaultEntryId(Long vaultEntryId);
 
-    java.util.List<com.revature.security.model.PasswordAnalysis> findByVaultEntryIdIn(java.util.List<Long> vaultEntryIds);
+  List<PasswordAnalysis> findByVaultEntryIdIn(List<Long> vaultEntryIds);
 }
-
-
-
-

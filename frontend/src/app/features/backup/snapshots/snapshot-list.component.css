@@ -1,0 +1,319 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.snapshot-container {
+  padding: var(--spacing-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.snapshot-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: var(--spacing-sm);
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Card Styling - Matching import/export component design */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.snapshot-card {
+  padding: var(--spacing-xl);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-surface) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.snapshot-count {
+  font-size: 0.8125rem;
+  color: var(--primary);
+  background: rgba(139, 92, 246, 0.1);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+/* Snapshot List - Clean card-based design instead of table */
+.snapshot-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.snapshot-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.snapshot-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.snapshot-item:active {
+  transform: translateY(0);
+}
+
+.snapshot-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  flex: 1;
+}
+
+.snapshot-date {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 220px;
+}
+
+.date-icon {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+.date-text {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.snapshot-entries {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--bg-main);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+}
+
+.entries-icon {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* Restore Button - Premium pill style */
+.restore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: transparent;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
+}
+
+.restore-btn:hover:not(:disabled) {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.restore-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+.restore-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+}
+
+.btn-spinner {
+  display: inline-block;
+}
+
+/* Loading State */
+.loading-card {
+  padding: var(--spacing-xl);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.loading-spinner {
+  color: var(--primary);
+}
+
+.loading-spinner ::ng-deep circle {
+  stroke: var(--primary);
+}
+
+.loading-text {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+/* Empty State */
+.empty-card {
+  padding: var(--spacing-2xl);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-md);
+}
+
+.empty-icon {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.empty-message {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9375rem;
+  max-width: 400px;
+}
+
+/* Help Card */
+.help-card {
+  padding: var(--spacing-lg);
+}
+
+.help-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.help-icon {
+  color: var(--warning, #f59e0b);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.help-text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.help-text strong {
+  color: var(--text-main);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .snapshot-container {
+    padding: var(--spacing-md);
+  }
+
+  .snapshot-card {
+    padding: var(--spacing-md);
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .snapshot-item {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+
+  .snapshot-info {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+  }
+
+  .snapshot-date {
+    min-width: auto;
+  }
+
+  .restore-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

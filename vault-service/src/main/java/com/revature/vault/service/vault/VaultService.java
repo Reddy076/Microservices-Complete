@@ -17,10 +17,7 @@ import com.revature.vault.client.SecurityClient.VaultEntryPayload;
 import com.revature.vault.service.vault.EncryptionService;
 import com.revature.vault.util.EncryptionUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -36,6 +33,7 @@ import com.revature.vault.exception.AuthenticationException;
 
 import com.revature.vault.client.SecurityClient;
 import com.revature.vault.client.NotificationClient;
+import com.revature.vault.util.TOTPUtil;
 
 @Service
 @RequiredArgsConstructor
@@ -51,11 +49,13 @@ public class VaultService {
   private final VaultSnapshotService vaultSnapshotService;
   private final SecurityClient securityClient;
   private final NotificationClient notificationClient;
+  private final TOTPUtil totpUtil;
   
   private final SecureShareRepository secureShareRepository;
   private final com.revature.vault.util.PasswordStrengthCalculator passwordStrengthCalculator;
   private final DuressService duressService;
-  private final AuthenticationManager authenticationManager;
+
+  private static final BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   private boolean isDuressMode() {
     ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -471,10 +471,7 @@ public class VaultService {
     VaultEntry entry = vaultEntryRepository.findByIdAndUserId(entryId, user.getId())
         .orElseThrow(() -> new ResourceNotFoundException("Vault entry not found"));
 
-    try {
-      authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(user.getUsername(), request.getMasterPassword()));
-    } catch (org.springframework.security.core.AuthenticationException e) {
+    if (!PASSWORD_ENCODER.matches(request.getMasterPassword(), user.getMasterPasswordHash())) {
       throw new AuthenticationException("Invalid master password");
     }
 
@@ -486,13 +483,16 @@ public class VaultService {
     }
 
     if (user.is2faEnabled()) {
-      // 2FA is handled prior to this or by the gateway/user-service during authentication.
-      // if (request.getOtpToken() == null || request.getOtpToken().isBlank()) {
-      //   throw new AuthenticationException("OTP is required");
-      // }
-      // if (!twoFactorService.verifyCode(user, request.getOtpToken())) {
-      //   throw new AuthenticationException("Invalid OTP");
-      // }
+      String secret = user.getTwoFactorSecret();
+      if (secret == null || secret.isBlank()) {
+        throw new AuthenticationException("2FA configuration error. Please contact support.");
+      }
+      if (request.getOtpToken() == null || request.getOtpToken().isBlank()) {
+        throw new AuthenticationException("OTP is required");
+      }
+      if (!totpUtil.verifyCode(secret, request.getOtpToken())) {
+        throw new AuthenticationException("Invalid OTP");
+      }
     }
 
     String decryptedPassword;

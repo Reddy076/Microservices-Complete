@@ -1,0 +1,133 @@
+<div class="categorize-container">
+    <!-- Header -->
+    <div class="page-header">
+        <div class="header-icon">
+            <lucide-icon [name]="Tags" [size]="28"></lucide-icon>
+        </div>
+        <div>
+            <h2>Smart Categorize</h2>
+            <p class="header-subtitle">AI-powered vault entry categorization</p>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <!-- Input Card -->
+        <div class="card input-card">
+            <h3 class="card-title">
+                <lucide-icon [name]="FileText" [size]="18"></lucide-icon>
+                Entry Details
+            </h3>
+            <p class="card-description">Enter the vault entry details to get an AI-suggested category.</p>
+
+            <div class="form-group">
+                <label for="title">
+                    <lucide-icon [name]="FileText" [size]="14"></lucide-icon>
+                    Title <span class="required">*</span>
+                </label>
+                <input id="title" type="text" [(ngModel)]="title" placeholder="e.g., Netflix, Gmail, Bank of America"
+                    class="form-input" />
+            </div>
+
+            <div class="form-group">
+                <label for="url">
+                    <lucide-icon [name]="Globe" [size]="14"></lucide-icon>
+                    URL (optional)
+                </label>
+                <input id="url" type="text" [(ngModel)]="url" placeholder="e.g., https://netflix.com"
+                    class="form-input" />
+            </div>
+
+            <div class="form-group">
+                <label for="username">
+                    <lucide-icon [name]="User" [size]="14"></lucide-icon>
+                    Username (optional)
+                </label>
+                <input id="username" type="text" [(ngModel)]="username" placeholder="e.g., john.doe@email.com"
+                    class="form-input" />
+            </div>
+
+            <div class="button-row">
+                <button class="btn-primary" (click)="categorize()" [disabled]="isAnalyzing || !title?.trim()">
+                    @if (isAnalyzing) {
+                    <lucide-icon [name]="Loader2" [size]="18" class="spin"></lucide-icon>
+                    Analyzing...
+                    } @else {
+                    <lucide-icon [name]="Sparkles" [size]="18"></lucide-icon>
+                    Categorize
+                    }
+                </button>
+                <button class="btn-secondary" (click)="reset()" [disabled]="isAnalyzing">
+                    Reset
+                </button>
+            </div>
+
+            @if (errorMessage) {
+            <div class="error-msg">
+                <lucide-icon [name]="AlertTriangle" [size]="16"></lucide-icon>
+                {{ errorMessage }}
+            </div>
+            }
+        </div>
+
+        <!-- Result Card -->
+        <div class="card result-card" [class.has-result]="result">
+            @if (!result && !isAnalyzing) {
+            <div class="empty-state">
+                <lucide-icon [name]="FolderOpen" [size]="48"></lucide-icon>
+                <p>Enter entry details and click <strong>Categorize</strong> to get AI suggestions.</p>
+            </div>
+            }
+
+            @if (isAnalyzing) {
+            <div class="loading-state">
+                <lucide-icon [name]="Loader2" [size]="40" class="spin"></lucide-icon>
+                <p>AI is analyzing your entry...</p>
+            </div>
+            }
+
+            @if (result) {
+            <div class="result-content">
+                <div class="result-header">
+                    <lucide-icon [name]="CheckCircle2" [size]="22"></lucide-icon>
+                    <h3>Categorization Result</h3>
+                </div>
+
+                <div class="suggested-category">
+                    <span class="category-label">Suggested Category</span>
+                    <span class="category-value">{{ result.suggestedCategory }}</span>
+                </div>
+
+                <div class="confidence-row">
+                    <span class="confidence-label">Confidence</span>
+                    <div class="confidence-bar-wrapper">
+                        <div class="confidence-bar" [class]="getConfidenceClass(result.confidence)"
+                            [style.width.%]="result.confidence * 100">
+                        </div>
+                    </div>
+                    <span class="confidence-text" [class]="getConfidenceClass(result.confidence)">
+                        {{ getConfidenceLabel(result.confidence) }} ({{ (result.confidence * 100) | number:'1.0-0' }}%)
+                    </span>
+                </div>
+
+                @if (result.reasoning) {
+                <div class="reasoning-section">
+                    <h4>Reasoning</h4>
+                    <p>{{ result.reasoning }}</p>
+                </div>
+                }
+
+                @if (result.alternativeCategories && result.alternativeCategories.length > 0) {
+                <div class="alternatives-section">
+                    <h4>Alternative Categories</h4>
+                    <div class="alt-chips">
+                        @for (alt of result.alternativeCategories; track alt) {
+                        <span class="alt-chip">{{ alt }}</span>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </div>
+</div>

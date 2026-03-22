@@ -1,0 +1,585 @@
+/* Vault Entry Form - Fixed Footer Layout */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.vault-form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  overflow: hidden;
+  height: 100%;
+  /* Force strict flex boundaries */
+  min-height: 0;
+}
+
+/* Header - Fixed at top */
+.form-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-back-btn {
+  display: none;
+  /* Shown via vault component css breakpoint */
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem 0.25rem 0;
+  margin-right: 0.25rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.mobile-back-btn:hover {
+  color: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+  .mobile-back-btn {
+    display: flex;
+  }
+}
+
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background: var(--border-color);
+  color: var(--text-main);
+}
+
+/* Form - Scrollable middle section */
+form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  /* Crucial for deep flexbox scrolling */
+}
+
+/* Scrollable Content Area */
+.form-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem;
+}
+
+.form-scroll-area.scroll-disabled {
+  overflow-y: hidden;
+}
+
+.form-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+/* Form Sections (Cards) */
+.form-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--text-muted);
+}
+
+.section-title lucide-icon {
+  color: var(--primary);
+}
+
+.section-content {
+  padding: 1rem;
+}
+
+/* Form Fields */
+.field {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field-row .field {
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-main);
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+textarea {
+  border-radius: 0.75rem;
+  resize: vertical;
+  min-height: 80px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+/* Password Field */
+.password-field {
+  position: static;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  padding-right: 5rem;
+}
+
+.pwd-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: all 0.2s;
+}
+
+.pwd-btn:first-of-type {
+  right: 2.25rem;
+}
+
+.pwd-btn:hover {
+  color: var(--primary);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.generator-dropdown {
+  position: fixed;
+  top: var(--dropdown-top, 50%);
+  right: var(--dropdown-right, 20px);
+  z-index: 99999;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+  min-width: 320px;
+}
+
+/* Arrow pointing right to the key button */
+.generator-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 160px;
+  /* Align roughly with the center/top offset of the button */
+  right: -7px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  transform: rotate(45deg);
+}
+
+/* Checkboxes */
+.checkboxes {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-main);
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.checkbox-item lucide-icon {
+  color: var(--text-muted);
+}
+
+.checkbox-item:hover lucide-icon {
+  color: var(--primary);
+}
+
+/* Footer - Fixed at bottom */
+.form-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  padding: 0.625rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  line-height: 1.5;
+  overflow: visible;
+}
+
+.btn-primary span,
+.btn-secondary span {
+  display: inline;
+  visibility: visible;
+  opacity: 1;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  min-width: 120px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: var(--primary);
+  opacity: 0.6;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.btn-secondary:hover {
+  background: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-share {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-share:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-share:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Lock Screen */
+.lock-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.lock-screen lucide-icon {
+  color: var(--text-muted);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.lock-screen h3 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.125rem;
+}
+
+.lock-screen p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.lock-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* ===== VAULT ENTRY MODAL RESPONSIVE ===== */
+
+@media (max-width: 600px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-footer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .form-footer .btn-primary,
+  .form-footer .btn-secondary,
+  .form-footer .btn-share {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .generator-dropdown {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    width: 100%;
+    min-width: unset;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .generator-dropdown::before {
+    display: none;
+  }
+}
+
+/* AI Auto-Categorize Button */
+.btn-ai-categorize {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  margin-top: 20px;
+  border: 1px solid var(--primary, #7c3aed);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7c3aed20, #a855f720);
+  color: var(--primary, #7c3aed);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-ai-categorize:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7c3aed30, #a855f730);
+  transform: translateY(-1px);
+}
+
+.btn-ai-categorize:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Category label row - label + inline button */
+.category-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.375rem;
+}
+
+.category-label-row label {
+  margin-bottom: 0;
+}
+
+/* Compact inline Auto-Categorize button next to the label */
+.btn-ai-categorize-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1px solid var(--primary, #7c3aed);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--primary, #7c3aed);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.btn-ai-categorize-inline:hover:not(:disabled) {
+  background: rgba(124, 58, 237, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-ai-categorize-inline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ai-categorize-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--primary, #7c3aed);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,7 @@
+/* Ensure the app root covers the full viewport */
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}

@@ -1,0 +1,22 @@
+<div class="custom-select" [class.open]="isOpen" [class.disabled]="isDisabled">
+  <!-- Trigger -->
+  <div class="custom-select-trigger" role="button" tabindex="0" (click)="toggle()" (keydown.enter)="toggle()"
+    (keydown.space)="toggle()">
+    <span class="custom-select-value" [class.is-placeholder]="!hasSelection">
+      {{ selectedLabel }}
+    </span>
+    <lucide-icon name="chevron-down" [size]="16" class="custom-select-arrow" [class.rotated]="isOpen"></lucide-icon>
+  </div>
+
+  <!-- Dropdown -->
+  <div class="custom-select-dropdown" *ngIf="isOpen" [ngStyle]="dropdownStyle">
+    <div class="custom-select-option placeholder-option" [class.selected]="!hasSelection" (click)="selectPlaceholder()">
+      {{ placeholder }}
+    </div>
+    <div class="custom-select-option" *ngFor="let option of options" [class.selected]="isSelected(option)"
+      (click)="select(option)">
+      <span>{{ option.label }}</span>
+      <lucide-icon *ngIf="isSelected(option)" name="check" [size]="14" class="check-icon"></lucide-icon>
+    </div>
+  </div>
+</div>

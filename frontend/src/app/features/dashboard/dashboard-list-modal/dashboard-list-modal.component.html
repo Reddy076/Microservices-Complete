@@ -1,0 +1,51 @@
+<div class="modal-backdrop" (click)="onClose()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <h2 class="modal-title">{{ title }}</h2>
+        <p class="modal-description" *ngIf="description">{{ description }}</p>
+      </div>
+      <button class="close-btn" (click)="onClose()" aria-label="Close modal">
+        <lucide-icon name="x" [size]="20"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Body / List -->
+    <div class="modal-body">
+      <div *ngIf="isLoading" class="loading-state">
+        <lucide-icon name="loader-2" class="spinner" [size]="24"></lucide-icon>
+        <p>Loading entries...</p>
+      </div>
+
+      <div *ngIf="!isLoading && entries.length === 0" class="empty-state">
+        <lucide-icon name="shield-check" [size]="48" class="text-emerald-500 mb-2"></lucide-icon>
+        <p>No issues found. Great job!</p>
+      </div>
+
+      <div *ngIf="!isLoading && entries.length > 0" class="entry-list">
+        <div *ngFor="let entry of entries" class="entry-item" (click)="onEntryClick(entry)">
+
+          <div class="entry-icon-wrapper">
+            <div class="entry-icon-fallback">
+              {{ entry.title ? entry.title.charAt(0).toUpperCase() : '?' }}
+            </div>
+            <img *ngIf="entry.websiteUrl"
+              [src]="'https://www.google.com/s2/favicons?domain=' + entry.websiteUrl + '&sz=32'"
+              [alt]="entry.title + ' icon'" class="entry-icon-img" (error)="onFaviconError($event)">
+            <lucide-icon *ngIf="!entry.websiteUrl" name="globe" [size]="16" class="entry-icon-default"></lucide-icon>
+          </div>
+
+          <div class="entry-info">
+            <span class="entry-title">{{ entry.title }}</span>
+            <span class="entry-subtitle" *ngIf="entry.websiteUrl || entry.categoryName">
+              <span *ngIf="entry.websiteUrl" class="font-mono text-xs">{{ entry.websiteUrl }}</span>
+            </span>
+          </div>
+
+          <lucide-icon name="chevron-right" [size]="18" class="text-slate-400"></lucide-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

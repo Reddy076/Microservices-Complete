@@ -17,6 +17,7 @@ public class AccountDeletionService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private final com.revature.user.client.SecurityClient securityClient;
 
   @Transactional
   public void scheduleAccountDeletion(String username, AccountDeletionRequest request) {
@@ -27,10 +28,16 @@ public class AccountDeletionService {
     }
 
     user.setDeletionRequestedAt(LocalDateTime.now());
-
     user.setDeletionScheduledAt(LocalDateTime.now().plusDays(30));
-
     userRepository.save(user);
+
+    try {
+      securityClient.createAlert(username,
+          "ACCOUNT_DELETION_SCHEDULED",
+          "Account Deletion Scheduled",
+          "Your account is scheduled for permanent deletion in 30 days. Cancel this request if it wasn't you.",
+          "CRITICAL");
+    } catch (Exception e) { /* non-critical */ }
   }
 
   @Transactional
@@ -43,7 +50,14 @@ public class AccountDeletionService {
 
     user.setDeletionRequestedAt(null);
     user.setDeletionScheduledAt(null);
-
     userRepository.save(user);
+
+    try {
+      securityClient.createAlert(username,
+          "ACCOUNT_DELETION_CANCELLED",
+          "Account Deletion Cancelled",
+          "Your account deletion request has been successfully cancelled.",
+          "LOW");
+    } catch (Exception e) { /* non-critical */ }
   }
 }

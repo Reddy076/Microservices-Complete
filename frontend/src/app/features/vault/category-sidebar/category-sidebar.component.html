@@ -1,0 +1,41 @@
+<aside class="sidebar-container">
+  @if (isLoading) {
+    <div class="sidebar-loading">
+      <div class="spinner"></div>
+    </div>
+  } @else {
+    <div class="sidebar-section">
+      <h3 class="section-title">Vault</h3>
+      <ul class="nav-list">
+        <li class="nav-item" [class.active]="activeFilter.type === 'system' && activeFilter.name === 'all'" (click)="selectSystemFilter('all')">
+          <span class="icon">🛡️</span>
+          <span class="label">All Items</span>
+        </li>
+        <li class="nav-item" [class.active]="activeFilter.type === 'system' && activeFilter.name === 'favorites'" (click)="selectSystemFilter('favorites')">
+          <span class="icon">⭐</span>
+          <span class="label">Favorites</span>
+        </li>
+        <li class="nav-item" [class.active]="activeFilter.type === 'system' && activeFilter.name === 'trash'" (click)="selectSystemFilter('trash')">
+          <span class="icon">🗑️</span>
+          <span class="label">Trash</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h3 class="section-title">Categories</h3>
+      <ul class="nav-list">
+        @for (category of categories; track category.id) {
+          <li class="nav-item" [class.active]="activeFilter.type === 'category' && activeFilter.id === category.id" (click)="selectCategory(category)">
+            <span class="icon">📁</span>
+            <span class="label">{{ category.name }}</span>
+            @if (category.entryCount) {
+              <span class="badge">{{ category.entryCount }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+
+  }
+</aside>

@@ -36,6 +36,18 @@ public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Co
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
+            String path = exchange.getRequest().getURI().getPath();
+
+            // Skip JWT validation for public authentication endpoints
+            if (path.startsWith("/api/auth/")) {
+                return chain.filter(exchange);
+            }
+
+            // Skip JWT validation for CORS preflight (OPTIONS) requests
+            if (exchange.getRequest().getMethod().matches("OPTIONS")) {
+                return chain.filter(exchange);
+            }
+
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                 exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                 return exchange.getResponse().setComplete();

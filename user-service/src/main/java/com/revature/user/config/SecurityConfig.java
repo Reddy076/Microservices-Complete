@@ -2,9 +2,11 @@ package com.revature.user.config;
 
 import com.revature.user.security.CustomUserDetailsService;
 import com.revature.user.security.JwtAuthenticationFilter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,19 +34,26 @@ public class SecurityConfig {
     http
         .cors(Customizer.withDefaults())
         .csrf(AbstractHttpConfigurer::disable)
+        .httpBasic(AbstractHttpConfigurer::disable)
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .exceptionHandling(ex -> ex
+            .authenticationEntryPoint((request, response, authException) -> {
+              response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+              response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+              response.getWriter().write("{\"error\":\"Unauthorized\"}");
+            }))
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(
                 "/api/auth/**",
                 "/api/users/internal/**",
+                "/internal/users/**",        // security-service Feign client
                 "/api/generator/**",
                 "/api/health/**",
                 "/actuator/health",
                 "/actuator/health/**",
                 "/actuator/info",
-                "/api/shares/*", // public share token access (Feature 35) — GET /{token} is unauthenticated
-                "/api/emergency/vault/*", // public emergency vault access (Feature 39) — GET /{token} is
-                                          // unauthenticated
+                "/api/shares/*", // public share token access
+                "/api/emergency/vault/*", // public emergency vault access
                 "/v3/api-docs",
                 "/v3/api-docs/**",
                 "/v3/api-docs.yaml",

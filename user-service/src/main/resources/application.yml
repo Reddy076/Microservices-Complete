@@ -5,21 +5,21 @@ spring:
   application:
     name: user-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:${SPRING_CONFIG_SERVER_URL:http://localhost:8888}
   datasource:
-    url: jdbc:mysql://localhost:3306/user_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/rev_password_manager?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${MAIL_USERNAME:}
-    password: ${MAIL_PASSWORD:}
+    host: ${SPRING_MAIL_HOST:smtp.gmail.com}
+    port: ${SPRING_MAIL_PORT:587}
+    username: ${SPRING_MAIL_USERNAME:}
+    password: ${SPRING_MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
@@ -27,13 +27,83 @@ spring:
           starttls:
             enable: true
 
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 55MB
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+spring.data.redis:
+  host: ${SPRING_DATA_REDIS_HOST:localhost}
+  port: ${SPRING_DATA_REDIS_PORT:6379}
+  password: ${SPRING_DATA_REDIS_PASSWORD:}
 
 jwt:
   secret: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
   access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:900000}
   refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:604800000}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState,ping
+        readiness:
+          include: readinessState,db,diskSpace,ping
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+# -----------------------------------------------------
+# MIGRATED SECURITY & CRYPTOGRAPHY (From .properties)
+# -----------------------------------------------------
+encryption:
+  algorithm: AES/GCM/NoPadding
+  key-size: 256
+
+pbkdf2:
+  iterations: 100000
+
+cors:
+  allowed:
+    origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,http://localhost:8080,http://localhost}
+
+secure:
+  files:
+    storage-path: ${SECURE_FILES_STORAGE_PATH:./secure-files}
+
+# -----------------------------------------------------
+# MIGRATED AI & LOGGING (From .properties)
+# -----------------------------------------------------
+ai:
+  openai:
+    api-key: ${AI_OPENAI_API_KEY:}
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT:INFO}
+    com.revature: ${LOGGING_LEVEL_COM_REVATURE:INFO}
+  file:
+    name: ${LOGGING_FILE_NAME:logs/password-manager.log}
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7

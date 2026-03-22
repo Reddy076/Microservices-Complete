@@ -16,7 +16,7 @@ public interface SecureShareRepository extends JpaRepository<SecureShare, Long> 
        Optional<SecureShare> findByShareToken(String shareToken);
 
        /** All active (non-revoked, non-expired) shares created by a user */
-       @Query("SELECT s FROM SecureShare s WHERE s.owner.id = :ownerId " +
+       @Query("SELECT s FROM SecureShare s WHERE s.ownerId = :ownerId " +
                      "AND s.isRevoked = false AND s.expiresAt > :now ORDER BY s.createdAt DESC")
        List<SecureShare> findActiveSharesByOwnerId(@Param("ownerId") Long ownerId,
                      @Param("now") LocalDateTime now);

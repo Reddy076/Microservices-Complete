@@ -1,0 +1,136 @@
+<div class="shell" [class.sidebar-collapsed]="sidebarCollapsed" [class.mobile-nav-open]="isMobileNavOpen">
+
+  <!-- Mobile Hamburger Button (visible only on mobile) -->
+  <button class="hamburger-btn show-on-mobile" (click)="toggleMobileNav()" aria-label="Open navigation menu">
+    <lucide-icon [name]="isMobileNavOpen ? 'x' : 'menu'" [size]="22"></lucide-icon>
+  </button>
+
+  <!-- Mobile Overlay Backdrop -->
+  @if (isMobileNavOpen) {
+  <button class="sidebar-overlay" (click)="closeMobileNav()" aria-label="Close navigation"></button>
+  }
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.mobile-open]="isMobileNavOpen">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">V</span>
+
+        @if (!sidebarCollapsed) {
+        <span class="logo-text">RevVault</span>
+        }
+      </div>
+      <button class="collapse-btn hide-on-mobile" (click)="toggleSidebar()"
+        [attr.aria-label]="sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+        @if (sidebarCollapsed) {
+        <lucide-icon name="chevron-right" [size]="20"></lucide-icon>
+        } @else {
+        <lucide-icon name="chevron-left" [size]="20"></lucide-icon>
+        }
+      </button>
+    </div>
+
+    <nav class="sidebar-nav primary-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item"
+        (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="layout-dashboard" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Dashboard</span>
+        }
+      </a>
+      <a routerLink="/vault" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item"
+        (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="lock" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">All Items</span>
+        }
+      </a>
+      <a routerLink="/vault" [queryParams]="{ filter: 'favorites' }" routerLinkActive="active" class="nav-item"
+        (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="star" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Favorites</span>
+        }
+      </a>
+      <a routerLink="/vault" [queryParams]="{ filter: 'recent' }" routerLinkActive="active" class="nav-item"
+        (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="clock" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Recent</span>
+        }
+      </a>
+      <a routerLink="/vault" [queryParams]="{ filter: 'trash' }" routerLinkActive="active" class="nav-item"
+        (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="trash-2" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Trash</span>
+        }
+      </a>
+      <a routerLink="/backup/export" routerLinkActive="active" class="nav-item" (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="download" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Export Vault</span>
+        }
+      </a>
+      <a routerLink="/backup/import" routerLinkActive="active" class="nav-item" (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="upload" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Import Vault</span>
+        }
+      </a>
+      <a routerLink="/backup/snapshots" routerLinkActive="active" class="nav-item" (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="history" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Snapshots</span>
+        }
+      </a>
+    </nav>
+
+    <!-- AI Features Section (Password Analyzer only) -->
+    @if (!sidebarCollapsed) {
+    <div class="sidebar-section-label">AI Tools</div>
+    }
+    <nav class="sidebar-nav ai-nav">
+      <a routerLink="/ai-password-analyzer" routerLinkActive="active" class="nav-item" (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="shield-check" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Password Analyzer</span>
+        }
+      </a>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <a routerLink="/profile/account" routerLinkActive="active" class="nav-item" (click)="closeMobileNav()">
+        <span class="nav-icon"><lucide-icon name="settings" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Settings</span>
+        }
+      </a>
+      <button class="nav-item logout-btn" (click)="logout()">
+        <span class="nav-icon"><lucide-icon name="log-out" [size]="20"></lucide-icon></span>
+        @if (!sidebarCollapsed) {
+        <span class="nav-label">Logout</span>
+        }
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Area -->
+  <div class="main-area">
+    <!-- Floating Island Navbar -->
+    <div class="top-nav-container">
+      <app-top-header></app-top-header>
+    </div>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Floating Chat Widget -->
+  <app-chatbot-widget></app-chatbot-widget>
+
+</div>

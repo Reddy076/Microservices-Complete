@@ -88,11 +88,10 @@ public class VaultTrashService {
     VaultEntry entry = vaultTrashRepository.findByIdAndUserIdAndIsDeletedTrue(entryId, user.getId())
         .orElseThrow(() -> new ResourceNotFoundException("Trashed entry not found"));
 
+    secureShareRepository.deleteByVaultEntryId(entry.getId());
     vaultSnapshotRepository.deleteByVaultEntryId(entry.getId());
-    
 
     vaultTrashRepository.delete(entry);
-
 
     logger.info("Permanently deleted vault entry {} for user {}", entryId, username);
   }
@@ -103,12 +102,11 @@ public class VaultTrashService {
     List<VaultEntry> trashedEntries = vaultTrashRepository.findByUserIdAndIsDeletedTrue(user.getId());
 
     trashedEntries.forEach(entry -> {
+      secureShareRepository.deleteByVaultEntryId(entry.getId());
       vaultSnapshotRepository.deleteByVaultEntryId(entry.getId());
-      
     });
 
     vaultTrashRepository.deleteAll(trashedEntries);
-
 
     logger.info("Emptied trash ({} entries) for user {}", trashedEntries.size(), username);
   }
@@ -120,8 +118,8 @@ public class VaultTrashService {
 
     if (!expired.isEmpty()) {
       expired.forEach(entry -> {
+        secureShareRepository.deleteByVaultEntryId(entry.getId());
         vaultSnapshotRepository.deleteByVaultEntryId(entry.getId());
-        
       });
       vaultTrashRepository.deleteAll(expired);
       logger.info("Cleaned up {} expired trash entries", expired.size());

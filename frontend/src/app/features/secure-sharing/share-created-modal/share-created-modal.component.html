@@ -1,0 +1,95 @@
+<div class="modal-backdrop" (click)="onClose()">
+  <div class="share-created-container" (click)="$event.stopPropagation()">
+    <!-- Header -->
+    <div class="modal-header">
+      <h2>
+        <lucide-icon name="check-circle" [size]="20" class="success-icon"></lucide-icon>
+        Share Created!
+      </h2>
+      <button class="btn-close" (click)="onClose()" aria-label="Close">
+        <lucide-icon name="x" [size]="20"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <!-- Success Message -->
+      <div class="success-message">
+        <p>Your secure share link has been generated successfully.</p>
+      </div>
+
+      <!-- Entry Title -->
+      <div class="entry-info">
+        <lucide-icon name="lock" [size]="16"></lucide-icon>
+        <span class="entry-label">Shared:</span>
+        <span class="entry-title">{{ shareResponse.vaultEntryTitle || 'Untitled Entry' }}</span>
+      </div>
+
+      <!-- Full Share Link Section -->
+      <div class="link-section">
+        <label class="section-label">
+          <lucide-icon name="link" [size]="14"></lucide-icon>
+          Complete Share Link
+        </label>
+        <div class="link-display-box">
+          <span class="link-text" [title]="fullShareLink">{{ fullShareLink }}</span>
+          <button type="button" class="copy-btn" [class.copied]="copyStates.fullLink" (click)="copyToClipboard()">
+            @if (copyStates.fullLink) {
+            <lucide-icon name="check" [size]="14"></lucide-icon>
+            Copied!
+            } @else {
+            <lucide-icon name="copy" [size]="14"></lucide-icon>
+            Copy Link
+            }
+          </button>
+        </div>
+        <span class="section-hint">Share this complete link with the recipient</span>
+      </div>
+
+      <!-- QR Code Section -->
+      <div class="qr-section">
+        <div class="qr-container">
+          <qrcode [qrdata]="fullShareLink" [width]="160" [errorCorrectionLevel]="'M'" [colorDark]="'#1e293b'"
+            [colorLight]="'#ffffff'" [margin]="2">
+          </qrcode>
+        </div>
+        <span class="section-hint text-center">Scan QR code to access password</span>
+      </div>
+
+
+      <!-- Share Details -->
+      <div class="share-details">
+        <div class="detail-item">
+          <lucide-icon name="clock" [size]="14"></lucide-icon>
+          <span>Expires in: <strong>{{ formattedExpiry }}</strong></span>
+        </div>
+        <div class="detail-item">
+          <lucide-icon name="eye" [size]="14"></lucide-icon>
+          <span>Max views: <strong>{{ formattedMaxViews }}</strong></span>
+        </div>
+        @if (shareResponse.recipientEmail) {
+        <div class="detail-item">
+          <lucide-icon name="mail" [size]="14"></lucide-icon>
+          <span>Restricted to: <strong>{{ shareResponse.recipientEmail }}</strong></span>
+        </div>
+        }
+      </div>
+
+      <!-- Warning -->
+      <div class="warning-box">
+        <lucide-icon name="alert-triangle" [size]="16"></lucide-icon>
+        <p>Make sure to copy the link now. The encryption key cannot be retrieved later for security reasons.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn-secondary" (click)="onCreateAnother()">
+        <lucide-icon name="plus" [size]="16"></lucide-icon>
+        Create Another
+      </button>
+      <button type="button" class="btn-primary" (click)="onClose()">
+        <lucide-icon name="check" [size]="16"></lucide-icon>
+        Done
+      </button>
+    </div>

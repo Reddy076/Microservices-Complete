@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * REST controller for Vault Timeline Visualization.
  * Adapted from the monolith's VaultTimelineController — package changes only.
- * Base URL: /api/vault/timeline  (routed by API Gateway under /api/vault/**)
+ * Base URL: /api/timeline  (routed by API Gateway under /api/timeline/**)
  */
 @RestController
-@RequestMapping("/api/vault/timeline")
+@RequestMapping("/api/timeline")
 @RequiredArgsConstructor
 @Tag(name = "Vault Timeline", description = "Vault Timeline Visualization: chronological activity feed and analytics")
 public class VaultTimelineController {

@@ -1,0 +1,148 @@
+<div class="vault-form-container">
+  <!-- Header -->
+  <div class="form-header">
+    <h2>
+      <lucide-icon [name]="entryToEdit ? 'edit-2' : 'plus'" [size]="20"></lucide-icon>
+      {{ entryToEdit ? 'Edit Vault Entry' : 'Add New Entry' }}
+    </h2>
+    <button class="btn-close" (click)="onCancel()" aria-label="Close">
+      <lucide-icon name="x" [size]="20"></lucide-icon>
+    </button>
+  </div>
+
+  <!-- Lock Screen -->
+  @if (isLocked) {
+  <div class="lock-screen">
+    <lucide-icon name="lock" [size]="48"></lucide-icon>
+    <h3>Sensitive Entry Locked</h3>
+    <p>Re-authentication required to view or edit</p>
+    <div class="lock-buttons">
+      <button class="btn-secondary" (click)="onCancel()">Cancel</button>
+      <button class="btn-primary" (click)="onRequestUnlock()">
+        <lucide-icon name="lock" [size]="16"></lucide-icon> Unlock
+      </button>
+    </div>
+  </div>
+  }
+
+  <!-- Form -->
+  @if (!isLocked) {
+  <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
+    <div class="form-scroll-area" [class.scroll-disabled]="showGenerator || activeDropdowns > 0">
+      <!-- Card 1: Credentials -->
+      <div class="form-section">
+        <div class="section-title">
+          <lucide-icon name="shield" [size]="16"></lucide-icon> Credentials
+        </div>
+        <div class="section-content">
+          <div class="field">
+            <label>Title</label>
+            <input type="text" formControlName="title" placeholder="e.g., Work Email">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Username / Email</label>
+              <input type="text" formControlName="username" placeholder="user@example.com">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <div class="password-field">
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="••••••••">
+                <button type="button" class="pwd-btn" (click)="togglePasswordVisibility()">
+                  <lucide-icon [name]="showPassword ? 'eye' : 'eye-off'" [size]="16"></lucide-icon>
+                </button>
+                <button type="button" class="pwd-btn" (click)="toggleGenerator($event)">
+                  <lucide-icon name="key" [size]="16"></lucide-icon>
+                </button>
+              </div>
+              @if (showGenerator) {
+              <div class="generator-dropdown">
+                <app-password-generator-widget
+                  (passwordGenerated)="onPasswordGenerated($event)"></app-password-generator-widget>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Organization -->
+      <div class="form-section">
+        <div class="section-title">
+          <lucide-icon name="folder-open" [size]="16"></lucide-icon> Organization
+        </div>
+        <div class="section-content">
+          <div class="field">
+            <label>Website URL</label>
+            <input type="url" formControlName="websiteUrl" placeholder="https://example.com">
+          </div>
+          <div class="field">
+            <div class="category-label-row">
+              <label>Category</label>
+              <button type="button" class="btn-ai-categorize-inline" (click)="aiCategorize()"
+                [disabled]="isCategorizing || !entryForm.get('title')?.value">
+                <lucide-icon name="sparkles" [size]="12"></lucide-icon>
+                {{ isCategorizing ? 'Analyzing...' : 'Auto-Categorize' }}
+              </button>
+            </div>
+            <app-custom-select formControlName="categoryId" [options]="categoryOptions" placeholder="Select Category"
+              (isOpenChange)="onDropdownOpenChange($event)">
+            </app-custom-select>
+          </div>
+          <div class="field">
+            <label>Folder</label>
+            <app-custom-select formControlName="folderId" [options]="folderOptions" placeholder="No Folder"
+              (isOpenChange)="onDropdownOpenChange($event)">
+            </app-custom-select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Options -->
+      <div class="form-section">
+        <div class="section-title">
+          <lucide-icon name="settings-2" [size]="16"></lucide-icon> Options
+        </div>
+        <div class="section-content">
+          <div class="checkboxes">
+            <label class="checkbox-item">
+              <input type="checkbox" formControlName="isFavorite">
+              <lucide-icon name="star" [size]="16"></lucide-icon>
+              <span>Mark as Favorite</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" formControlName="isHighlySensitive">
+              <lucide-icon name="alert-triangle" [size]="16"></lucide-icon>
+              <span>Highly Sensitive</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Notes -->
+      <div class="form-section">
+        <div class="section-title">
+          <lucide-icon name="file" [size]="16"></lucide-icon> Notes
+        </div>
+        <div class="section-content">
+          <textarea formControlName="notes" rows="3" placeholder="Add any additional notes here..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="form-footer">
+      <button type="button" class="btn-secondary" (click)="onCancel()" [disabled]="isSubmitting">Cancel</button>
+      @if (entryToEdit?.id) {
+      <button type="button" class="btn-share" (click)="onShare()" [disabled]="isSubmitting">
+        <lucide-icon name="share-2" [size]="16"></lucide-icon>
+        Share
+      </button>
+      }
+      <button type="submit" class="btn-primary" [disabled]="entryForm.invalid || isSubmitting">
+        Save
+      </button>
+    </div>
+  </form>
+  }
+</div>

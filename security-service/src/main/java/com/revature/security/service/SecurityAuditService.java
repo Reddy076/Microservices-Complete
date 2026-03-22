@@ -6,7 +6,10 @@ import com.revature.security.client.VaultAnalysisClient.DecryptedVaultEntryDTO;
 import com.revature.security.dto.response.SecurityAuditResponse;
 import com.revature.security.dto.response.SecurityAuditResponse.VaultEntrySummary;
 import com.revature.security.model.PasswordAnalysis;
+import com.revature.security.model.SecurityAlert.AlertType;
+import com.revature.security.model.SecurityAlert.Severity;
 import com.revature.security.repository.PasswordAnalysisRepository;
+import com.revature.security.repository.SecurityAlertRepository;
 import com.revature.security.util.PasswordStrengthCalculator;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -29,6 +32,9 @@ public class SecurityAuditService {
   private final VaultAnalysisClient vaultAnalysisClient;
   private final PasswordStrengthCalculator passwordStrengthCalculator;
   private final PasswordAnalysisRepository passwordAnalysisRepository;
+  private final SecurityAlertService securityAlertService;
+  private final SecurityAlertRepository securityAlertRepository;
+
 
   @Transactional
   public void analyzeVault(Long userId) {
@@ -123,7 +129,7 @@ public class SecurityAuditService {
     int securityScore = calculateSecurityScore(total, weak.size(), reused.size(), old.size());
     List<String> recommendations = generateRecommendations(weak.size(), reused.size(), old.size());
 
-    return SecurityAuditResponse.builder()
+    SecurityAuditResponse report = SecurityAuditResponse.builder()
         .totalEntries(total)
         .weakCount(weak.size())
         .reusedCount(reused.size())
@@ -134,7 +140,72 @@ public class SecurityAuditService {
         .reusedPasswords(reused)
         .oldPasswords(old)
         .build();
+
+    // Refresh vault-quality security alerts
+    try {
+      refreshVaultAlerts(username, userId, weak, reused, old);
+    } catch (Exception e) {
+      logger.warn("Could not refresh vault alerts for {}: {}", username, e.getMessage());
+    }
+
+    return report;
   }
+
+  private void refreshVaultAlerts(String username, Long userId,
+      List<VaultEntrySummary> weak, List<VaultEntrySummary> reused, List<VaultEntrySummary> old) {
+    List<AlertType> vaultAlertTypes = List.of(AlertType.WEAK_PASSWORD, AlertType.REUSED_PASSWORD, AlertType.OLD_PASSWORD);
+
+    // Check if vault-quality alerts already exist (determines whether to send notifications)
+    boolean hasExisting = securityAlertRepository.findByUserIdOrderByCreatedAtDesc(userId)
+        .stream().anyMatch(a -> vaultAlertTypes.contains(a.getAlertType()));
+
+    // Delete stale vault alerts so counts stay accurate
+    securityAlertRepository.deleteByUserIdAndAlertTypeIn(userId, vaultAlertTypes);
+
+    // Build a single flat list of alerts to create
+    record AlertEntry(AlertType type, String title, String message, Severity severity) {}
+
+    List<AlertEntry> toCreate = new ArrayList<>();
+    for (VaultEntrySummary e : weak) {
+      toCreate.add(new AlertEntry(AlertType.WEAK_PASSWORD, "Weak Password Detected",
+          "'" + e.getTitle() + "' has a weak password. Use a stronger password with mixed characters.",
+          Severity.HIGH));
+    }
+    for (VaultEntrySummary e : reused) {
+      toCreate.add(new AlertEntry(AlertType.REUSED_PASSWORD, "Reused Password Detected",
+          "'" + e.getTitle() + "' shares a password with another account. Use unique passwords.",
+          Severity.MEDIUM));
+    }
+    for (VaultEntrySummary e : old) {
+      toCreate.add(new AlertEntry(AlertType.OLD_PASSWORD, "Old Password Detected",
+          "'" + e.getTitle() + "' password has not been updated in over 90 days.",
+          Severity.HIGH));
+    }
+
+    for (AlertEntry ae : toCreate) {
+      if (hasExisting) {
+        // Silent refresh — no notification
+        securityAlertRepository.save(buildAlert(userId, ae.type(), ae.title(), ae.message(), ae.severity()));
+      } else {
+        // First detection — notify the user
+        securityAlertService.createAlert(username, ae.type(), ae.title(), ae.message(), ae.severity());
+      }
+    }
+  }
+
+  private com.revature.security.model.SecurityAlert buildAlert(Long userId, AlertType type,
+      String title, String message, Severity severity) {
+    return com.revature.security.model.SecurityAlert.builder()
+        .userId(userId)
+        .alertType(type)
+        .title(title)
+        .message(message)
+        .severity(severity)
+        .isRead(false)
+        .createdAt(LocalDateTime.now())
+        .build();
+  }
+
 
   @Transactional(readOnly = true)
   public List<VaultEntrySummary> getWeakPasswords(String username) {

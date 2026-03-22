@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UnreadCountResponse {
-    private long count;
+    private long unreadCount;
 }

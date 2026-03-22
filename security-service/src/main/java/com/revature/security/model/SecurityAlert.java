@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "security_alerts")
@@ -24,8 +27,10 @@ public class SecurityAlert {
     private Long userId;
 
   @Enumerated(EnumType.STRING)
+  @JdbcTypeCode(SqlTypes.VARCHAR)
   @Column(name = "alert_type", nullable = false, length = 50)
   private AlertType alertType;
+
 
   @Column(nullable = false, length = 200)
   private String title;
@@ -55,8 +60,15 @@ public class SecurityAlert {
     ACCOUNT_LOCKED,
     SENSITIVE_ACCESS,
     PASSWORD_BREACHED,
-    BREACH_SCAN_COMPLETE
+    BREACH_SCAN_COMPLETE,
+    WEAK_PASSWORD,
+    REUSED_PASSWORD,
+    OLD_PASSWORD,
+    ACCOUNT_DELETION_SCHEDULED,
+    ACCOUNT_DELETION_CANCELLED,
+    DURESS_MODE_ACTIVATED
   }
+
 
   public enum Severity {
     LOW, MEDIUM, HIGH, CRITICAL

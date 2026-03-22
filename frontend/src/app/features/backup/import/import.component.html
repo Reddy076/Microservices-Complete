@@ -1,0 +1,191 @@
+<div class="import-container">
+  <div class="import-layout">
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="page-title">Import Vault</h1>
+      <p class="page-subtitle">Restore your vault from a backup file.</p>
+    </div>
+
+    <!-- Step 1: File Selection -->
+    <div class="card import-card" *ngIf="currentStep === ImportStep.SELECT_FILE">
+      <!-- Drag and Drop Zone -->
+      <div class="drop-zone" [class.drag-over]="isDragging" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)" (drop)="onDrop($event)" (click)="fileInput.click()">
+        <input #fileInput type="file" accept=".json,application/json" (change)="onFileSelected($event)"
+          style="display: none">
+
+        <div class="drop-zone-content">
+          <lucide-icon name="upload-cloud" [size]="48" class="drop-icon"></lucide-icon>
+          <p class="drop-title">Drag & drop your backup file here</p>
+          <p class="drop-subtitle">or click to browse</p>
+          <p class="drop-hint">Supported: JSON files up to {{ formatFileSize(MAX_FILE_SIZE) }}</p>
+        </div>
+      </div>
+
+      <!-- Tip Section -->
+      <div class="security-tip">
+        <lucide-icon name="info" [size]="18" class="tip-icon"></lucide-icon>
+        <div class="tip-content">
+          <strong>Tip:</strong> You can import files exported from RevVault or compatible password managers.
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <!-- Step 2: Validating -->
+    <div class="card import-card" *ngIf="currentStep === ImportStep.VALIDATING">
+      <div class="progress-container">
+        <mat-spinner diameter="48" class="progress-spinner"></mat-spinner>
+        <p class="progress-text">Validating file...</p>
+        <p class="progress-subtitle" *ngIf="selectedFile">{{ selectedFile.name }}</p>
+      </div>
+    </div>
+
+    <!-- Step 3: Preview -->
+    <div class="card import-card" *ngIf="currentStep === ImportStep.PREVIEW">
+      <div class="preview-header">
+        <div class="file-info">
+          <lucide-icon name="file-json" [size]="24" class="file-icon"></lucide-icon>
+          <div class="file-details">
+            <p class="file-name">{{ selectedFile?.name }}</p>
+            <p class="file-size">{{ fileSize }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-stats" *ngIf="validationResult && !isEncryptedFile">
+        <div class="stat-row">
+          <span class="stat-label">Entries Found:</span>
+          <span class="stat-value">{{ validationResult.entriesFound }}</span>
+        </div>
+        <div class="stat-row success">
+          <span class="stat-label">
+            <lucide-icon name="check-circle" [size]="16" class="stat-icon"></lucide-icon>
+            Valid Entries:
+          </span>
+          <span class="stat-value">{{ validationResult.validEntries }}</span>
+        </div>
+        <div class="stat-row warning" *ngIf="validationResult.invalidEntries > 0">
+          <span class="stat-label">
+            <lucide-icon name="alert-triangle" [size]="16" class="stat-icon"></lucide-icon>
+            Invalid Entries:
+          </span>
+          <span class="stat-value">{{ validationResult.invalidEntries }}</span>
+        </div>
+      </div>
+
+      <!-- For encrypted files, show a placeholder message instead of 0 counts -->
+      <div class="preview-stats" *ngIf="isEncryptedFile">
+        <div class="stat-row">
+          <span class="stat-label"><lucide-icon name="lock" [size]="14" class="stat-icon"></lucide-icon> Status:</span>
+          <span class="stat-value">Encrypted — enter password to import</span>
+        </div>
+      </div>
+
+      <!-- Encrypted file: show decryption password prompt -->
+      <div class="encrypted-prompt" *ngIf="isEncryptedFile">
+        <div class="encrypted-info">
+          <lucide-icon name="lock" [size]="18" class="lock-icon"></lucide-icon>
+          <span>This file is encrypted. Enter the password you used when exporting.</span>
+        </div>
+        <div class="password-field">
+          <label for="import-decrypt-password" class="field-label">Decryption Password *</label>
+          <input id="import-decrypt-password" type="password" class="field-input" [(ngModel)]="decryptionPassword"
+            placeholder="Enter decryption password" autocomplete="current-password" />
+        </div>
+      </div>
+
+      <div class="preview-warning" *ngIf="validationResult && validationResult.invalidEntries > 0">
+        <lucide-icon name="alert-circle" [size]="18" class="warning-icon"></lucide-icon>
+        <span>{{ validationResult.invalidEntries }} entries will be skipped due to invalid format.</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button type="button" class="btn btn-outline" (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary import-btn" (click)="onImport()"
+          [disabled]="isEncryptedFile ? !decryptionPassword : !validationResult?.isValid">
+          <lucide-icon name="download" [size]="16"></lucide-icon>
+          <span *ngIf="!isEncryptedFile">Import {{ validationResult?.validEntries }} Entries</span>
+          <span *ngIf="isEncryptedFile">Decrypt &amp; Import</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4: Importing -->
+    <div class="card import-card" *ngIf="currentStep === ImportStep.IMPORTING">
+      <div class="progress-container">
+        <mat-spinner diameter="48" class="progress-spinner"></mat-spinner>
+        <p class="progress-text">Importing entries...</p>
+        <p class="progress-subtitle">This may take a moment</p>
+      </div>
+    </div>
+
+    <!-- Step 5: Results -->
+    <div class="card import-card" *ngIf="currentStep === ImportStep.RESULTS">
+      <div class="results-header">
+        <div class="result-icon success">
+          <lucide-icon name="check-circle" [size]="48"></lucide-icon>
+        </div>
+        <h2 class="results-title">Import Complete</h2>
+        <p class="results-message" *ngIf="importResult">
+          Successfully imported {{ importResult.successCount || 0 }} entries
+        </p>
+      </div>
+
+      <div class="results-stats" *ngIf="importResult">
+        <div class="stat-card">
+          <span class="stat-card-label">Total Processed</span>
+          <span class="stat-card-value">{{ importResult.totalProcessed || 0 }}</span>
+        </div>
+        <div class="stat-card success">
+          <span class="stat-card-label">Successfully Imported</span>
+          <span class="stat-card-value">{{ importResult.successCount || 0 }}</span>
+        </div>
+        <div class="stat-card error" *ngIf="importResult.failCount && importResult.failCount > 0">
+          <span class="stat-card-label">Failed</span>
+          <span class="stat-card-value">{{ importResult.failCount }}</span>
+        </div>
+      </div>
+
+      <div class="results-message-box" *ngIf="importResult?.message">
+        <p>{{ importResult?.message }}</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button type="button" class="btn btn-outline" (click)="onImportAnother()">
+          Import Another
+        </button>
+        <button type="button" class="btn btn-primary go-to-vault-btn" routerLink="/vault">
+          <lucide-icon name="vault" [size]="16"></lucide-icon>
+          <span>Go to Vault</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="card help-card" *ngIf="currentStep === ImportStep.SELECT_FILE || currentStep === ImportStep.RESULTS">
+      <div class="help-header">
+        <lucide-icon name="help-circle" [size]="20"></lucide-icon>
+        <h3>Need Help?</h3>
+      </div>
+      <div class="help-content">
+        <div class="help-item">
+          <h4>JSON Format</h4>
+          <p>The import supports JSON files exported from RevVault or other compatible password managers. The file
+            should contain an array of vault entries.</p>
+        </div>
+        <div class="help-item">
+          <h4>File Size Limit</h4>
+          <p>Maximum file size is {{ formatFileSize(MAX_FILE_SIZE) }}. For larger vaults, consider splitting into
+            multiple files.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="export-container">
+  <div class="export-layout">
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="page-title">Export Vault</h1>
+      <p class="page-subtitle">Download a backup of your vault entries for safekeeping or migration.</p>
+    </div>
+
+    <!-- Export Form Card -->
+    <div class="card export-card">
+      <form [formGroup]="exportForm" (ngSubmit)="onExport()">
+        <!-- Format Selection -->
+        <div class="form-section">
+          <label class="section-label">Export Format</label>
+          <div class="format-options">
+            <div *ngFor="let format of exportFormats" class="format-option"
+              [class.selected]="formatControl?.value === format.value" (click)="formatControl?.setValue(format.value)">
+              <div class="radio-indicator">
+                <div class="radio-circle" [class.checked]="formatControl?.value === format.value"></div>
+              </div>
+              <div class="format-content">
+                <div class="format-label">{{ format.label }}</div>
+                <div class="format-description">{{ format.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Field (Conditional) -->
+        <div *ngIf="showPasswordField" class="form-section">
+          <label class="input-label">Encryption Password *</label>
+          <div class="input-wrapper">
+            <lucide-icon name="lock" [size]="18" class="input-icon"></lucide-icon>
+            <input type="password" formControlName="password" class="form-control"
+              placeholder="Enter a strong password for encryption">
+          </div>
+          <div class="input-hint"
+            *ngIf="!passwordControl?.hasError('required') && !passwordControl?.hasError('minlength')">
+            Minimum 8 characters required
+          </div>
+          <div class="input-error" *ngIf="passwordControl?.hasError('required') && passwordControl?.touched">
+            Password is required for encrypted exports
+          </div>
+          <div class="input-error" *ngIf="passwordControl?.hasError('minlength') && passwordControl?.touched">
+            Password must be at least 8 characters
+          </div>
+        </div>
+
+        <!-- Security Notice -->
+        <div class="security-tip">
+          <lucide-icon name="info" [size]="18" class="tip-icon"></lucide-icon>
+          <div class="tip-content">
+            <strong>Security Tip:</strong>
+            <span *ngIf="formatControl?.value === 'JSON'">
+              JSON exports are unencrypted. Store them securely and avoid sharing.
+            </span>
+            <span *ngIf="formatControl?.value === 'ENCRYPTED'">
+              Encrypted exports require your password to decrypt. Don't lose it!
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button type="button" class="btn btn-outline" [disabled]="isLoading" routerLink="/vault">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary export-btn" [disabled]="isLoading || exportForm.invalid">
+            <mat-spinner *ngIf="isLoading" diameter="18" class="btn-spinner"></mat-spinner>
+            <lucide-icon *ngIf="!isLoading" name="download" [size]="16"></lucide-icon>
+            <span>{{ isLoading ? 'Exporting...' : 'Export Vault' }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Help Section -->
+    <div class="card help-card">
+      <div class="help-header">
+        <lucide-icon name="help-circle" [size]="20"></lucide-icon>
+        <h3>Need Help?</h3>
+      </div>
+      <div class="help-content">
+        <div class="help-item">
+          <h4>JSON Format</h4>
+          <p>Best for transferring to other password managers or manual inspection. Keep this file secure as it contains
+            unencrypted passwords.</p>
+        </div>
+        <div class="help-item">
+          <h4>Encrypted Format</h4>
+          <p>Best for secure backups. The file is encrypted with your password and cannot be decrypted without it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

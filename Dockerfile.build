@@ -1,0 +1,13 @@
+# Stage 1: Build all microservices using the root pom.xml
+FROM eclipse-temurin:21-jdk AS build
+
+# Install Maven
+RUN apt-get update -qq && apt-get install -y -qq maven && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+# Copy entire source tree (parent pom + all modules)
+COPY . .
+
+# Build all modules, skip tests
+RUN mvn clean package -DskipTests --no-transfer-progress

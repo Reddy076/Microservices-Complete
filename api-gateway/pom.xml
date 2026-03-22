@@ -6,6 +6,7 @@
         <groupId>com.revature.microservices</groupId>
         <artifactId>password-manager-microservices</artifactId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>api-gateway</artifactId>
     <name>API Gateway</name>
@@ -26,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+            <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

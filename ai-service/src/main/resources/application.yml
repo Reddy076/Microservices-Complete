@@ -1,0 +1,59 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: ai-service
+  config:
+    import: optional:configserver:${SPRING_CONFIG_SERVER_URL:http://localhost:8888}
+  datasource:
+    url: jdbc:mysql://localhost:3307/rev_password_manager?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: rootpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+# LLM Configuration - Groq (Free fast inference)
+# To enable AI analysis, set OPENAI_API_KEY env var to your Groq API key
+# Get a free key at https://console.groq.com
+# If left blank, password analysis falls back to built-in rule-based analysis.
+llm:
+  provider: ${LLM_PROVIDER:OPENAI}
+  base-url: ${LLM_BASE_URL:https://api.groq.com/openai/v1}
+  api-key: ${OPENAI_API_KEY:}
+  model: ${LLM_MODEL:llama-3.1-70b-versatile}
+  temperature: 0.7
+  timeout-seconds: 60
+  max-tokens: 2048
+  stream-enabled: false
+  max-retries: 3
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.revature.ai: DEBUG
+    org.springframework.web: INFO

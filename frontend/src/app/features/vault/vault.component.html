@@ -1,0 +1,340 @@
+<div class="vault-container master-detail-layout">
+
+  <!-- LEFT COLUMN: MASTER LIST -->
+  <div class="master-column">
+    <header class="vault-header">
+      <div class="header-left">
+        @if (isTrashView) {
+        <h2><lucide-icon name="trash-2" [size]="22" class="inline-icon"></lucide-icon> Trash</h2>
+        } @else if (currentFilter.name === 'recent') {
+        <h2><lucide-icon name="clock" [size]="22" class="inline-icon"></lucide-icon> Recent</h2>
+        } @else {
+        <h2>My Vault</h2>
+        }
+      </div>
+      <div class="header-actions">
+        @if (!isTrashView) {
+        <div class="search-bar">
+          <span class="search-icon"><lucide-icon name="search" [size]="16"></lucide-icon></span>
+          <input type="text" placeholder="Search entries..." class="search-input" [(ngModel)]="searchQuery"
+            (input)="onSearch()">
+          <button class="filter-toggle-btn" (click)="toggleFilters()" [class.active]="showFilters || hasActiveFilters()"
+            title="Advanced Filters">
+            <lucide-icon name="sliders" [size]="16"></lucide-icon>
+          </button>
+        </div>
+        <button class="btn btn-primary" (click)="onAddNew()">
+          <lucide-icon name="plus" [size]="16"></lucide-icon> Add New
+        </button>
+        } @else {
+        <button class="btn btn-secondary" (click)="restoreAllTrash()" [disabled]="trashEntries.length === 0">
+          <lucide-icon name="rotate-ccw" [size]="16"></lucide-icon> Restore All
+        </button>
+        <button class="btn btn-danger" (click)="emptyTrash()">
+          <lucide-icon name="trash-2" [size]="16"></lucide-icon> Empty Trash
+        </button>
+        }
+      </div>
+    </header>
+
+    @if (errorMessage) {
+    <div class="alert alert-danger">{{ errorMessage }}</div>
+    }
+
+    <!-- ═══════════════════════ ADVANCED SEARCH FILTERS ═══════════════════════ -->
+    @if (showFilters && !isTrashView) {
+    <div class="filter-panel">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label>Category</label>
+          <select [(ngModel)]="selectedCategoryId" (change)="onSearch()">
+            <option [value]="undefined">All Categories</option>
+            @for (cat of categories; track cat.id) {
+            <option [value]="cat.id">{{ cat.name }}</option>
+            }
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Folder</label>
+          <select [(ngModel)]="selectedFolderId" (change)="onSearch()">
+            <option [value]="undefined">All Folders</option>
+            @for (folder of folders; track folder.id) {
+            <option [value]="folder.id">{{ folder.name }}</option>
+            }
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Sort By</label>
+          <select [(ngModel)]="sortBy" (change)="onSearch()">
+            <option value="title">Title</option>
+            <option value="createdAt">Date Created</option>
+            <option value="updatedAt">Date Updated</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Order</label>
+          <select [(ngModel)]="sortDir" (change)="onSearch()">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-row checkboxes">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="filterFavorites" (change)="onSearch()">
+          <span>Favorites Only</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="filterHighlySensitive" (change)="onSearch()">
+          <span>Highly Sensitive Only</span>
+        </label>
+        <button class="btn btn-link clear-filters" (click)="clearFilters()">
+          <lucide-icon name="x" [size]="14"></lucide-icon> Clear Filters
+        </button>
+      </div>
+    </div>
+    }
+
+    <!-- ═══════════════════════ TRASH VIEW ═══════════════════════ -->
+    @if (isTrashView) {
+    @if (isLoadingTrash) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading trash...</p>
+    </div>
+    } @else if (trashEntries.length === 0) {
+    <!-- IMPROVED EMPTY STATE: TRASH -->
+    <div class="empty-state">
+      <div class="empty-illustration">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="40" fill="#F1F5F9" />
+          <path d="M28 30h24M34 30v-2a2 2 0 012-2h8a2 2 0 012 2v2M50 30l-2 22H32L30 30" stroke="#94A3B8"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M37 36v10M43 36v10" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <h3>Trash is empty</h3>
+      <p>Deleted items will appear here for 30 days before permanent deletion.</p>
+    </div>
+    } @else {
+    <div class="entries-list">
+      @for (entry of trashEntries; track entry.id) {
+      <div class="entry-row entry-row--trash">
+        <div class="entry-icon">
+          @if (entry.websiteUrl) {
+          <img [src]="'https://www.google.com/s2/favicons?domain=' + entry.websiteUrl + '&sz=32'" [alt]="entry.title"
+            class="favicon-img" (error)="onFaviconError($event, entry.title)">
+          } @else {
+          <span class="entry-initial">{{ entry.title ? entry.title.charAt(0).toUpperCase() : '?' }}</span>
+          }
+        </div>
+        <div class="entry-details">
+          <h4 class="entry-title">{{ entry.title }}</h4>
+          <p class="entry-username">
+            {{ entry.categoryName || entry.folderName || entry.websiteUrl || 'No details' }}
+          </p>
+          @if (entry.daysRemaining !== undefined) {
+          <p class="trash-expiry" [class.expiry-soon]="(entry.daysRemaining || 0) <= 3">
+            Deleted {{ 30 - (entry.daysRemaining || 0) }}d ago · expires in {{ entry.daysRemaining }}d
+          </p>
+          }
+        </div>
+        <div class="entry-actions">
+          <button class="action-btn restore-btn" (click)="restoreEntry($event, entry)" title="Restore">
+            <lucide-icon name="rotate-cw" [size]="16"></lucide-icon>
+          </button>
+          <button class="action-btn delete-btn" (click)="permanentDeleteEntry($event, entry)"
+            title="Delete Permanently">
+            <lucide-icon name="trash-2" [size]="16"></lucide-icon>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+    }
+    }
+
+    <!-- ═══════════════════════ NORMAL VAULT VIEW ═══════════════════════ -->
+    @if (!isTrashView) {
+    @if (isLoading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading your vault...</p>
+    </div>
+    } @else if (filteredEntries.length === 0) {
+    <!-- IMPROVED EMPTY STATE: VAULT -->
+    <div class="empty-state">
+      <div class="empty-illustration">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="40" fill="#F3E8FF" />
+          <rect x="22" y="28" width="36" height="28" rx="4" stroke="#8B5CF6" stroke-width="2" fill="none" />
+          <path d="M34 28v-4a6 6 0 1112 0v4" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" />
+          <circle cx="40" cy="42" r="3" fill="#8B5CF6" />
+          <path d="M40 45v4" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <h3>Your vault is empty</h3>
+      <p>Add your first password to get started.</p>
+      <button class="btn btn-primary btn-cta" (click)="onAddNew()">
+        <lucide-icon name="plus" [size]="16"></lucide-icon>
+        Add your first password
+      </button>
+    </div>
+    } @else {
+    <div class="entries-list">
+      @for (entry of filteredEntries; track entry.id + '-' + $index) {
+      <div class="entry-row" (click)="onViewEntry(entry)" (keydown.enter)="onViewEntry(entry)" tabindex="0"
+        role="button"
+        [class.selected]="selectedEntry?.id === entry.id || (!selectedEntry?.id && !entry.id && showModal)">
+
+        <!-- Favicon / Initial icon -->
+        <div class="entry-icon">
+          <span class="entry-initial" style="color: #1f2937; font-weight: 700; font-size: 14px;">{{ entry.title ?
+            entry.title.charAt(0).toUpperCase() : '?' }}</span>
+          @if (entry.websiteUrl) {
+          <img [src]="'https://www.google.com/s2/favicons?domain=' + entry.websiteUrl + '&sz=32'" [alt]="entry.title"
+            class="favicon-img" (error)="onFaviconError($event, entry.title)">
+          }
+        </div>
+
+        <div class="entry-details">
+          <h4 class="entry-title">{{ entry.title }}</h4>
+          <p class="entry-username">{{ entry.username || entry.websiteUrl || 'No details' }}</p>
+          <!-- Password strength underline -->
+          <div class="strength-bar"
+            [class.strength-very-weak]="entry.strengthScore !== undefined && entry.strengthScore < 20"
+            [class.strength-weak]="entry.strengthScore !== undefined && entry.strengthScore >= 20 && entry.strengthScore < 40"
+            [class.strength-fair]="entry.strengthScore !== undefined && entry.strengthScore >= 40 && entry.strengthScore < 60"
+            [class.strength-good]="entry.strengthScore !== undefined && entry.strengthScore >= 60 && entry.strengthScore < 80"
+            [class.strength-strong]="entry.strengthScore !== undefined && entry.strengthScore >= 80">
+          </div>
+        </div>
+
+        <div class="entry-actions">
+          <button class="action-btn copy-btn" (click)="requestPasswordCopy($event, entry)" title="Copy Password">
+            @if (copiedEntryId === entry.id) {
+            <lucide-icon name="check" [size]="16" class="text-success"></lucide-icon>
+            } @else {
+            <lucide-icon name="copy" [size]="16" class="text-muted"></lucide-icon>
+            }
+          </button>
+          <button class="action-btn" (click)="toggleFavorite($event, entry)" [class.favorited]="entry.isFavorite"
+            title="Toggle Favorite">
+            <lucide-icon name="star" [size]="16"></lucide-icon>
+          </button>
+          <button class="action-btn history-btn" (click)="viewPasswordHistory($event, entry)" title="Password History">
+            <lucide-icon name="clock" [size]="16"></lucide-icon>
+          </button>
+          <button class="action-btn delete-btn" (click)="deleteEntry($event, entry)" title="Move to Trash">
+            <lucide-icon name="trash-2" [size]="16"></lucide-icon>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+    }
+    }
+  </div> <!-- End Master Column -->
+
+  <!-- RIGHT COLUMN: DETAIL VIEW (slide-in drawer) -->
+  <div class="detail-column" [class.drawer-open]="showModal" [class.mobile-visible]="showModal">
+    @if (showModal) {
+    <app-vault-entry-modal [entryToEdit]="selectedEntry" [unlockedEntry]="unlockedEntry" (save)="saveEntry($event)"
+      (cancel)="closeModal()" (sensitiveUnlockRequested)="onSensitiveUnlockRequested($event)"
+      (shareRequested)="onShareRequested($event)">
+    </app-vault-entry-modal>
+    } @else {
+    <div class="empty-detail-state">
+      <div class="empty-detail-illustration">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="32" fill="#F8FAFC" />
+          <path d="M20 24h24M20 32h16M20 40h10" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <h3>Select an item</h3>
+      <p>Click on an item in the list to view or edit its details.</p>
+    </div>
+    }
+
+    @if (showSensitiveUnlockModal && sensitiveUnlockEntryId) {
+    <app-master-password-modal [entryId]="sensitiveUnlockEntryId" mode="edit" (entryUnlocked)="onEntryUnlocked($event)"
+      (modalCancel)="closeSensitiveUnlockModal()">
+    </app-master-password-modal>
+    }
+
+    @if (showMasterPasswordModal && entryToDecrypt) {
+    <app-master-password-modal [entryId]="entryToDecrypt" mode="copy"
+      (passwordDecrypted)="handlePasswordDecrypted($event)" (modalCancel)="closeMasterPasswordModal()">
+    </app-master-password-modal>
+    }
+
+    <!-- Password History Modal -->
+    @if (showHistoryModal) {
+    <div class="modal-backdrop" (click)="closeHistoryModal()">
+      <div class="modal-content history-modal" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h3><lucide-icon name="history" [size]="20"></lucide-icon> Password History</h3>
+          <button class="close-btn" (click)="closeHistoryModal()">
+            <lucide-icon name="x" [size]="20"></lucide-icon>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="entry-name">{{ historyEntryTitle }}</p>
+          @if (isLoadingHistory) {
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading history...</p>
+          </div>
+          } @else if (passwordHistory.length === 0) {
+          <div class="empty-history">
+            <lucide-icon name="shield-check" [size]="48" class="text-muted"></lucide-icon>
+            <p>No password history available.</p>
+            <span class="hint">History is only available after password changes.</span>
+          </div>
+          } @else {
+          <div class="history-list">
+            @for (snapshot of passwordHistory; track snapshot.id; let i = $index) {
+            <div class="history-item">
+              <div class="history-number">#{{ passwordHistory.length - i }}</div>
+              <div class="history-details">
+                <code class="password-preview">{{ snapshot.password }}</code>
+                @if (snapshot.changedAt) {
+                <span class="changed-date">{{ snapshot.changedAt | date:'medium' }}</span>
+                }
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeHistoryModal()">Close</button>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Share Modal -->
+    @if (showShareModal && selectedEntryForShare) {
+    <div class="modal-backdrop" (click)="onShareCancelled()">
+      <div class="modal-content share-modal" (click)="$event.stopPropagation()">
+        <app-share-modal [entryId]="selectedEntryForShare.id!"
+          [entryTitle]="selectedEntryForShare.title || 'Untitled Entry'" (shareCreated)="onShareCreated($event)"
+          (cancelled)="onShareCancelled()">
+        </app-share-modal>
+      </div>
+    </div>
+    }
+
+    <!-- Share Created Success Modal -->
+    @if (showShareCreatedModal && createdShare) {
+    <div class="modal-backdrop" (click)="onShareCreatedClosed()">
+      <div class="modal-content share-modal" (click)="$event.stopPropagation()">
+        <app-share-created-modal [shareResponse]="createdShare" (closed)="onShareCreatedClosed()"
+          (createAnother)="onCreateAnotherShare()">
+        </app-share-created-modal>
+      </div>
+    </div>
+    }
+  </div> <!-- End Detail Column -->
+</div>

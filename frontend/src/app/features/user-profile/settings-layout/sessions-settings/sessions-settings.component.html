@@ -1,0 +1,81 @@
+<div class="settings-section">
+  @if (successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Active Sessions Card -->
+  <div class="settings-card">
+    <div class="card-header-row mb-2">
+      <h3 class="mb-0">Active Devices & Sessions</h3>
+      @if (activeSessions.length > 1) {
+      <button class="settings-btn-outline text-danger border-danger hover-bg-danger-subtle"
+        (click)="onRevokeAllOtherSessions()">
+        Log Out of All Other Devices
+      </button>
+      }
+    </div>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">View and manage the devices currently logged into your
+      account.</p>
+
+    @if (isLoadingSessions) {
+    <p style="color: var(--text-muted); margin-top: 1rem;">Loading active sessions...</p>
+    } @else if (activeSessions.length === 0) {
+    <p style="color: var(--text-muted); margin-top: 1rem;">No active sessions found.</p>
+    } @else {
+    <div class="sessions-list d-flex flex-column gap-3">
+      @for (session of activeSessions; track session.id) {
+      <div class="session-item p-3 border rounded-3 d-flex align-items-center justify-content-between transition-all"
+        [ngClass]="session.id === currentSessionId ? 'border-primary' : 'hover-shadow'"
+        [style.backgroundColor]="session.id === currentSessionId ? 'rgba(139, 92, 246, 0.1)' : 'transparent'">
+
+        <div class="d-flex align-items-center gap-3">
+          <div class="session-icon p-2 rounded-circle"
+            [ngClass]="session.id === currentSessionId ? 'bg-primary text-white' : ''"
+            [style.backgroundColor]="session.id !== currentSessionId ? 'var(--border-color)' : ''"
+            [style.color]="session.id !== currentSessionId ? 'var(--text-muted)' : ''">
+            <lucide-icon [name]="session.deviceInfo?.toLowerCase()?.includes('mobile') ? 'smartphone' : 'laptop'"
+              [size]="24"></lucide-icon>
+          </div>
+
+          <div class="session-details">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <strong style="color: var(--text-main);">{{ getDeviceLabel(session) }}</strong>
+              @if (session.id === currentSessionId) {
+              <span class="badge bg-primary rounded-pill fw-medium" style="font-size: 0.75rem;">Current Session</span>
+              }
+            </div>
+
+            <div class="d-flex align-items-center gap-3 small mb-1" style="color: var(--text-muted);">
+              <span class="d-flex align-items-center gap-1">
+                <lucide-icon name="map-pin" [size]="14"></lucide-icon>
+                {{ session.location || 'Unknown Location' }}
+              </span>
+              <span class="opacity-50" style="color: var(--text-muted);">•</span>
+              <span class="d-flex align-items-center gap-1">
+                <lucide-icon name="lock" [size]="14"></lucide-icon>
+                {{ getDisplayIp(session) }}
+              </span>
+            </div>
+
+            <div style="color: var(--text-muted); font-size: 0.8rem;">
+              Last active: {{ session.lastAccessedAt | date:'medium' }}
+            </div>
+          </div>
+        </div>
+
+        @if (session.id !== currentSessionId) {
+        <div class="session-action ms-3">
+          <button class="settings-btn-ghost text-danger px-3 py-1 m-0" (click)="onRevokeSession(session.id!)">
+            Log Out
+          </button>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

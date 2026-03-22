@@ -1,0 +1,930 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.master-detail-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  width: 100%;
+  height: 100%;
+  gap: 1.5rem;
+  background: transparent;
+  margin: 0 auto;
+}
+
+/* ─── Master Column ───────────────────────────────────────────────────── */
+.master-column {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* ─── Detail Column (slide-in drawer) ────────────────────────────────── */
+.detail-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Drawer open: elevate the detail panel */
+.detail-column.drawer-open {
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+/* Vault entry modal inside detail column */
+.detail-column app-vault-entry-modal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ─── Empty Detail State ──────────────────────────────────────────────── */
+.empty-detail-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--bg-surface);
+  gap: 0.75rem;
+}
+
+.empty-detail-illustration {
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}
+
+.empty-detail-state h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.empty-detail-state p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* ─── Vault Header ────────────────────────────────────────────────────── */
+.vault-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 0.875rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: var(--bg-surface);
+  width: 100%;
+}
+
+.header-left h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-icon {
+  color: var(--text-muted);
+}
+
+.subtitle {
+  display: none;
+}
+
+.header-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.625rem;
+  align-items: center;
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.875rem;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  width: 100%;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.vault-header .btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.875rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+  white-space: nowrap;
+}
+
+/* ─── Filter Toggle Button ──────────────────────────────────────────────── */
+.filter-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-toggle-btn:hover {
+  color: var(--primary);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.filter-toggle-btn.active {
+  color: var(--primary);
+  background: rgba(139, 92, 246, 0.15);
+}
+
+/* ─── Filter Panel ──────────────────────────────────────────────────────── */
+.filter-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin: 0.75rem 1.25rem;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filter-row.checkboxes {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.filter-group select {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filter-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.clear-filters {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.clear-filters:hover {
+  color: var(--danger);
+}
+
+/* ─── Password History Modal ────────────────────────────────────────────── */
+.history-modal {
+  max-width: 500px;
+  width: 90%;
+}
+
+.history-modal .entry-name {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.empty-history {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.empty-history .hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.history-number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.history-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.password-preview {
+  font-family: monospace;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+}
+
+.changed-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─── Share Modal ────────────────────────────────────────────────────────── */
+.share-modal {
+  max-width: 480px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: hidden !important;
+  border-radius: 1.5rem;
+}
+
+.share-modal>* {
+  display: block;
+}
+
+/* Ensure the share modal component takes full height */
+.share-modal app-share-modal,
+.share-modal app-share-created-modal {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Modal Backdrop ────────────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.2s ease;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.modal-footer .btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-footer .btn-secondary {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.modal-footer .btn-secondary:hover {
+  background: var(--bg-elevated);
+}
+
+.vault-header .btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+.vault-header .btn-danger {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #DC2626;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.vault-header .btn-danger:hover {
+  background-color: #DC2626;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ─── Empty & Loading States ──────────────────────────────────────────── */
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.empty-illustration {
+  margin-bottom: 0.5rem;
+}
+
+.empty-state h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* CTA button in empty state */
+.btn-cta {
+  margin-top: 0.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.25);
+}
+
+.btn-cta:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+}
+
+/* ─── Entries List ────────────────────────────────────────────────────── */
+.entries-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.25rem 0;
+}
+
+.entries-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.entries-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.entries-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.entries-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.entry-row {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 0.875rem;
+  margin: 0.15rem 0.625rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+}
+
+.entry-row:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.entry-row.selected {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+}
+
+/* ─── Entry Icon (favicon + initial fallback) ─────────────────────────── */
+.entry-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-right: 0.875rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  position: relative;
+}
+
+.entry-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.favicon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: var(--bg-main);
+}
+
+/* ─── Entry Details ───────────────────────────────────────────────────── */
+.entry-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.entry-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.entry-username {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* ─── Password Strength Underline ─────────────────────────────────────── */
+.strength-bar {
+  height: 2px;
+  border-radius: 2px;
+  margin-top: 3px;
+  width: 0;
+  background: transparent;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-bar.strength-very-weak {
+  width: 20%;
+  background-color: #EF4444;
+  /* Red */
+}
+
+.strength-bar.strength-weak {
+  width: 40%;
+  background-color: #F97316;
+  /* Orange */
+}
+
+.strength-bar.strength-fair {
+  width: 60%;
+  background-color: #EAB308;
+  /* Yellow */
+}
+
+.strength-bar.strength-good {
+  width: 80%;
+  background-color: #84CC16;
+  /* Light Green */
+}
+
+.strength-bar.strength-strong {
+  width: 100%;
+  background-color: #10B981;
+  /* Dark Green */
+}
+
+/* ─── Entry Actions ───────────────────────────────────────────────────── */
+.entry-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.entry-row:hover .entry-actions,
+.entry-row.selected .entry-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  color: var(--text-main);
+  background-color: var(--border-color);
+}
+
+.action-btn.favorited {
+  color: #F59E0B;
+  opacity: 1;
+}
+
+.action-btn.copy-btn:hover {
+  color: var(--primary);
+}
+
+.action-btn.delete-btn:hover {
+  color: #DC2626;
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* ─── Trash Row ───────────────────────────────────────────────────────── */
+.entry-row--trash {
+  cursor: default;
+  opacity: 0.85;
+  background-color: var(--bg-main);
+}
+
+.entry-row--trash:hover {
+  background-color: var(--bg-surface);
+  transform: none;
+}
+
+.trash-expiry {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.trash-expiry.expiry-soon {
+  color: #F59E0B;
+  font-weight: 600;
+}
+
+.action-btn.restore-btn:hover {
+  color: #059669;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* ─── Danger button ───────────────────────────────────────────────────── */
+.btn-danger {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #DC2626;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626;
+  color: white;
+}
+
+/* ─── Alert ───────────────────────────────────────────────────────────── */
+.alert {
+  margin: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.alert-danger {
+  background: rgba(239, 68, 68, 0.08);
+  color: #DC2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ─── Spinner ─────────────────────────────────────────────────────────── */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 0.75rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== VAULT RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .master-detail-layout {
+    grid-template-columns: 300px 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .master-detail-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  /* List is visible by default, detail hidden */
+  .detail-column {
+    display: none;
+  }
+
+  /* When entry selected on mobile */
+  .master-column.mobile-hidden {
+    display: none;
+  }
+
+  .detail-column.mobile-visible {
+    display: flex;
+    height: 100%;
+  }
+
+  /* Mobile back button — hidden by default on desktop */
+  .mobile-back-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 0;
+  }
+}

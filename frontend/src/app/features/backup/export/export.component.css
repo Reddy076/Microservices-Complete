@@ -1,0 +1,328 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.export-container {
+  padding: var(--spacing-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.export-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: var(--spacing-sm);
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Card Styling - Matching vault component design */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.export-card {
+  padding: var(--spacing-xl);
+}
+
+.help-card {
+  padding: var(--spacing-lg);
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Format Options - Custom Radio Buttons */
+.format-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.format-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-main);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.format-option:hover {
+  border-color: var(--primary);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.format-option.selected {
+  border-color: var(--primary);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.radio-indicator {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.radio-circle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.format-option:hover .radio-circle,
+.format-option.selected .radio-circle {
+  border-color: var(--primary);
+}
+
+.radio-circle.checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.format-content {
+  flex: 1;
+}
+
+.format-label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-xs);
+}
+
+.format-description {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Security Tip */
+.security-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+body.dark-theme .security-tip {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.tip-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tip-content {
+  font-size: 0.875rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.tip-content strong {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+body.dark-theme .tip-content strong {
+  color: #93c5fd;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  padding-top: var(--spacing-sm);
+}
+
+.export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 140px;
+}
+
+.btn-spinner {
+  display: inline-block;
+}
+
+/* Help Section */
+.help-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-main);
+}
+
+.help-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.help-header lucide-icon {
+  color: var(--primary);
+}
+
+.help-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.help-item h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.help-item p {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Field Width */
+.w-100 {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .export-container {
+    padding: var(--spacing-md);
+  }
+
+  .export-card,
+  .help-card {
+    padding: var(--spacing-md);
+  }
+
+  .help-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+}
+
+/* Custom Input Styling - Matching master-password-modal */
+.input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-sm);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  color: var(--text-main);
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.input-hint {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: var(--spacing-xs);
+  margin-left: 1rem;
+}
+
+.input-error {
+  font-size: 0.8125rem;
+  color: var(--danger);
+  margin-top: var(--spacing-xs);
+  margin-left: 1rem;
+}

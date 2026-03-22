@@ -1,0 +1,84 @@
+<div class="settings-section">
+  <div class="section-header">
+    <h2>Audit Logs</h2>
+    <p class="text-muted">Track all activities and changes in your account</p>
+  </div>
+
+  @if (successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Filters -->
+  <div class="filters-row">
+    <div class="search-box">
+      <lucide-icon name="search" [size]="18"></lucide-icon>
+      <input type="text" placeholder="Search logs..." [(ngModel)]="searchQuery" (input)="applyFilters()">
+    </div>
+    <select [(ngModel)]="selectedAction" (change)="applyFilters()">
+      <option value="">All Actions</option>
+      @for (action of actions; track action) {
+      <option [value]="action">{{ action }}</option>
+      }
+    </select>
+    <button class="btn btn-secondary" (click)="clearFilters()">
+      <lucide-icon name="x" [size]="16"></lucide-icon> Clear
+    </button>
+    <button class="btn btn-primary" (click)="exportToCSV()">
+      <lucide-icon name="download" [size]="16"></lucide-icon> Export CSV
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading) {
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading audit logs...</p>
+  </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && filteredLogs.length === 0) {
+  <div class="empty-state">
+    <lucide-icon name="layout" [size]="48"></lucide-icon>
+    <h3>No audit logs found</h3>
+    <p>Activity logs will appear here when actions are performed</p>
+  </div>
+  }
+
+  <!-- Audit Logs Table -->
+  @if (!isLoading && filteredLogs.length > 0) {
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Action</th>
+          <th>Details</th>
+          <th>IP Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (log of filteredLogs; track log.id) {
+        <tr>
+          <td class="timestamp">{{ formatDate(log.timestamp) }}</td>
+          <td>
+            <span class="action-badge">
+              <lucide-icon [name]="getActionIcon(log.action)" [size]="14"></lucide-icon>
+              {{ log.action || 'Unknown' }}
+            </span>
+          </td>
+          <td class="details">{{ log.details || '-' }}</td>
+          <td class="ip-address">{{ log.ipAddress || '-' }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="results-info">
+    Showing {{ filteredLogs.length }} of {{ auditLogs.length }} logs
+  </div>
+  }
+</div>

@@ -1,0 +1,274 @@
+<div class="landing-page">
+  <!-- Decorative background elements -->
+  <div class="bg-shape-wrapper">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar animate-fade-down">
+    <div class="container nav-content">
+      <div class="logo">
+        <span class="logo-icon">V</span>
+        <span class="logo-text">RevVault</span>
+      </div>
+      <div class="nav-actions">
+        <a routerLink="/login" class="nav-link">Log in</a>
+        <a routerLink="/register" class="btn btn-primary pill">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="badge animate-fade-up" style="animation-delay: 0.1s;">
+        <span class="badge-dot"></span> Secure. Simple. Fast.
+      </div>
+
+      <h1 class="hero-title animate-fade-up" style="animation-delay: 0.2s;">
+        Your digital life, <br>
+        <span class="text-gradient">beautifully secured.</span>
+      </h1>
+
+      <p class="hero-subtitle animate-fade-up" style="animation-delay: 0.3s;">
+        RevVault is the modern way to protect your passwords, secure notes, and digital secrets.
+        Experience enterprise-grade security wrapped in an elegant interface.
+      </p>
+
+      <div class="hero-actions animate-fade-up" style="animation-delay: 0.4s;">
+        <a routerLink="/register" class="btn btn-primary btn-lg pill">
+          Start for free <lucide-icon name="arrow-right" [size]="20"></lucide-icon>
+        </a>
+        <a routerLink="/login" class="btn btn-outline btn-lg pill">
+          Login to Vault
+        </a>
+      </div>
+
+      <!-- App Mockup Graphic -->
+      <div class="app-preview animate-fade-up" style="animation-delay: 0.6s;">
+        <div class="glass-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mockup-url">
+              <lucide-icon name="lock" [size]="14"></lucide-icon>
+              <span>app.revvault.com</span>
+            </div>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-sidebar">
+              <div class="sidebar-item active"><lucide-icon name="layout-dashboard" [size]="16"></lucide-icon></div>
+              <div class="sidebar-item"><lucide-icon name="vault" [size]="16"></lucide-icon></div>
+              <div class="sidebar-item"><lucide-icon name="shield" [size]="16"></lucide-icon></div>
+            </div>
+            <div class="mockup-content">
+              <!-- Vault Card 1 -->
+              <div class="mockup-vault-card" style="animation-delay: 0s;">
+                <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #f97316);">
+                  <lucide-icon name="shield" [size]="20" color="white"></lucide-icon>
+                </div>
+                <div class="card-details">
+                  <div class="card-title">Netflix Account</div>
+                  <div class="card-sub">user&#64;example.com</div>
+                </div>
+                <div class="card-actions">
+                  <span class="mock-btn outline"></span>
+                  <span class="mock-btn solid"></span>
+                </div>
+              </div>
+
+              <!-- Vault Card 2 -->
+              <div class="mockup-vault-card" style="animation-delay: 0.1s;">
+                <div class="card-icon" style="background: linear-gradient(135deg, #eab308, #f59e0b);">
+                  <lucide-icon name="monitor" [size]="20" color="white"></lucide-icon>
+                </div>
+                <div class="card-details">
+                  <div class="card-title">Amazon Prime</div>
+                  <div class="card-sub">shopping&#64;example.com</div>
+                </div>
+                <div class="card-actions">
+                  <span class="mock-btn outline"></span>
+                  <span class="mock-btn solid"></span>
+                </div>
+              </div>
+
+              <!-- Vault Card 3 -->
+              <div class="mockup-vault-card" style="animation-delay: 0.2s;">
+                <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">
+                  <lucide-icon name="laptop" [size]="20" color="white"></lucide-icon>
+                </div>
+                <div class="card-details">
+                  <div class="card-title">GitHub Repo</div>
+                  <div class="card-sub">developer</div>
+                </div>
+                <div class="card-actions">
+                  <span class="mock-btn outline"></span>
+                  <span class="mock-btn solid"></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats / Trust Bar -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-strip">
+        <div class="stat-item">
+          <lucide-icon name="shield" [size]="20" class="stat-icon"></lucide-icon>
+          <span class="stat-label">256-bit AES Encryption</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <lucide-icon name="eye-off" [size]="20" class="stat-icon"></lucide-icon>
+          <span class="stat-label">Zero-Knowledge Architecture</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <lucide-icon name="history" [size]="20" class="stat-icon"></lucide-icon>
+          <span class="stat-label">Automatic Vault Snapshots</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <lucide-icon name="share-2" [size]="20" class="stat-icon"></lucide-icon>
+          <span class="stat-label">Secure Expiring Links</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header animate-fade-up">
+        <h2>Everything you need. Nothing you don't.</h2>
+        <p>Built for teams and individuals who value simplicity without compromising security.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card glass-card animate-fade-up" style="animation-delay: 0.1s;">
+          <div class="feature-icon">
+            <lucide-icon name="shield-check" [size]="24"></lucide-icon>
+          </div>
+          <h3>Zero-Knowledge Security</h3>
+          <p>Your data is encrypted and decrypted locally on your device. We never see your master password or your
+            plain-text data.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card glass-card animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="feature-icon">
+            <lucide-icon name="users" [size]="24"></lucide-icon>
+          </div>
+          <h3>Secure Sharing</h3>
+          <p>Share passwords safely with expiring links and view limits. Revoke access instantly with one click.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card glass-card animate-fade-up" style="animation-delay: 0.3s;">
+          <div class="feature-icon">
+            <lucide-icon name="history" [size]="24"></lucide-icon>
+          </div>
+          <h3>Vault Snapshots</h3>
+          <p>Never lose your data. Automatic snapshots allow you to roll back your entire vault to any point in time.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card glass-card animate-fade-up" style="animation-delay: 0.4s;">
+          <div class="feature-icon">
+            <lucide-icon name="smartphone" [size]="24"></lucide-icon>
+          </div>
+          <h3>Two-Factor Auth</h3>
+          <p>Add an extra layer of protection to your account with time-based OTP authenticator app support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header animate-fade-up">
+        <h2>Up and running in minutes.</h2>
+        <p>Getting started with RevVault is simple — no complex setup, no technical knowledge needed.</p>
+      </div>
+
+      <div class="steps-row">
+        <!-- Step 1 -->
+        <div class="step-item animate-fade-up" style="animation-delay: 0.1s;">
+          <div class="step-number">1</div>
+          <div class="step-icon-wrap">
+            <lucide-icon name="user-plus" [size]="28"></lucide-icon>
+          </div>
+          <h3>Create your account</h3>
+          <p>Sign up in seconds. Set your master password — the only key you'll ever need to remember.</p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <!-- Step 2 -->
+        <div class="step-item animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="step-number">2</div>
+          <div class="step-icon-wrap">
+            <lucide-icon name="plus-circle" [size]="28"></lucide-icon>
+          </div>
+          <h3>Add your passwords</h3>
+          <p>Import from another manager or add entries manually. Organize with folders, categories & favorites.</p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <!-- Step 3 -->
+        <div class="step-item animate-fade-up" style="animation-delay: 0.3s;">
+          <div class="step-number">3</div>
+          <div class="step-icon-wrap">
+            <lucide-icon name="shield-check" [size]="28"></lucide-icon>
+          </div>
+          <h3>Stay secure everywhere</h3>
+          <p>Access your vault from any device. Monitor your security score and share passwords safely when needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box glass-card animate-fade-up">
+        <h2>Ready to secure your digital life?</h2>
+        <p>Join thousands of users who trust RevVault to protect their most sensitive information.</p>
+        <a routerLink="/register" class="btn btn-primary btn-lg pill">Create your free account</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon small">V</span>
+            <span class="logo-text">RevVault</span>
+          </div>
+          <p class="copyright">© {{ currentYear }} Revature. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+          <a routerLink="/login">Login</a>
+          <a routerLink="/register">Register</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

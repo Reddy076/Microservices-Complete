@@ -1,0 +1,157 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Sidebar */
+.settings-sidebar {
+  position: sticky;
+  top: 1rem;
+}
+
+.settings-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  /* Align with nav items */
+}
+
+/* Navigation Menu */
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Base Nav Pill */
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  /* The requested 'pill' shape */
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.nav-pill:hover {
+  background-color: rgba(139, 92, 246, 0.05);
+  /* Very light purple hover */
+  color: #8b5cf6;
+}
+
+/* Active Nav Pill */
+.nav-pill.active {
+  background-color: var(--primary);
+  /* Vibrant purple */
+  color: #ffffff;
+  /* keep white for contrast on active pill */
+  box-shadow: var(--shadow-md);
+  /* Premium soft shadow */
+}
+
+/* Ensure icons inside text match color */
+.nav-pill lucide-icon {
+  color: inherit;
+}
+
+/* Section Title */
+.settings-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 1.5rem 0 0.75rem 1rem;
+}
+
+/* Main Content Area */
+.settings-content {
+  min-width: 0;
+  /* Prevent grid blowout */
+  width: 100%;
+}
+
+/* Responsive: Mobile App Grid Layout on smaller screens */
+@media (max-width: 768px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+  }
+
+  .settings-sidebar {
+    position: static;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .settings-title {
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .settings-section-title {
+    margin: 1.5rem 0 0.75rem 1rem;
+  }
+
+  .settings-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0 1rem;
+    flex-direction: row;
+    width: auto;
+  }
+
+  .nav-pill {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    border-radius: 12px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+  
+  .nav-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+  }
+
+  .nav-pill.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .nav-pill lucide-icon {
+    margin-bottom: 0.25rem;
+  }
+}

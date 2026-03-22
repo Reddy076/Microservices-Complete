@@ -5,33 +5,32 @@ spring:
   application:
     name: api-gateway
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:${SPRING_CONFIG_SERVER_URL:http://localhost:8888}
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
-        - id: user-service
+        - id: user-service-public
           uri: lb://user-service
           predicates:
-            - Path=/api/auth/**, /api/users/**, /api/2fa/**, /api/sessions/**, /api/settings/**
+            - Path=/api/auth/**
+          # No JwtAuthFilter - login, register, refresh-token are public
+
+        - id: user-service-protected
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**, /api/2fa/**, /api/sessions/**, /api/settings/**
           filters:
             - JwtAuthFilter
-            - name: CircuitBreaker
-              args:
-                name: userServiceCB
-                fallbackUri: forward:/fallback/user
 
         - id: vault-service
           uri: lb://vault-service
           predicates:
-            - Path=/api/vault/**, /api/categories/**, /api/folders/**, /api/shares/**, /api/backup/**
+            - Path=/api/vault/**, /api/categories/**, /api/folders/**, /api/shares/**, /api/backup/**, /api/timeline/**
           filters:
             - JwtAuthFilter
-            - name: CircuitBreaker
-              args:
-                name: vaultServiceCB
 
         - id: generator-service
           uri: lb://generator-service
@@ -45,7 +44,6 @@ spring:
           filters:
             - JwtAuthFilter
 
-
         - id: notification-service
           uri: lb://notification-service
           predicates:
@@ -53,12 +51,28 @@ spring:
           filters:
             - JwtAuthFilter
 
+        - id: ai-service
+          uri: lb://ai-service
+          predicates:
+            - Path=/api/ai/**
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    preferIpAddress: true
 
 jwt:
   secret: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
   access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:900000}
   refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:604800000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

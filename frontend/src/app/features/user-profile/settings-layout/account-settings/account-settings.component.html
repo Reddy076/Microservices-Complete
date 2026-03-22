@@ -1,0 +1,94 @@
+<div class="settings-section">
+  @if (successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Profile Info Card -->
+  <div class="settings-card">
+    <div class="card-header-row">
+      <h3>Account Information</h3>
+      @if (!isLoadingProfile && userProfile && !isEditingProfile) {
+      <button class="settings-btn-outline" (click)="onEditProfile()">Edit Profile</button>
+      }
+    </div>
+
+    @if (isLoadingProfile) {
+    <p style="color: var(--text-muted); margin-top: 1rem;">Loading profile...</p>
+    } @else if (userProfile && !isEditingProfile) {
+    <div class="info-grid">
+      <div class="info-group">
+        <span class="label-text">Username</span>
+        <p class="data-text">{{ userProfile.username }}</p>
+      </div>
+      <div class="info-group">
+        <span class="label-text">Name</span>
+        <p class="data-text">{{ userProfile.name || 'Not provided' }}</p>
+      </div>
+      <div class="info-group">
+        <span class="label-text">Email Address</span>
+        <p class="data-text">{{ userProfile.email }}</p>
+      </div>
+      <div class="info-group">
+        <span class="label-text">Phone Number</span>
+        <p class="data-text">{{ userProfile.phoneNumber || 'Not provided' }}</p>
+      </div>
+      <div class="info-group">
+        <span class="label-text">Member Since</span>
+        <p class="data-text">{{ userProfile.createdAt | date:'mediumDate' }}</p>
+      </div>
+    </div>
+    } @else if (userProfile && isEditingProfile) {
+    <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfileSubmit()">
+      <div class="form-group mb-4">
+        <label class="form-label" style="color: var(--text-muted);">Username (Cannot be changed)</label>
+        <input type="text" class="form-control" [value]="userProfile.username" disabled>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control settings-input" formControlName="name"
+            placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="profileEmail" class="form-label">Email Address</label>
+          <input type="email" id="profileEmail" class="form-control settings-input" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input type="text" id="phoneNumber" class="form-control settings-input" formControlName="phoneNumber"
+            placeholder="Enter your phone number">
+        </div>
+      </div>
+
+      <div class="btn-row mt-4">
+        <button type="submit" class="settings-btn-primary" [disabled]="profileForm.invalid">Save Changes</button>
+        <button type="button" class="settings-btn-ghost" (click)="onCancelEditProfile()">Cancel</button>
+      </div>
+    </form>
+    }
+  </div>
+
+  <!-- Change Password Card -->
+  <div class="settings-card mt-4">
+    <div class="card-header-row mb-3">
+      <h3>Change Master Password</h3>
+    </div>
+    <form [formGroup]="passwordForm" (ngSubmit)="onChangePasswordSubmit()">
+      <div class="form-group mb-3">
+        <label for="currentPassword" class="form-label">Current Password</label>
+        <input type="password" id="currentPassword" class="form-control settings-input"
+          formControlName="currentPassword" placeholder="Enter current password">
+      </div>
+      <div class="form-group mb-4">
+        <label for="newPassword" class="form-label">New Password</label>
+        <input type="password" id="newPassword" class="form-control settings-input" formControlName="newPassword"
+          placeholder="Enter new password">
+      </div>
+      <button type="submit" class="settings-btn-primary" [disabled]="passwordForm.invalid">Update Password</button>
+    </form>
+  </div>
+</div>

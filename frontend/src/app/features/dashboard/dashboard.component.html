@@ -1,0 +1,329 @@
+<div class="dashboard defender-style">
+
+  @if (isLoading) {
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading dashboard...</p>
+  </div>
+  } @else if (errorMessage) {
+  <div class="error-state">
+    <lucide-icon name="alert-triangle" [size]="32"></lucide-icon>
+    <p>{{ errorMessage }}</p>
+  </div>
+  } @else {
+
+  <div class="dashboard-content">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SECURITY SCORE SECTION                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="score-section">
+
+      <!-- Donut Ring -->
+      <div class="score-ring-wrapper">
+        <svg class="score-ring" viewBox="0 0 120 120" width="140" height="140">
+          <!-- Background track -->
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#E5E7EB" stroke-width="10" />
+          <!-- Filled arc — animated -->
+          <circle cx="60" cy="60" r="54" fill="none" [attr.stroke]="scoreColor" stroke-width="10" stroke-linecap="round"
+            [attr.stroke-dasharray]="donutDashArray" stroke-dashoffset="0" transform="rotate(-90 60 60)"
+            class="score-arc" />
+        </svg>
+        <div class="score-center">
+          <span class="score-number" [style.color]="scoreColor">{{ securityScore }}</span>
+          <span class="score-pct">/ 100</span>
+          <span class="score-label-badge" [style.color]="scoreColor">{{ scoreLabel }}</span>
+        </div>
+      </div>
+
+      <!-- Score Description -->
+      <div class="score-description">
+        <h2 class="score-title">Security Health</h2>
+        <p class="score-subtitle">
+          @if (scoreData?.recommendation) {
+          {{ scoreData!.recommendation }}
+          } @else if (securityScore >= 80) {
+          Your vault is in great shape. Keep it up!
+          } @else if (securityScore >= 50) {
+          Some passwords need attention. Review the issues below.
+          } @else {
+          Your vault has critical issues. Take action now.
+          }
+        </p>
+
+        <!-- 3 Metric Cards -->
+        <div class="metric-cards">
+
+          <a href="#" (click)="openWeakPasswordsModal($event)" class="metric-card metric-card--danger">
+            <div class="metric-card-icon">
+              <lucide-icon name="shield-alert" [size]="20"></lucide-icon>
+            </div>
+            <div class="metric-card-body">
+              <span class="metric-card-value">{{ scoreData?.weakPasswords ?? dashboardData?.weakPasswordsCount ?? 0
+                }}</span>
+              <span class="metric-card-label">Weak Passwords</span>
+              <span class="metric-card-hint">Change these now</span>
+            </div>
+            <lucide-icon name="arrow-right" [size]="16" class="metric-card-arrow"></lucide-icon>
+          </a>
+
+          <a href="#" (click)="openReusedPasswordsModal($event)" class="metric-card metric-card--warning">
+            <div class="metric-card-icon">
+              <lucide-icon name="copy" [size]="20"></lucide-icon>
+            </div>
+            <div class="metric-card-body">
+              <span class="metric-card-value">{{ scoreData?.reusedPasswords ?? dashboardData?.reusedPasswordsCount ?? 0
+                }}</span>
+              <span class="metric-card-label">Reused Passwords</span>
+              <span class="metric-card-hint">Make them unique</span>
+            </div>
+            <lucide-icon name="arrow-right" [size]="16" class="metric-card-arrow"></lucide-icon>
+          </a>
+
+          <a href="#" (click)="openOldPasswordsModal($event)" class="metric-card metric-card--info">
+            <div class="metric-card-icon">
+              <lucide-icon name="calendar" [size]="20"></lucide-icon>
+            </div>
+            <div class="metric-card-body">
+              <span class="metric-card-value">{{ scoreData?.oldPasswords ?? dashboardData?.oldPasswordsCount ?? 0
+                }}</span>
+              <span class="metric-card-label">Old Passwords</span>
+              <span class="metric-card-hint">Older than 90 days</span>
+            </div>
+            <lucide-icon name="arrow-right" [size]="16" class="metric-card-arrow"></lucide-icon>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- QUICK STATS ROW                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="stats-pills">
+      <a routerLink="/vault" class="stat-pill primary clickable-pill">
+        <div class="stat-pill-icon">
+          <lucide-icon name="folder" [size]="18"></lucide-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ dashboardData?.totalVaultEntries || 0 }}</span>
+          <span class="stat-label">Vault Items</span>
+        </div>
+      </a>
+
+      <a routerLink="/vault" [queryParams]="{filter: 'favorites'}" class="stat-pill success clickable-pill">
+        <div class="stat-pill-icon">
+          <lucide-icon name="star" [size]="18"></lucide-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ dashboardData?.totalFavorites || 0 }}</span>
+          <span class="stat-label">Favorites</span>
+        </div>
+      </a>
+
+      <a routerLink="/vault" [queryParams]="{filter: 'trash'}" class="stat-pill danger clickable-pill">
+        <div class="stat-pill-icon">
+          <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ trashCount }}</span>
+          <span class="stat-label">In Trash</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- PASSWORD HEALTH BREAKDOWN                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    @if (healthData) {
+    <div class="detail-card" id="health-section">
+      <div class="detail-card-header">
+        <lucide-icon name="bar-chart-2" [size]="18"></lucide-icon>
+        <h3>Password Strength Breakdown</h3>
+        <span class="detail-badge">{{ healthData.totalPasswords }} passwords</span>
+      </div>
+      <div class="health-bars">
+        <div class="health-bar-row">
+          <span class="health-bar-label strong">Strong</span>
+          <div class="health-bar-track">
+            <div class="health-bar-fill strong" [style.width]="healthBarWidth(healthData.strongCount)"></div>
+          </div>
+          <span class="health-bar-count">{{ healthData.strongCount }}</span>
+        </div>
+        <div class="health-bar-row">
+          <span class="health-bar-label good">Good</span>
+          <div class="health-bar-track">
+            <div class="health-bar-fill good" [style.width]="healthBarWidth(healthData.goodCount)"></div>
+          </div>
+          <span class="health-bar-count">{{ healthData.goodCount }}</span>
+        </div>
+        <div class="health-bar-row">
+          <span class="health-bar-label fair">Fair</span>
+          <div class="health-bar-track">
+            <div class="health-bar-fill fair" [style.width]="healthBarWidth(healthData.fairCount)"></div>
+          </div>
+          <span class="health-bar-count">{{ healthData.fairCount }}</span>
+        </div>
+        <div class="health-bar-row">
+          <span class="health-bar-label weak">Weak</span>
+          <div class="health-bar-track">
+            <div class="health-bar-fill weak" [style.width]="healthBarWidth(healthData.weakCount)"></div>
+          </div>
+          <span class="health-bar-count">{{ healthData.weakCount }}</span>
+        </div>
+        <div class="health-bar-row">
+          <span class="health-bar-label very-weak">Very Weak</span>
+          <div class="health-bar-track">
+            <div class="health-bar-fill very-weak" [style.width]="healthBarWidth(healthData.veryWeakCount)"></div>
+          </div>
+          <span class="health-bar-count">{{ healthData.veryWeakCount }}</span>
+        </div>
+      </div>
+      <p class="health-avg">Avg. strength score: <strong>{{ healthData.averageStrengthScore | number:'1.0-1' }} /
+          100</strong></p>
+    </div>
+    }
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- REUSED PASSWORDS                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    @if (reusedData && reusedData.totalReusedGroups > 0) {
+    <div class="detail-card" id="reused-section">
+      <button class="detail-card-header detail-card-header--toggle" (click)="toggleReusedExpanded()"
+        (keydown.enter)="toggleReusedExpanded()">
+        <lucide-icon name="copy" [size]="18"></lucide-icon>
+        <h3>Reused Passwords</h3>
+        <span class="detail-badge danger">{{ reusedData.totalAffectedEntries }} entries affected</span>
+        <lucide-icon [name]="reusedExpanded ? 'chevron-up' : 'chevron-down'" [size]="16"
+          class="expand-icon"></lucide-icon>
+      </button>
+      @if (reusedExpanded) {
+      <div class="reused-groups">
+        @for (group of reusedData.reusedGroups; track $index) {
+        <div class="reused-group">
+          <span class="reused-group-label">Same password used {{ group.reuseCount }}×</span>
+          <div class="reused-entries">
+            @for (entry of group.entries; track entry.entryId) {
+            <a class="reused-entry" routerLink="/vault">
+              <lucide-icon name="lock" [size]="14"></lucide-icon>
+              <span>{{ entry.title }}</span>
+              @if (entry.username) {
+              <span class="reused-entry-user">{{ entry.username }}</span>
+              }
+            </a>
+            }
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    } @else if (reusedData && reusedData.totalReusedGroups === 0) {
+    <div class="detail-card clean-state" id="reused-clean-state">
+      <lucide-icon name="check-circle" [size]="20"></lucide-icon>
+      <span>No reused passwords — great job!</span>
+    </div>
+    }
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- PASSWORD AGE DISTRIBUTION                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    @if (ageData) {
+    <div class="detail-card" id="age-section">
+      <div class="detail-card-header">
+        <lucide-icon name="clock" [size]="18"></lucide-icon>
+        <h3>Password Age Distribution</h3>
+        <span class="detail-badge">Avg {{ ageData.averageAgeInDays | number:'1.0-0' }} days old</span>
+      </div>
+      <div class="age-bars">
+        <div class="age-bar-row">
+          <span class="age-bar-label">Fresh <span class="age-hint">(&lt;30d)</span></span>
+          <div class="age-bar-track">
+            <div class="age-bar-fill fresh" [style.width]="ageBarWidth(ageData.freshCount)"></div>
+          </div>
+          <span class="age-bar-count">{{ ageData.freshCount }}</span>
+        </div>
+        <div class="age-bar-row">
+          <span class="age-bar-label">Aging <span class="age-hint">(30–90d)</span></span>
+          <div class="age-bar-track">
+            <div class="age-bar-fill aging" [style.width]="ageBarWidth(ageData.agingCount)"></div>
+          </div>
+          <span class="age-bar-count">{{ ageData.agingCount }}</span>
+        </div>
+        <div class="age-bar-row">
+          <span class="age-bar-label">Old <span class="age-hint">(90–180d)</span></span>
+          <div class="age-bar-track">
+            <div class="age-bar-fill old" [style.width]="ageBarWidth(ageData.oldCount)"></div>
+          </div>
+          <span class="age-bar-count">{{ ageData.oldCount }}</span>
+        </div>
+        <div class="age-bar-row">
+          <span class="age-bar-label">Ancient <span class="age-hint">(&gt;180d)</span></span>
+          <div class="age-bar-track">
+            <div class="age-bar-fill ancient" [style.width]="ageBarWidth(ageData.ancientCount)"></div>
+          </div>
+          <span class="age-bar-count">{{ ageData.ancientCount }}</span>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- 30-DAY SECURITY TREND                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    @if (trendsData) {
+    <div class="detail-card" id="trends-section">
+      <div class="detail-card-header">
+        <lucide-icon name="activity" [size]="18"></lucide-icon>
+        <h3>Security Score Trend</h3>
+        <span class="detail-badge trend-badge" [style.color]="trendColor">
+          <lucide-icon [name]="trendIcon" [size]="14"></lucide-icon>
+          {{ trendsData.scoreChange > 0 ? '+' : '' }}{{ trendsData.scoreChange }} pts ({{ trendsData.periodLabel }})
+        </span>
+      </div>
+      @if (trendPolylinePoints) {
+      <div class="trend-chart-wrapper">
+        <svg class="trend-chart" viewBox="0 0 160 60" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" [attr.stop-color]="trendColor" stop-opacity="0.3" />
+              <stop offset="100%" [attr.stop-color]="trendColor" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <polyline [attr.points]="trendPolylinePoints" fill="none" [attr.stroke]="trendColor" stroke-width="2"
+            stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+      </div>
+      } @else {
+      <p class="no-trend-data">Not enough data yet. Check back after a few days.</p>
+      }
+    </div>
+    }
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- QUICK ACTIONS                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="quick-actions-section">
+      <a routerLink="/vault" class="action-card new-entry-card">
+        <div class="action-icon-wrapper">
+          <lucide-icon name="plus" [size]="22"></lucide-icon>
+        </div>
+        <div class="action-text">
+          <span class="action-label">Add New Entry</span>
+          <span class="action-desc">Save a new password or secure note</span>
+        </div>
+        <lucide-icon name="arrow-right" [size]="16" class="action-arrow"></lucide-icon>
+      </a>
+    </div>
+
+  </div>
+  }
+
+  <!-- Modals -->
+  @if (showListModal) {
+  <app-dashboard-list-modal [title]="listModalTitle" [description]="listModalDescription" [entries]="listModalEntries"
+    [isLoading]="isListModalLoading" (close)="closeListModal()" (entryClick)="onListModalEntryClick($event)">
+  </app-dashboard-list-modal>
+  }
+
+</div>

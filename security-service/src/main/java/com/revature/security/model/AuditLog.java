@@ -46,6 +46,14 @@ public class AuditLog {
     PASSWORD_VIEWED,
     ENTRY_RESTORED,
     VAULT_EXPORTED,
+    ENTRY_VIEWED,
+    // Auth / account events (from user-service)
+    ACCOUNT_ACTIVITY,
+    NEW_DEVICE_LOGIN,
+    TWO_FA_ENABLED,
+    TWO_FA_DISABLED,
+    PASSWORD_CHANGED,
+    PASSWORD_RESET,
     // Feature 33 — Dashboard
     DASHBOARD_VIEWED,
     // Feature 34 — Breach Monitor

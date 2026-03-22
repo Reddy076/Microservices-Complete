@@ -1,0 +1,127 @@
+<div class="settings-section">
+  @if (successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage }}</div>
+  }
+
+  <!-- Preferences Card -->
+  <div class="settings-card">
+    <div class="card-header-row mb-1">
+      <h3>Application Preferences</h3>
+    </div>
+
+    @if (isLoadingSettings) {
+    <p style="color: var(--text-muted); margin-top: 1rem;">Loading settings...</p>
+    } @else if (userSettings) {
+    <form [formGroup]="readOnlyForm">
+      <div class="d-flex align-items-center gap-3 mt-2">
+        <label class="toggle-switch" for="readOnlyModeToggle">
+          <input type="checkbox" id="readOnlyModeToggle" formControlName="readOnlyMode" (change)="onToggleReadOnly()">
+          <span class="slider round"></span>
+        </label>
+        <span class="fw-medium" style="color: var(--text-main);">Enable Read-Only Mode</span>
+      </div>
+      <p style="color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0px; font-size: 0.9rem;">
+        When enabled, modifications to vault entries are restricted across all devices to prevent accidental deletion or
+        editing.
+      </p>
+    </form>
+    }
+  </div>
+
+  <!-- Danger Zone Card -->
+  <div class="settings-card border-danger-subtle" style="background-color: rgba(239, 68, 68, 0.02);">
+    <div class="card-header-row mb-1 border-bottom-0 pb-0">
+      <h3 class="d-flex align-items-center gap-2 text-danger">
+        <lucide-icon name="alert-triangle" [size]="20"></lucide-icon> Danger Zone
+      </h3>
+    </div>
+
+    @if (isDeletionPending) {
+    <div class="p-4 bg-white rounded-4 border border-danger-subtle mt-3 mb-4 shadow-sm">
+      <div class="d-flex gap-3 align-items-start">
+        <div class="text-danger p-2 bg-danger-subtle rounded-circle">
+          <lucide-icon name="calendar-x" [size]="24"></lucide-icon>
+        </div>
+        <div>
+          <h4 class="h5 mb-1">Account Scheduled for Deletion</h4>
+          <p class="mb-1" style="color: var(--text-main);">Your account and all associated data will be permanently
+            deleted on <strong>{{
+              deletionDate }}</strong>.</p>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0;">You can cancel this action to keep
+            your account.</p>
+        </div>
+      </div>
+    </div>
+    <button class="settings-btn-primary bg-dark border-0 hover:bg-black w-auto" (click)="onCancelDeletion()"
+      [disabled]="isCancellingDeletion">
+      <div class="d-flex align-items-center justify-content-center gap-2">
+        @if (!isCancellingDeletion) { <lucide-icon name="shield-check" [size]="18"></lucide-icon> }
+        {{ isCancellingDeletion ? 'Cancelling...' : 'Cancel Deletion & Keep Account' }}
+      </div>
+    </button>
+    } @else {
+    <p style="color: var(--text-muted); margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.95rem;">
+      Once your account is deleted, all your vault entries, settings, and data will be permanently removed after a
+      30-day grace period. This action can be undone within the grace period by logging back in.
+    </p>
+    <button class="settings-btn-primary bg-danger border-0 w-auto" (click)="onDeleteAccount()">
+      <div class="d-flex align-items-center justify-content-center gap-2">
+        <lucide-icon name="trash-2" [size]="18"></lucide-icon> Delete My Account
+      </div>
+    </button>
+    }
+  </div>
+
+  <!-- Delete Account Modal -->
+  @if (showDeleteModal) {
+  <div class="modal-overlay" (click)="onCancelDeleteModal()"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1050; backdrop-filter: blur(4px);">
+    <div class="settings-card m-3 w-100"
+      style="max-width: 500px; animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);"
+      (click)="$event.stopPropagation()">
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="m-0 d-flex align-items-center gap-2 text-danger">
+          <lucide-icon name="alert-circle" [size]="20"></lucide-icon> Delete Account
+        </h3>
+        <button class="btn-close" (click)="onCancelDeleteModal()"></button>
+      </div>
+
+      <div class="p-3 bg-danger-subtle text-danger-emphasis rounded-3 border border-danger-subtle mb-4"
+        style="font-size: 0.9rem;">
+        <strong>Warning:</strong> This will schedule your account for permanent deletion in 30 days. All your vault
+        entries, passwords, and settings will be lost.
+      </div>
+
+      <form [formGroup]="deleteForm" (ngSubmit)="onConfirmDelete()">
+        <div class="form-group mb-3">
+          <label for="deletePassword" class="form-label fw-medium" style="color: var(--text-main);">Enter master
+            password to confirm</label>
+          <input type="password" id="deletePassword" class="form-control settings-input"
+            formControlName="masterPassword" placeholder="Master password">
+        </div>
+
+        <div class="form-check mb-4 mt-3">
+          <input class="form-check-input" type="checkbox" id="deleteConfirmation" formControlName="confirmation"
+            style="cursor: pointer; width: 1.25rem; height: 1.25rem; margin-top: 0.15rem;">
+          <label class="form-check-label ms-2 user-select-none" for="deleteConfirmation"
+            style="color: var(--text-main); cursor: pointer; padding-top: 2px;">
+            I understand this action cannot be undone after 30 days
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+          <button type="button" class="settings-btn-ghost" (click)="onCancelDeleteModal()">Cancel</button>
+          <button type="submit" class="settings-btn-primary bg-danger border-0"
+            [disabled]="deleteForm.invalid || isDeletingAccount">
+            {{ isDeletingAccount ? 'Deleting...' : 'Permanently Delete Account' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  }
+</div>

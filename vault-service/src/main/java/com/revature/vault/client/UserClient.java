@@ -1,5 +1,6 @@
 package com.revature.vault.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +21,12 @@ public interface UserClient {
         private String username;
         private String masterPasswordHash;
         private String salt;
+
+        @JsonProperty("is2faEnabled")
         private boolean is2faEnabled;
-        
+
+        private String twoFactorSecret;
+
         // Getters and Setters
         public Long getId() { return id; }
         public void setId(Long id) { this.id = id; }
@@ -31,8 +36,15 @@ public interface UserClient {
         public void setMasterPasswordHash(String masterPasswordHash) { this.masterPasswordHash = masterPasswordHash; }
         public String getSalt() { return salt; }
         public void setSalt(String salt) { this.salt = salt; }
+
+        @JsonProperty("is2faEnabled")
         public boolean is2faEnabled() { return is2faEnabled; }
-        public void set2faEnabled(boolean is2faEnabled) { this.is2faEnabled = is2faEnabled; }
+
+        @JsonProperty("is2faEnabled")
+        public void setIs2faEnabled(boolean is2faEnabled) { this.is2faEnabled = is2faEnabled; }
+
+        public String getTwoFactorSecret() { return twoFactorSecret; }
+        public void setTwoFactorSecret(String twoFactorSecret) { this.twoFactorSecret = twoFactorSecret; }
         private boolean readOnlyMode;
         public boolean isReadOnlyMode() { return readOnlyMode; }
         public void setReadOnlyMode(boolean readOnlyMode) { this.readOnlyMode = readOnlyMode; }

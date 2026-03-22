@@ -1,0 +1,373 @@
+.top-island-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 50;
+  padding: 4px 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Left: Greeting Pill */
+.greeting-pill {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-surface);
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  border-radius: 9999px;
+  padding: 10px 32px 10px 10px;
+  min-width: 0;
+  max-width: 100%;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.06), var(--shadow-sm);
+  transition: box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.greeting-pill:hover {
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.14), var(--shadow-md);
+}
+
+.greeting-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+  animation: icon-glow 3s ease-in-out infinite;
+}
+
+@keyframes icon-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 4px 22px rgba(139, 92, 246, 0.65);
+    transform: scale(1.07);
+  }
+}
+
+/* Shield icon breathes slightly offset from the container */
+.greeting-shield-icon {
+  display: flex;
+  animation: shield-breathe 3s ease-in-out infinite;
+}
+
+@keyframes shield-breathe {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(0.88);
+  }
+}
+
+.greeting-text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.greeting-main {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.greeting-main strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.greeting-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.greeting-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* Vault Health micro-pill */
+.vault-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.vault-status-pill.healthy {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.vault-status-pill.issues {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.vault-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.vault-status-pill.healthy .vault-status-dot {
+  background: #10b981;
+  box-shadow: 0 0 5px rgba(16, 185, 129, 0.6);
+  animation: dot-pulse 2.5s ease-in-out infinite;
+}
+
+.vault-status-pill.issues .vault-status-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 5px rgba(245, 158, 11, 0.6);
+}
+
+@keyframes dot-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+
+/* Right side: Theme Toggle & Utilities */
+.header-right-area {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Utilities Pill Box */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 6px 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Theme Toggle Pill */
+.theme-toggle-pill {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-option.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle-option.inactive {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.theme-toggle-option.inactive:hover {
+  color: var(--text-main);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* Sync Status */
+.sync-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px;
+  background: var(--bg-main);
+  border-radius: 999px;
+}
+
+.sync-icon-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+}
+
+.sync-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sync-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  /* Darkened from #475569 for contrast */
+}
+
+.sync-time {
+  font-size: 11px;
+  color: #64748b;
+  /* Darkened from #94a3b8 */
+}
+
+/* Notification Bell Wrapper */
+.notif-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* User Profile Badge */
+.profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 6px 6px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 999px;
+  text-decoration: none;
+  background: var(--bg-surface);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+  /* Match active pill design */
+}
+
+.profile-pill:hover {
+  background: var(--border-color);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.chevron-icon {
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sync-status {
+    display: none;
+  }
+
+  .greeting-date {
+    display: none;
+  }
+
+  .greeting-pill {
+    padding: 8px 14px 8px 10px;
+  }
+
+  .user-name,
+  .chevron-icon {
+    display: none;
+  }
+
+  .profile-pill {
+    padding: 4px;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Small mobile (< 640px): hide greeting pill entirely to save space */
+@media (max-width: 640px) {
+  .greeting-pill {
+    display: none;
+  }
+
+  .top-island-navbar {
+    justify-content: flex-end;
+    padding: 4px 0;
+  }
+
+  .header-right-area {
+    gap: 12px;
+  }
+
+  .navbar-actions {
+    gap: 10px;
+    padding: 6px 8px;
+  }
+}

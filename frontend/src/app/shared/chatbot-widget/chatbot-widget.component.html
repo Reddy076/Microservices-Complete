@@ -1,0 +1,104 @@
+<!-- Floating Action Button -->
+<button class="chat-fab" (click)="toggleChat()" [attr.aria-label]="isOpen ? 'Close chat' : 'Open chat'">
+    @if (isOpen) {
+    <lucide-icon [name]="X" [size]="22"></lucide-icon>
+    } @else {
+    <lucide-icon [name]="MessageCircle" [size]="22"></lucide-icon>
+    }
+</button>
+
+<!-- Chat Modal -->
+@if (isOpen) {
+<div class="chat-modal">
+
+    <!-- Header -->
+    <div class="chat-header">
+        <div class="header-info">
+            <div class="bot-icon">
+                <lucide-icon [name]="Bot" [size]="18"></lucide-icon>
+            </div>
+            <div>
+                <span class="header-title">Security Assistant</span>
+                <span class="header-subtitle">AI Powered · Vault Aware</span>
+            </div>
+        </div>
+        <div class="header-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Online</span>
+        </div>
+    </div>
+
+    <!-- Welcome State (shown only before chat starts) -->
+    @if (messages.length === 0) {
+    <div class="welcome-screen">
+        <div class="welcome-hero">
+            <div class="welcome-bot-icon">
+                <lucide-icon [name]="Sparkles" [size]="28"></lucide-icon>
+            </div>
+            <h3 class="welcome-title">How can I help?</h3>
+            <p class="welcome-subtitle">Ask me anything about your vault security, password health, or get personalized recommendations.</p>
+        </div>
+
+        <div class="prompts-section">
+            <p class="prompts-label">Try asking</p>
+            <div class="prompt-grid">
+                @for (prompt of quickPrompts; track prompt) {
+                <button class="prompt-card" (click)="useQuickPrompt(prompt)">
+                    {{ prompt }}
+                </button>
+                }
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- Messages (shown after first message, quick prompts as small chips at top) -->
+    @if (messages.length > 0) {
+    <div class="chat-messages">
+        @if (messages.length <= 2) {
+        <div class="inline-prompts">
+            @for (prompt of quickPrompts.slice(0, 3); track prompt) {
+            <button class="prompt-chip-small" (click)="useQuickPrompt(prompt)">{{ prompt }}</button>
+            }
+        </div>
+        }
+        @for (msg of messages; track msg.timestamp) {
+        <div class="message" [class.user]="msg.role === 'user'" [class.assistant]="msg.role === 'assistant'">
+            <div class="msg-avatar">
+                @if (msg.role === 'assistant') {
+                <lucide-icon [name]="Bot" [size]="13"></lucide-icon>
+                } @else {
+                <lucide-icon [name]="User" [size]="13"></lucide-icon>
+                }
+            </div>
+            <div class="msg-bubble">{{ msg.content }}</div>
+        </div>
+        }
+        @if (isLoading) {
+        <div class="message assistant">
+            <div class="msg-avatar">
+                <lucide-icon [name]="Bot" [size]="13"></lucide-icon>
+            </div>
+            <div class="msg-bubble typing">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+        </div>
+        }
+    </div>
+    }
+
+    <!-- Input -->
+    <div class="chat-input-area">
+        <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()"
+            [placeholder]="messages.length === 0 ? 'Ask about your vault...' : 'Ask a question...'"
+            [disabled]="isLoading" class="chat-input" />
+        <button class="send-btn" (click)="sendMessage()" [disabled]="isLoading || !userInput.trim()">
+            @if (isLoading) {
+            <lucide-icon [name]="Loader2" [size]="16" class="spin"></lucide-icon>
+            } @else {
+            <lucide-icon [name]="Send" [size]="16"></lucide-icon>
+            }
+        </button>
+    </div>
+</div>
+}

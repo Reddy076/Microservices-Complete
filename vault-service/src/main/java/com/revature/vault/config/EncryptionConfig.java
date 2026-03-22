@@ -9,5 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class EncryptionConfig {
   private String algorithm;
-  private int keySize;
+  private int keyLength;
 }

@@ -35,11 +35,15 @@ public class AdaptiveAuthService {
           .anyMatch(a -> a.getIpAddress() != null && a.getIpAddress().equals(ipAddress));
       if (!knownIp) {
         riskScore += 40;
-        securityClient.createAlert(username,
-            "NEW_LOCATION_LOGIN",
-            "Login from New IP",
-            "Login detected from IP: " + ipAddress,
-            "MEDIUM");
+        try {
+          securityClient.createAlert(username,
+              "NEW_LOCATION_LOGIN",
+              "Login from New IP",
+              "Login detected from IP: " + ipAddress,
+              "MEDIUM");
+        } catch (Exception e) {
+          logger.warn("Could not create alert (security-service unavailable): {}", e.getMessage());
+        }
       }
 
       boolean knownFingerprint = recentAttempts.stream()

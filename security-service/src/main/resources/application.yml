@@ -1,20 +1,34 @@
+server:
+  port: 8084
+
 spring:
   application:
     name: security-service
-  profiles:
-    active: dev
   config:
-    import: "optional:configserver:http://localhost:8888"
+    import: optional:configserver:${SPRING_CONFIG_SERVER_URL:http://localhost:8888}
   datasource:
-    url: jdbc:mysql://localhost:3306/security_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/rev_password_manager?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

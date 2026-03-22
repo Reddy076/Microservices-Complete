@@ -1,18 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/vault_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
-
 encryption:
   algorithm: AES/GCM/NoPadding
   key-length: 256
@@ -20,6 +5,10 @@ encryption:
   gcm-iv-length: 12
   gcm-tag-length: 128
   iterations: 600000
+
+spring:
+  jpa:
+    show-sql: false
 
 logging:
   level:

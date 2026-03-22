@@ -1,12 +1,15 @@
 package com.revature.user.controller;
 
+import com.revature.user.client.VaultClient;
 import com.revature.user.dto.request.AccountDeletionRequest;
+import com.revature.user.dto.response.DashboardResponse;
 import com.revature.user.service.user.AccountDeletionService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.revature.user.dto.SecurityQuestionDTO;
 import com.revature.user.dto.request.ChangePasswordRequest;
@@ -34,17 +37,42 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
 
+  private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
   private final AccountDeletionService accountDeletionService;
   private final UserService userService;
   private final UserRepository userRepository;
   private final SecurityQuestionService securityQuestionService;
   private final PasswordEncoder passwordEncoder;
   private final UserSettingsService userSettingsService;
+  private final VaultClient vaultClient;
 
   @GetMapping("/profile")
   public ResponseEntity<UserResponse> getProfile() {
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     return ResponseEntity.ok(userService.getUserProfile(username));
+  }
+
+  /**
+   * Dashboard counts: vaultCount, favoriteCount, trashCount.
+   * Calls vault-service internal endpoint for counts.
+   */
+  @GetMapping("/dashboard")
+  public ResponseEntity<DashboardResponse> getDashboard() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    try {
+      User user = userRepository.findByUsername(username)
+          .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+      VaultClient.VaultStatsResponse stats = vaultClient.getDashboardStats(user.getId());
+      return ResponseEntity.ok(new DashboardResponse(
+          stats.getVaultCount(),      // → totalVaultEntries
+          stats.getFavoriteCount(),   // → totalFavorites
+          stats.getTrashCount()       // → trashCount
+      ));
+    } catch (Exception e) {
+      log.warn("Could not fetch vault stats for dashboard user={}: {}", username, e.getMessage());
+      return ResponseEntity.ok(new DashboardResponse(0, 0, 0));
+    }
   }
 
   @PutMapping("/profile")
@@ -90,7 +118,6 @@ public class UserController {
 
     List<SecurityQuestionDTO> questionDTOs = questions.stream()
         .map(q -> new SecurityQuestionDTO(q.getQuestionText(), ""))
-
         .collect(Collectors.toList());
 
     return ResponseEntity.ok(questionDTOs);
@@ -111,8 +138,6 @@ public class UserController {
     securityQuestionService.saveSecurityQuestions(user, request.getSecurityQuestions());
     return ResponseEntity.ok().build();
   }
-
-
 
   @PutMapping("/read-only-mode")
   public ResponseEntity<UserSettingsResponse> toggleReadOnlyMode(

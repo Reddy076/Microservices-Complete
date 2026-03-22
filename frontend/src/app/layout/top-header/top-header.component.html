@@ -1,0 +1,63 @@
+<header class="top-island-navbar">
+  <!-- Left: Greeting Pill -->
+  <div class="greeting-pill">
+    <div class="greeting-icon">
+      <lucide-icon name="shield-check" [size]="20" class="greeting-shield-icon"></lucide-icon>
+    </div>
+    <div class="greeting-text-block">
+      <span class="greeting-main">{{ greeting }}, <strong>{{ username }}</strong></span>
+      <div class="greeting-bottom-row">
+        <span class="greeting-date">{{ formattedDate }}</span>
+        @if (vaultHealthLoaded) {
+        <span class="vault-status-pill" [class.healthy]="vaultHealthy" [class.issues]="!vaultHealthy">
+          <span class="vault-status-dot"></span>
+          {{ vaultStatusLabel }}
+        </span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side: Theme Toggle & Utilities -->
+  <div class="header-right-area">
+
+    <!-- Separate Theme Toggle Pill -->
+    <button class="theme-toggle-pill" aria-label="Toggle theme" (click)="toggleTheme()">
+      <div class="theme-toggle-option" [class.active]="!themeService.isDarkMode()"
+        [class.inactive]="themeService.isDarkMode()">
+        <lucide-icon name="sun" [size]="14"></lucide-icon>
+      </div>
+      <div class="theme-toggle-option" [class.active]="themeService.isDarkMode()"
+        [class.inactive]="!themeService.isDarkMode()">
+        <lucide-icon name="moon" [size]="14"></lucide-icon>
+      </div>
+    </button>
+
+    <!-- Right: Utilities -->
+    <div class="navbar-actions">
+
+      <!-- Sync Status -->
+      <div class="sync-status">
+        <div class="sync-icon-circle">
+          <lucide-icon name="check" [size]="12"></lucide-icon>
+        </div>
+        <div class="sync-text">
+          <span class="sync-label">Checked:</span>
+          <span class="sync-time">Just now</span>
+        </div>
+      </div>
+
+      <!-- Notification Bell -->
+      <div class="notif-wrapper">
+        <app-notification-bell></app-notification-bell>
+      </div>
+
+      <!-- User Profile Badge -->
+      <a routerLink="/profile/account" class="profile-pill">
+        <div class="user-avatar">{{ username.charAt(0).toUpperCase() }}</div>
+        <span class="user-name">{{ username }}</span>
+        <lucide-icon name="chevron-down" [size]="16" class="chevron-icon"></lucide-icon>
+      </a>
+    </div>
+  </div>
+</header>

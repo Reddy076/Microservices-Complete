@@ -1,0 +1,92 @@
+:host {
+  display: block;
+}
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: var(--spacing-lg);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.warning-icon {
+  color: var(--warning, #f59e0b);
+  display: flex;
+  align-items: center;
+}
+
+.dialog-content {
+  padding: var(--spacing-lg);
+  color: var(--text-main);
+}
+
+.dialog-message {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.dialog-message strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.warning-box {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--warning, #f59e0b);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.warning-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--warning, #f59e0b);
+}
+
+.warning-list {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+  font-size: 0.875rem;
+  color: var(--text-main);
+}
+
+.warning-list li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.warning-list li:last-child {
+  margin-bottom: 0;
+}
+
+.dialog-actions {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  gap: var(--spacing-sm);
+}
+
+.cancel-btn {
+  color: var(--text-muted);
+}
+
+.confirm-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--danger, #ef4444) !important;
+}
+
+.confirm-btn:hover {
+  background: #dc2626 !important;
+}

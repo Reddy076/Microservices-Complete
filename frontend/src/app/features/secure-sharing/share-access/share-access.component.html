@@ -1,0 +1,83 @@
+<div class="share-page-container">
+  <div class="share-card">
+    <div class="card-header">
+      <div class="logo">
+        <lucide-icon name="shield-check" [size]="28" class="text-primary"></lucide-icon>
+        <h2>Secure Share</h2>
+      </div>
+    </div>
+
+    <div class="card-body">
+      @if (isLoading) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Decrypting secure link...</p>
+      </div>
+      } @else if (error) {
+      <div class="error-state">
+        <lucide-icon name="alert-triangle" [size]="48" class="error-icon"></lucide-icon>
+        <h3>Access Denied</h3>
+        <p class="error-message">{{ error }}</p>
+      </div>
+      } @else if (sharedData) {
+      <div class="success-state">
+        <!-- Entry info -->
+        <div class="entry-header">
+          <h3>{{ sharedData.title || 'Untitled Entry' }}</h3>
+          @if (sharedData.websiteUrl) {
+          <a [href]="sharedData.websiteUrl.startsWith('http') ? sharedData.websiteUrl : 'https://' + sharedData.websiteUrl"
+            target="_blank" class="entry-url">
+            <lucide-icon name="external-link" [size]="14"></lucide-icon>
+            {{ sharedData.websiteUrl }}
+          </a>
+          }
+        </div>
+
+        <div class="info-grid">
+          @if (sharedData.username) {
+          <div class="info-row">
+            <span class="info-label">Username</span>
+            <span class="info-value">{{ sharedData.username }}</span>
+          </div>
+          }
+          <div class="info-row">
+            <span class="info-label">Shared By</span>
+            <span class="info-value">{{ sharedData.sharedBy }}</span>
+          </div>
+        </div>
+
+        <!-- Password Display -->
+        <div class="password-box">
+          <span class="info-label">Password</span>
+          <div class="password-display">
+            <input [type]="passwordVisible ? 'text' : 'password'" [value]="decryptedPassword" readonly
+              class="password-input">
+            <div class="password-actions">
+              <button type="button" class="icon-btn" (click)="togglePasswordVisibility()" title="Toggle visibility">
+                <lucide-icon [name]="passwordVisible ? 'eye-off' : 'eye'" [size]="18"></lucide-icon>
+              </button>
+              <button type="button" class="icon-btn copy-btn" [class.copied]="copySuccess" (click)="copyToClipboard()"
+                title="Copy password">
+                <lucide-icon [name]="copySuccess ? 'check' : 'copy'" [size]="18"></lucide-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metadata -->
+        <div class="metadata-footer">
+          <div class="meta-item">
+            <lucide-icon name="eye" [size]="14"></lucide-icon>
+            <span>{{ sharedData.viewsRemaining === 2147483647 ? 'Unlimited views' : sharedData.viewsRemaining + ' views
+              remaining' }}</span>
+          </div>
+          <div class="meta-item">
+            <lucide-icon name="clock" [size]="14"></lucide-icon>
+            <span>Expires {{ sharedData.expiresAt | date:'medium' }}</span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
